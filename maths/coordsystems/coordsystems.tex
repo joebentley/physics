@@ -1,0 +1,412 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amsfonts,amsthm,amssymb, amsaddr}
+
+
+\title{Coordinate Systems}
+
+\author{Joe Bentley}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Orthogonal Coordinate Systems}
+
+When we are looking to construct a new coordinate system, we want to be able to translate between unit vectors and coordinates of both coordinate systems. In this section we can explore how we can construct orthogonal coordinate systems, which is, coordinate systems where the basis are always orthogonal.
+
+First, suppose that the Cartesian coordinates $(x, y, z)$ of any point $P$ in space can be expressed as functions of three variables $(u_1, u_2, u_3)$ such that,
+
+\begin{align*}
+  \mathbf{r} =
+  \begin{pmatrix}
+    x \\
+    y \\
+    z \\
+  \end{pmatrix} =
+  \begin{pmatrix}
+    x(u_1, u_2, u_3) \\
+    y(u_1, u_2, u_3) \\
+    z(u_1, u_2, u_3)
+  \end{pmatrix}
+\end{align*}
+
+If each point $P$ corresponds to a \textit{unique} set of new coordinates $(u_1, u_2, u_3)$ then these are called curvilinear coordinates of $P$. That is, for the coordinates $(u_1, u_2, u_3)$ to be curvilinear, they must be the \textit{only} set of new coordinates that corresponds to point $P$.
+
+We know from directional derivatives that $\frac{\partial\mathbf{r}}{\partial u_1}$, $\frac{\partial\mathbf{r}}{\partial u_2}$, $\frac{\partial\mathbf{r}}{\partial u_3}$ are vectors in the directions of increasing $u_1$, $u_2$, and $u_3$ respectively. These may not necessarily be unit vectors, as they might not have a length of unity, so we may write,
+
+\begin{align*}
+   \frac{\partial\mathbf{r}}{\partial u_1} = h_1 \mathbf{e_1} \qquad \frac{\partial\mathbf{r}}{\partial u_2} = h_2 \mathbf{e_2} \qquad \frac{\partial\mathbf{r}}{\partial u_3} = h_3 \mathbf{e_3}
+\end{align*}
+
+where $\mathbf{e_1}$, $\mathbf{e_2}$, $\mathbf{e_3}$ are unit vectors in the directions of increasing $u_1$, $u_2$, and $u_3$ respectively. The quantities $h_1$, $h_2$, and $h_3$ are \textit{scale factors} which scale the derivative down to unity, such that,
+
+\begin{align*}
+  \frac{1}{h_i} \left|\frac{\partial\mathbf{r}}{\partial u_i}\right| = 1
+\end{align*}
+
+and therefore we can calculate the scale factor $h_i$ by,
+
+\begin{align*}
+  \left|\frac{\partial\mathbf{r}}{\partial u_i}\right| = h_i
+\end{align*}
+
+
+
+
+If our unit vectors $\mathbf{e_1}$, $\mathbf{e_2}$, $\mathbf{e_3}$ are mutually orthogonal, then we have an orthogonal coordinate system.
+
+One final point is the order the coordinates are written in. This is mathematically arbitrary, but we want to choose coordinates such that,
+
+\begin{align*}
+  \hat{\imath}\times\hat{\jmath}&=\hat{k}
+\end{align*}
+
+or in terms of our more general unit vectors,
+
+\begin{align*}
+  \mathbf{e_1}\times\mathbf{e_2}&=\mathbf{e_3}
+\end{align*}
+
+If the coordinates are our of order, such that for example $\mathbf{e_1}$ and $\mathbf{e_2}$ are switched so that the coordinates are written $(u_2, u_1, u_3)$, then the result of the cross product of the first two unit basis vectors will be negative instead of positive. We would prefer them to be positive as this feels more physically intuitive and natural.
+
+In the next few examples, we will find the unit vectors of various coordinate systems, as well as proving their orthogonality.
+
+\section{Cylindrical Polar Coordinates}
+
+We have enough experience in cylindrical polar coordinates to know how to write the Cartesian coordinates $(x, y, z)$ in terms of the cylindrical coordinates $(\rho, \phi, z)$,
+
+\begin{align*}
+  \mathbf{r} =
+  \begin{pmatrix}
+    x \\
+    y \\
+    z
+  \end{pmatrix} =
+  \begin{pmatrix}
+    \rho\cos\phi \\
+    \rho\sin\phi \\
+    z
+  \end{pmatrix}
+\end{align*}
+
+How do we know to order the coordinates $(\rho, \phi, z)$? We don't, and we will check their order once finding the unit vectors.
+
+First, we want to find the unit basis $\mathbf{e_{\rho}}$. We can do this by taking the derivative of the position vector with respect to the coordinate $\rho$. This will give us a possibly non-unit vector in the direction of changing $\rho$, which we then need to divide by the scale factor $h_{\rho}$ to give us the unit basis vector $\mathbf{e_{\rho}}$.
+
+\begin{align*}
+  \frac{\partial\mathbf{r}}{\partial\rho} =
+  \begin{pmatrix}
+    \cos\phi \\
+    \sin\phi \\
+    0
+  \end{pmatrix}
+\end{align*}
+
+We can see here that the result is already a unit vector, as $\sin^2\phi + \cos^2\phi = 1$. This means that our scale factor $h_{\rho} = 1$, and our unit basis vector is given by,
+
+\begin{align*}
+  \mathbf{e_{\rho}} =
+  \begin{pmatrix}
+    \cos\phi \\
+    \sin\phi \\
+    0
+  \end{pmatrix}
+\end{align*}
+
+Similarly, for the $\phi$ and $z$ coordinates,
+
+\begin{align*}
+  \frac{\partial\mathbf{r}}{\partial\phi} = \rho
+  \begin{pmatrix}
+    -\sin\phi \\
+    \cos\phi \\
+    0
+  \end{pmatrix}
+\end{align*}
+
+This time we see that the result is not a unit vector, but by factoring out $\rho$, we get the scale factor multiplied by a unit basis vector, therefore we have,
+
+\begin{align*}
+  h_{\phi} = \rho
+\end{align*}
+
+and
+
+\begin{align*}
+  \mathbf{e_{\phi}} =
+  \begin{pmatrix}
+    -\sin\phi \\
+    \cos\phi \\
+    0
+  \end{pmatrix}
+\end{align*}
+
+Finally we have the $z$ coordinate,
+
+\begin{align*}
+  \frac{\partial\mathbf{r}}{\partial z} =
+  \begin{pmatrix}
+    0 \\
+    0 \\
+    1
+  \end{pmatrix} \to
+  \mathbf{e_z} =
+  \begin{pmatrix}
+    0 \\
+    0 \\
+    1
+  \end{pmatrix}
+\end{align*}
+
+Here the scale factor again is just $h_z = 1$.
+
+Next we need to check whether these unit basis form an orthogonal coordinate system,
+
+\begin{alignat*}{2}
+  \mathbf{e_{\rho}}\cdot\mathbf{e_{\phi}}&=
+  \begin{pmatrix}
+    \cos\phi \\
+    \sin\phi \\
+    0
+  \end{pmatrix}\cdot
+  \begin{pmatrix}
+    -\sin\phi \\
+    \cos\phi \\
+    0
+  \end{pmatrix} &&= 0 \\
+  \mathbf{e_{\rho}}\cdot\mathbf{e_z}&=
+  \begin{pmatrix}
+    \cos\phi \\
+    \sin\phi \\
+    0
+  \end{pmatrix}\cdot
+  \begin{pmatrix}
+    0 \\
+    0 \\
+    1
+  \end{pmatrix} &&= 0 \\
+  \mathbf{e_{\phi}}\cdot\mathbf{e_z}&=
+  \begin{pmatrix}
+    -\sin\phi \\
+    \cos\phi \\
+    0
+  \end{pmatrix}\cdot
+  \begin{pmatrix}
+    0 \\
+    0 \\
+    1
+  \end{pmatrix} &&= 0
+\end{alignat*}
+
+Therefore we have that all the unit basis vectors are mutually orthogonal. Also to check that the order of the coordinates $(\rho, \phi, z)$ we calculate the cross product and see that $\mathbf{e_{\rho}}\times\mathbf{e_{\phi}}=\mathbf{e_z}$ although this will not be shown explicitly here as it is simply the cross product of two vectors.
+
+\section{Spherical Polar Coordinates}
+
+Again we will take the same approach as last time. This time we know we can write $(x, y, z)$ as $(r, \theta, \phi)$ by the relations,
+
+\begin{align*}
+  \mathbf{r} =
+  \begin{pmatrix}
+    r\sin\theta\cos\phi \\
+    r\sin\theta\sin\phi \\
+    r\cos\theta
+  \end{pmatrix}
+\end{align*}
+
+So we first take the derivative of the position vector with respect to each coordinate to find the vectors in the direction of each increasing coordinate,
+
+\begin{align*}
+  \frac{\partial\mathbf{r}}{\partial r} =
+  \begin{pmatrix}
+    \sin\theta\cos\phi \\
+    \sin\theta\sin\phi \\
+    \cos\theta
+  \end{pmatrix}
+\end{align*}
+
+By $\sin^2\phi + \cos^2\phi = 1$ this again is already a unit vector, so $h_r = 1$ and,
+
+\begin{align*}
+  \mathbf{e_r} =
+  \begin{pmatrix}
+    \sin\theta\cos\phi \\
+    \sin\theta\sin\phi \\
+    \cos\theta
+  \end{pmatrix}
+\end{align*}
+
+and for the $\theta$ and $\phi$ coordinates,
+
+\begin{align*}
+  \frac{\partial\mathbf{r}}{\partial\theta} = r
+  \begin{pmatrix}
+    \cos\theta\cos\phi \\
+    \cos\theta\sin\phi \\
+    -\sin\theta
+  \end{pmatrix}
+\end{align*}
+
+The scale factor is $h_{\theta} = r$ and,
+
+\begin{align*}
+  \mathbf{e_{\theta}} =
+  \begin{pmatrix}
+    \cos\theta\cos\phi \\
+    \cos\theta\sin\phi \\
+    -\sin\theta
+  \end{pmatrix}
+\end{align*}
+
+For the last coordinate $\phi$,
+
+\begin{align*}
+  \frac{\partial\mathbf{r}}{\partial\phi} = r\sin\theta
+  \begin{pmatrix}
+    \cos\theta\cos\phi \\
+    \cos\theta\sin\phi \\
+    -\sin\theta
+  \end{pmatrix}
+\end{align*}
+
+Therefore this time we have a scale factor of $h_{\phi} = r\sin\theta$ and,
+
+\begin{align*}
+  \mathbf{e_{\phi}} =
+  \begin{pmatrix}
+    -\sin\phi \\
+    \cos\phi \\
+    0
+  \end{pmatrix}
+\end{align*}
+
+Again we check for orthogonality,
+
+\begin{align*}
+  \mathbf{e_r}\cdot\mathbf{e_{\theta}} &= 0 \\
+  \mathbf{e_r}\cdot\mathbf{e_{\phi}} &= 0 \\
+  \mathbf{e_{\phi}}\cdot\mathbf{e_{\theta}} &= 0
+\end{align*}
+
+And finally we check that $(r, \theta, \phi)$ is the correct order of the coordinates,
+
+\begin{align*}
+  \mathbf{e_r}\times\mathbf{e_{\theta}}=\mathbf{e_{\phi}}
+\end{align*}
+
+\section{Paraboidal Coordinates}
+
+The paraboidal coordinate $(u, v, \phi)$ are related to the cartesian coordinates such that,
+
+\begin{align*}
+  \mathbf{r}=
+  \begin{pmatrix}
+    uv\cos\phi \\
+    uv\sin\phi \\
+    \frac{1}{2}\left(u_2 - v^2\right)
+  \end{pmatrix}
+\end{align*}
+
+Again we take the derivatives,
+
+\begin{align*}
+  \frac{\partial\mathbf{r}}{\partial u} =
+  \begin{pmatrix}
+    v\cos\phi \\
+    v\sin\phi \\
+    u
+  \end{pmatrix}
+\end{align*}
+
+This time, unlike before, finding the scale factor and thus the unit basis vector is not as easy as a simple factorisation to construct the unit vector. This time we must find the modulus of the derivative to give us the scale factor,
+
+\begin{align*}
+  h_u = \left|\frac{\partial\mathbf{r}}{\partial u}\right| = \sqrt{u_2 + v_2}
+\end{align*}
+
+so our unit vector is given by,
+
+\begin{align*}
+  \mathbf{e_u} = \frac{1}{\sqrt{u^2 + v^2}}
+  \begin{pmatrix}
+    v\cos\phi \\
+    v\sin\phi \\
+    u
+  \end{pmatrix}
+\end{align*}
+
+and for coordinate $v$ we find,
+
+\begin{align*}
+  \frac{\partial\mathbf{r}}{\partial v} =
+  \begin{pmatrix}
+    u\cos\phi \\
+    u\sin\phi \\
+    -v
+  \end{pmatrix}
+\end{align*}
+
+so just as before $h_v = \sqrt{u^2 + v^2}$ and,
+
+\begin{align*}
+  \mathbf{e_v} =
+  \begin{pmatrix}
+    u\cos\phi \\
+    u\sin\phi \\
+    -v
+  \end{pmatrix}
+\end{align*}
+
+and for coordinate $\phi$,
+
+\begin{align*}
+  \frac{\partial\mathbf{r}}{\partial\rho} =
+  \begin{pmatrix}
+    -uv\sin\phi \\
+    uv\cos\phi \\
+    0
+  \end{pmatrix}
+\end{align*}
+
+This time we can factorize so that $h_{\phi} = uv$ and,
+
+\begin{align*}
+  \mathbf{e_{\phi}} =
+  \begin{pmatrix}
+    -\sin\phi \\
+    \cos\phi \\
+    0
+  \end{pmatrix}
+\end{align*}
+
+This time, to check for orthogonality, we will take the dot product of the derivatives of the unit vectors instead of the unit vectors themselves. We do this as a convenience to make the calculation easier. It is possible to do this because the derivative $\partial \mathbf{r} / \partial u_1$ is just the unit vector $\mathbf{e_1}$ multiplied by a constant, the scale factor. By computing the dot products we see that,
+
+\begin{align*}
+  \frac{\partial\mathbf{r}}{\partial u}\cdot\frac{\partial\mathbf{r}}{\partial v} &= 0 \\
+  \frac{\partial\mathbf{r}}{\partial u}\cdot\frac{\partial\mathbf{r}}{\partial \phi} &= 0 \\
+  \frac{\partial\mathbf{r}}{\partial v}\cdot\frac{\partial\mathbf{r}}{\partial \phi} &= 0
+\end{align*}
+
+and therefore,
+
+\begin{align*}
+  \mathbf{e_u}\cdot\mathbf{e_v} &= 0 \\
+  \mathbf{e_u}\cdot\mathbf{e_{\phi}} &= 0 \\
+  \mathbf{e_v}\cdot\mathbf{e_{\phi}} &= 0
+\end{align*}
+
+Therefore we have an orthogonal basis. The order of the coordinates is checked just as before and we find that $(u, v, \phi)$ is indeed the correct order, such that,
+
+\begin{align*}
+  \mathbf{e_u}\times\mathbf{e_v}=\mathbf{e_{\phi}}
+\end{align*}
+
+
+
+
+
+
+\end{document}

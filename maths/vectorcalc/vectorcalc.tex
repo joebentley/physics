@@ -1,0 +1,481 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amsfonts,amsthm,amssymb, amsaddr}
+
+
+\title{Vector Calculus: Grad, Div, and Curl}
+
+\author{Joe Bentley}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Directional Derivative and Gradient}
+
+Consider a scalar field in three dimensions, given by $f(x, y, z)$. The partial derivatives $\frac{\partial f}{\partial x}$, $\frac{\partial f}{\partial y}$, and $\frac{\partial f}{\partial z}$, are taking the derivatives along the $x$, $y$, and $z$ directions respectively. In other words, they are just like normal derivatives of a curve along a direction; they give the rate of change of $f$ along the given direction. What if we want the derivative in a direction other than $x$, $y$, and $z$? We can define the derivative in an arbitrary direction given by $\hat{n}$ as,
+
+\begin{align*}
+  \frac{\partial f}{\partial \hat{n}} = \lim_{\epsilon \to 0} \frac{f(\mathbf{r} + \epsilon \hat{n}) - f(\mathbf{r})}{\epsilon}
+\end{align*}
+
+By applying the chain rule to this, it follows,
+
+\begin{align*}
+  \frac{\partial f}{\partial \hat{n}} &= \frac{d}{d\epsilon} f(x + \epsilon n_x, y + \epsilon n_y, z + \epsilon n_z) \\
+                                      &= \frac{\partial f}{\partial x} \frac{d}{d\epsilon} (x + \epsilon n_x)
+                                       + \frac{\partial f}{\partial y} \frac{d}{d\epsilon} (y + \epsilon n_y)
+                                       + \frac{\partial f}{\partial z} \frac{d}{d\epsilon} (z + \epsilon n_z) \\
+                                      &= n_x \frac{\partial f}{\partial x} + n_y \frac{\partial f}{\partial y} + n_z \frac{\partial f}{\partial z}
+\end{align*}
+
+Therefore, the directional derivative in a given direction $\hat{n}$ is given by,
+
+\begin{align*}
+  \frac{\partial f}{\partial \hat{n}} = \hat{n} \cdot \nabla f
+\end{align*}
+
+Where we define the gradient, $\nabla f$ as,
+
+\begin{align*}
+  \nabla f = \frac{\partial f}{\partial x} \hat{\imath} + \frac{\partial f}{\partial y} \hat{\jmath} + \frac{\partial f}{\partial z} \hat{k}
+\end{align*}
+
+Note that $\frac{\partial f}{\partial \hat{n}} = \hat{n} \cdot \nabla f$ has its maximum value $|\nabla f|$ when $\hat{n}$ is parallel to $\nabla f$. The maximum value is $|\nabla f|$ as $|\hat{n}| = 1$. Hence $\hat{n} = \nabla f / |\nabla f|$ is the direction in which $f$ is increasing most rapidly.
+
+\section{Physical Interpretation of $\nabla \cdot \mathbf{A}$}
+
+Consider an infinitesimal cuboid situated at the position $(x, y, z)$ with sides of length $dx$, $dy$, $dz$. We denote the surface integral as,
+
+\begin{align*}
+  \oint_S \mathbf{A} \cdot d\mathbf{S}
+\end{align*}
+
+The vector $\mathbf{A} = A_x \hat{\imath} + A_y \hat{\jmath} + A_z \hat{k}$. First we will consider two opposing faces of the cuboid both in the $\hat{\imath}$, denoted by the surfaces $S_1$ at $(x + dx, y, z)$ and $S_2$ at $(x, y, z)$. For the surface $S_1$, $d\mathbf{S_1}$ is given by $d\mathbf{S_1} = dy dz \hat{\imath}$. The vector $\hat{\imath}$ is the unit normal to the surface $S_1$. The surface integral is then given by,
+
+\begin{align*}
+  \oint_{S_1} \mathbf{A} \cdot d\mathbf{S} = A_x(x + dx, y, z) dy dz
+\end{align*}
+
+For the surface $S_2$, the surface element $d_\mathbf{S_2}$ is given by $d_\mathbf{S_2} = -dy dz \hat{\imath}$. Note that this time the unit normal is in the opposite direction to the unit normal in $d_\mathbf{S_1}$. The surface integral this time is,
+
+\begin{align*}
+  \oint_{S_2} \mathbf{A} \cdot d\mathbf{S} = A_x(x, y, z) dy dz
+\end{align*}
+
+By adding together the two surface integrals,
+
+\begin{align*}
+  \int_{S_1 + S_2} \mathbf{A} \cdot d\mathbf{S} &= \left[A_x(x + dx, y, z) - A_x(x, y, z)\right] dy dz \\
+                                                &= \left[\frac{\partial A_x}{\partial x} dx\right] dy dz \\
+                                                &= \frac{\partial A_x}{\partial x} dx dy dz = \frac{\partial A_x}{\partial x} dV
+\end{align*}
+
+In ths second line we recognised that it is the definition of the derivative multiplied by $dx$, so we can rewrite it as we have done the line after.
+
+We get similar contributions for each of the other pairs of surfaces which we consider to find the final complete result,
+
+\begin{align*}
+  \oint_S \mathbf{A} \cdot d\mathbf{S} &= \left[\frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z}\right] dx dy dz \\
+                                       &= \nabla \cdot \mathbf{A} dV
+\end{align*}
+
+The divergence of $\mathbf{A}$ is therefore just the flux per unit volume of $\mathbf{A}$.
+
+We can construct a finite volume $V$ from infinitesimal cuboids. The surface integral can then be calculated by adding up the formulae for each cuboid and noting that the integrals over the internal surfaces cancel each other out. We are left with only the outside surface. From this we get the divergence theorem, also known as Gauss' theorem,
+
+\begin{align*}
+  \oint_S \mathbf{A} \cdot d\mathbf{S} = \int_V (\nabla \cdot \mathbf{A}) dV
+\end{align*}
+
+where $S$ is the boundary of $V$. ($S = \partial V$)
+
+\section{The Continuity Equation}
+
+Consider a volume $V$ bounded by a surface $S = \partial V$. The only way a conserved charge can change within the volume $V$ is if there is a current flow (flow of charge) across $S$. We can see that the rate of decrease of charge within $V$ is equal to the current flow across $S$,
+
+\begin{align*}
+  \frac{\partial}{\partial t} \int_V \rho dV = - \oint_S \mathbf{j} \cdot d \mathbf{S}
+\end{align*}
+
+where $\rho$ is the charge density and $\mathbf{j}$ is the current density (per unit area). Using the divergence theorem gives that the right hand side can be written such that,
+
+\begin{align*}
+  \int_V \frac{\partial \rho}{\partial t} dV = - \int_V \nabla \cdot \mathbf{j} dV
+\end{align*}
+
+We have also taken the $\partial/\partial t$ into the integral. For this to be true for all volumes $V$, it is required that,
+
+\begin{align*}
+  \frac{\partial \rho}{\partial t} + \nabla \cdot \mathbf{j} = 0
+\end{align*}
+
+A familiar case is electric charge, where the density $\rho(\mathbf{r}, t)$ is the charge density, and $\mathbf{j}(\mathbf{r}, t)$ is the current density. Another example would be fluid flow, where the density $\rho(\mathbf{r}, t)$ is just the mass density, and for a velocity field $\mathbf{v}(\mathbf{r}, t)$, the mass current is given by $\mathbf{j}(\mathbf{r}, t) = \rho(\mathbf{r}, t)\mathbf{v}(\mathbf{r}, t)$. Thus in this case, due to mass conservation,
+
+\begin{align*}
+  \frac{\partial \rho}{\partial t} + \nabla \cdot (\rho \mathbf{V}) = 0
+\end{align*}
+
+In the case of an incompressible fluid flow, the density $\rho$ is constant, and thus
+
+\begin{align*}
+  \nabla \cdot \mathbf{v} = 0
+\end{align*}
+
+\section{Physical Interpretation of $\nabla \times \mathbf{A}$}
+
+Consider an infinitesimal rectangle in the $xy$-plane situation at $(x, y)$ with sides of length $dx$ and $dy$. In this case we can write the circulation (the closed line integral) around the infinitesimal loop as,
+
+\begin{align*}
+  \oint_C \mathbf{A} \cdot d\mathbf{r} = \int_{C_1 + C_2 + C_3 + C_4} \mathbf{A} \cdot d\mathbf{r}
+\end{align*}
+
+Where each $C_n$ is each side of the infinitesimal rectangle. For the first side $C_1$ we can write an infinitesimal element $d\mathbf{r_1}$ as $d\mathbf{r_1} = dx \hat{\imath}$. The unit vector $\hat{\imath}$ is the unit normal to the line. We can then write the surface integral as,
+
+\begin{align*}
+  \int_{C_1} \mathbf{A} \cdot d\mathbf{r_1} = A_x(x, y, z) dx
+\end{align*}
+
+Here we have taken the dot product of $\mathbf{A}$ and $d\mathbf{r_1}$, and since this is only for $A_x$, there is no $\hat{\jmath}$ or $\hat{k}$ component. For the side $C_3$ opposite the side $C_1$ we see that $d\mathbf{r_3} = -dx \hat{\imath}$ as it is in the opposite direction to the unit normal of $C_1$. We can thus write the surface integral,
+
+\begin{align*}
+  \int_{C_3} \mathbf{A} \cdot d\mathbf{r_3} = -A_x(x, y + dy, z) dx
+\end{align*}
+
+By adding together these two line integrals we then see that,
+
+\begin{align*}
+  \int_{C_1 + C_3} &= \left[A_x(x, y, z) - A_x(x, y + dy, z)\right] dx \\
+                   &= \left[-\frac{\partial A_x}{\partial y} dy\right] dx = -\frac{\partial A_x}{\partial y} dx dy
+\end{align*}
+
+Here we have again noted that the $A_x$ terms are just the derivative of $A_x$ with respect to $y$, multiplied by $dy$. 
+
+Similarly we find that the other two sides $C_2$ and $C_4$ give,
+
+\begin{align*}
+  \int_{C_2 + C_4} \mathbf{A} \cdot d\mathbf{r} &= \left[A_y(x + dx, y, z) - A_y(x, y, z)\right] dy \\
+                                                &= \left[\frac{\partial A_y}{\partial x} dx\right] dy = \frac{\partial A_y}{\partial x} dx dy
+\end{align*}
+
+Therefore we can now calculate the integral over the entire rectangle,
+
+\begin{align*}
+  \oint_C \mathbf{A} \cdot d\mathbf{r} = \left[\frac{\partial A_y}{\partial x} - \frac{\partial A_x}{\partial y}\right] dx dy
+\end{align*}
+
+By noting that in the square brackets is the cross product, we can also write it as the $z$ component of the cross product,
+
+\begin{align*}
+  \oint_C \mathbf{A} \cdot d\mathbf{r} = {(\nabla \times \mathbf{A})}_z dx dy
+\end{align*}
+
+We can also write the rectangle as a surface element $d\mathbf{S}$ with a width $dx$ and height $dy$. We define the normal to this surface as being in the $\hat{k}$ direction (this is where the cross product comes from) allowing to write the integral as,
+
+\begin{align*}
+  \oint_C \mathbf{A} \cdot d\mathbf{r} = (\nabla \times \mathbf{A}) \cdot d\mathbf{S}
+\end{align*}
+
+Note that we no longer need just the $z$-component of the cross product as the dot product filters out just the component in the $\hat{k}$ direction for us. From this result we can see that the $z$-component of the curl of $\mathbf{A}$ is the circulation per unit area of $A$ in the $xy$-plane.
+
+Generally, for an infinitesimal surface area $d\mathbf{S} = \hat{n} dS$ where $\hat{n}$ is the unit normal, the circulation over the loop $C = \partial S$ is given by,
+
+\begin{align*}
+  \oint_C \mathbf{A} \cdot d\mathbf{r} = \left(\nabla \times \mathbf{A}\right) \cdot d\mathbf{S}
+\end{align*}
+
+We can construct a finite surface $S$ from infinitestimal surface elements. We can do this by summing the above equation for each element and noting that the integrals over the internal loops cancel each other out. From this we get Stokes theorem,
+
+\begin{align*}
+  \oint_C \mathbf{A} \cdot d\mathbf{r} = \int_S \left(\nabla \times \mathbf{A}\right) \cdot d\mathbf{S}
+\end{align*}
+
+\section{Using Divergence and Curl with Maxwell's Equations}
+
+We can use the divergence theorem and Stokes theorem to find the integral versions of Maxwell's equations.
+
+This example shows finding the integral version of Gauss' law. The electric field lines diverge from electric charges such that,
+
+\begin{align*}
+  \nabla \cdot \mathbf{E} = \frac{\rho(r)}{\epsilon_0}
+\end{align*}
+
+By integrating both sides,
+
+\begin{align*}
+  \int_V \nabla \cdot \mathbf{E} dV &= \int_V \frac{\rho(r)}{\epsilon_0} dV \\
+  \oint_S \mathbf{E} \cdot d\mathbf{S} &= \frac{Q}{\epsilon_0}
+\end{align*}
+
+This is the integral form of Gauss law.
+
+This example shows finding the integral version of Amperes Law. The magnetic field lines curl around the electric currents,
+
+\begin{align*}
+  \nabla \times \mathbf{B} &= \mu_0 \mathbf{j}(\mathbf{r}) \\
+  \int_S \left(\nabla \times \mathbf{B}\right) \cdot d\mathbf{S} &= \int_S \mu_0 \mathbf{j}(\mathbf{r}) d\mathbf{S} \\
+  \oint_C \mathbf{B} \cdot d\mathbf{r} &= \mu_0 I
+\end{align*}
+
+\section{Vector Calculus Identities}
+
+In this section we will prove many of the identities that we might need to know in vector calculus. These include vector calculus of sums, products, and multiple derivatives. First we will list which identities we need, and then we will go through and prove them all. In the following text, $v$ will mean vector, and $s$ will mean scalar.
+
+First we will consider the sums. There are two types of summations possible for scalar and vector fields,
+
+\begin{align*}
+  \phi + \psi \qquad &\text{(s + s = s)} \\
+  \mathbf{A} + \mathbf{B} \qquad &\text{(v + v = v)}
+\end{align*}
+
+So we will need the formula for,
+
+\begin{align*}
+  &\nabla(\phi + \psi) \\
+  &\nabla \cdot (\mathbf{A} + \mathbf{B}) \\
+  &\nabla \times (\mathbf{A} + \mathbf{B})
+\end{align*}
+
+In fact, we can consider general linear combinations of the scalar and vectors fields,
+
+\begin{align}
+  \label{eq:1}
+  &\nabla(\lambda \phi + \mu \psi) \\
+  \label{eq:2}
+  &\nabla \cdot (\lambda \mathbf{A} + \mu \mathbf{B}) \\
+  \label{eq:3}
+  &\nabla \times (\lambda \mathbf{A} + \mu \mathbf{B})
+\end{align}
+
+where $\lambda$ and $\mu$ are constants.
+
+Next we need the identities for products. There are four possible types of products,
+
+\begin{align*}
+  \phi\psi \qquad &\text{s $\times$ s = s} \\
+  \phi\mathbf{A} \qquad &\text{s $\times$ v = v} \\
+  \mathbf{A} \cdot \mathbf{B} \qquad &\text{v $\times$ v = s} \\
+  \mathbf{A} \times \mathbf{B} \qquad &\text{v $\times$ v = v}
+\end{align*}
+
+So we will need the formula for,
+
+\begin{align}
+  \label{eq:4}
+  &\nabla(\phi\psi) \\
+  \label{eq:5}
+  &\nabla\cdot(\phi\mathbf{A}) \\
+  \label{eq:6}
+  &\nabla\times(\phi\mathbf{A}) \\
+  \label{eq:7}
+  &\nabla(\mathbf{A}\cdot\mathbf{B}) \\
+  \label{eq:8}
+  &\nabla\cdot(\mathbf{A}\times\mathbf{B}) \\
+  \label{eq:9}
+  &\nabla\times(\mathbf{A}\times\mathbf{B})
+\end{align}
+
+And finally we need the multiple derivatives,
+
+\begin{align}
+  \label{eq:10}
+  &\nabla\cdot(\nabla\phi) \\
+  \label{eq:11}
+  &\nabla\times(\nabla\phi) \\
+  &\nabla(\nabla\cdot\mathbf{A}) \notag\\
+  \label{eq:12}
+  &\nabla\cdot(\nabla\times\mathbf{A}) \\
+  \label{eq:13}
+  &\nabla\times(\nabla\times\mathbf{A})
+\end{align}
+
+So now we will start and find the identity for expression.~\ref{eq:1}. Since this is vector, we only need to prove this for one component,
+
+\begin{align*}
+  &{\left[\nabla(\lambda \phi + \mu \psi)\right]}_x = \frac{\partial}{\partial x}\left(\lambda\phi + \mu\psi\right) \\
+  =& \lambda \frac{\partial \phi}{\partial x} + \mu \frac{\partial \psi}{\partial x} = \lambda{[\nabla\phi]}_x + \mu{[\nabla \psi]}_x \\
+  =& {\left[\lambda \nabla \phi + \mu \nabla \psi\right]}_x \\
+  \implies& \nabla[\lambda \phi + \mu \psi] = \lambda\nabla\phi + \mu\nabla\psi
+\end{align*}
+
+For the second identity, we have to prove for each component as this isn't a vector as it is the scalar product,
+
+\begin{align*}
+  \nabla\cdot[\lambda\mathbf{A} + \mu\mathbf{B}] &= \frac{\partial}{\partial x} {\left[\lambda \mathbf{A} + \mu \mathbf{B}\right]}_x + \frac{\partial}{\partial y} {\left[\lambda \mathbf{A} + \mu \mathbf{B}\right]}_y + \frac{\partial}{\partial z} {\left[\lambda \mathbf{A} + \mu \mathbf{B}\right]}_z \\
+                                                 &= \frac{\partial}{\partial x} \left[\lambda A_x + \mu B_x \right] +\frac{\partial}{\partial y} \left[\lambda A_y + \mu B_y \right] +\frac{\partial}{\partial z} \left[\lambda A_z + \mu B_z \right] \\
+                                                 &= \lambda \frac{\partial A_x}{\partial x} + \mu \frac{\partial B_x}{\partial x} + \lambda \frac{\partial A_y}{\partial y} + \mu \frac{\partial B_y}{\partial y} + \lambda \frac{\partial A_z}{\partial z} + \mu \frac{\partial B_z}{\partial z} \\
+                                                 &= \lambda \left(\frac{\partial A_x}{\partial x} + \frac{\partial A_y}{\partial y} + \frac{\partial A_z}{\partial z}\right) + \mu \left(\frac{\partial B_x}{\partial x} + \frac{\partial B_y}{\partial y} + \frac{\partial B_z}{\partial z}\right) \\
+                                                 &= \lambda \nabla \cdot \mathbf{A} + \mu \nabla \cdot \mathbf{B}
+\end{align*}
+
+Therefore we have for expression.~\ref{eq:2},
+
+\begin{align*}
+  \nabla\cdot[\lambda\mathbf{A} + \mu\mathbf{B}] = \lambda \nabla \cdot \mathbf{A} + \mu \nabla \cdot \mathbf{B}
+\end{align*}
+
+For the third identity, we again have another vector as we are taking the cross product, so we only need to prove it for one component,
+
+\begin{align*}
+  {\left[\nabla\times(\lambda\mathbf{A}+\mu\mathbf{B})\right]}_x &= \frac{\partial}{\partial y}{[\lambda\mathbf{A}+\mu\mathbf{B}]}_z - \frac{\partial}{\partial z}{[\lambda\mathbf{A}+\mu\mathbf{B}]}_y \\
+                                                                 &= \frac{\partial}{\partial y}[\lambda A_z+\mu B_z] - \frac{\partial}{\partial z}[\lambda A_y+\mu B_y] \\
+                                                                 &= \lambda\left(\frac{\partial A_z}{\partial y} - \frac{\partial A_y}{\partial z}\right) + \mu\left(\frac{\partial B_z}{\partial y} - \frac{\partial B_y}{\partial z}\right) \\
+                                                                 &= \lambda{(\nabla\times\mathbf{A})}_x + \mu{(\nabla\times\mathbf{A})}_x \\
+                                                                 &= {[\lambda(\nabla\times\mathbf{A}) + \mu(\nabla\times\mathbf{A})]}_x
+\end{align*}
+
+Therefore we have shown that,
+
+\begin{align*}
+  \nabla\times(\lambda\mathbf{A} + \mu\mathbf{B}) = \lambda \nabla\times\mathbf{A} + \mu \nabla\times\mathbf{B}
+\end{align*}
+
+Next we have our fourth identity and our first product identity, from expression.~\ref{eq:4},
+
+\begin{align*}
+  {[\nabla(\phi\psi)]}_x &= \frac{\partial}{\partial x}(\phi\psi) \\
+                         &= \frac{\partial \phi}{\partial x}\psi + \phi\frac{\partial\psi}{\partial x} \\
+                         &= {[\nabla\phi]}_x\psi + \phi{[\nabla\psi]}_x \\
+                         &= {[(\nabla\phi)\psi + \phi(\nabla\psi)]}_x
+\end{align*}
+
+Therefore we have our fourth identity,
+
+\begin{align*}
+  \nabla(\phi\psi) = (\nabla\phi)\psi + \phi(\nabla\psi)
+\end{align*}
+
+Now for our fifth expression, which is a scalar so we have to prove for all components,
+
+\begin{align*}
+  \nabla\cdot(\phi\mathbf{A}) &= \frac{\partial}{\partial x}{(\phi\mathbf{A})}_x + \frac{\partial}{\partial y}{(\phi\mathbf{A})}_y + \frac{\partial}{\partial z}{(\phi\mathbf{A})}_z \\
+                              &= \frac{\partial}{\partial x}(\phi A_x) + \frac{\partial}{\partial y}(\phi A_y) + \frac{\partial}{\partial z}(\phi A_z) \\
+                              &= \frac{\partial\phi}{\partial x} A_x + \frac{\partial\phi}{\partial y} A_y + \frac{\partial\phi}{\partial z} A_z + \frac{\partial A_x}{x} \phi + \frac{\partial A_y}{y} \phi + \frac{\partial A_z}{z} \phi \\
+                              &= (\nabla\phi)\cdot\mathbf{A} + \phi \nabla\cdot\mathbf{A}
+\end{align*}
+
+We now have the fifth identity,
+
+\begin{align*}
+  \nabla\cdot(\phi\mathbf{A}) = (\nabla\phi)\cdot\mathbf{A} + \phi \nabla\cdot\mathbf{A}
+\end{align*}
+
+For our sixth expression, we have a vector and thus only have to prove one component,
+
+\begin{align*}
+  {[\nabla\times(\phi\mathbf{A})]}_x &= \frac{\partial}{\partial y}{(\phi\mathbf{A})}_z - \frac{\partial}{\partial z}{(\phi\mathbf{A})}_y \\
+                                     &= \frac{\partial}{\partial y}(\phi A_z) - \frac{\partial}{\partial z}(\phi A_y) \\
+                                     &= \frac{\partial\phi}{\partial y}A_z - \frac{\partial\phi}{\partial z}A_y + \phi\frac{\partial A_z}{y} - \phi\frac{\partial A_y}{z} \\
+                                     &= {[\nabla\phi\times\mathbf{A}]}_x + {[\phi\nabla\times\mathbf{A}]}_x \\
+                                     &= {[\nabla\phi\times\mathbf{A} + \phi\nabla\times\mathbf{A}]}_x
+\end{align*}
+
+Therefore we have our sixth identity,
+
+\begin{align*}
+  \nabla\times(\phi\mathbf{A}) = (\nabla\phi)\times\mathbf{A} + \phi(\nabla\times\mathbf{A})
+\end{align*}
+
+For the rest of the proofs of the identities see canvas or written notes (the proofs are long and I cannot be bothered to type them up), but I will state all of the identities here,
+
+\begin{align*}
+  \nabla(\mathbf{A}\cdot\mathbf{B}) &= (\mathbf{B}\cdot\mathbf{A})\mathbf{A}+\mathbf{B}\times(\nabla\times\mathbf{A})+(\mathbf{A}\cdot\nabla)\mathbf{B}+\mathbf{A}\times(\nabla\times\mathbf{B}) \\
+  \nabla\cdot(\mathbf{A}\times\mathbf{B}) &= \mathbf{B}\cdot(\nabla\times\mathbf{A}) - \mathbf{A}\cdot(\nabla\times\mathbf{B}) \\
+  \nabla\times(\mathbf{A}\times\mathbf{B}) &= (\mathbf{B}\cdot\nabla)\mathbf{A}-(\mathbf{A}\cdot\nabla)\mathbf{B}+\mathbf{A}(\nabla\cdot\mathbf{B})-\mathbf{B}(\nabla\cdot\mathbf{A}) \\
+  \nabla\cdot(\nabla\psi) &= \nabla^2 \psi \\
+  \nabla\times(\nabla\psi) &= \mathbf{0} \\
+  \nabla\cdot(\nabla\times\mathbf{A}) &= \mathbf{0} \\
+  \nabla\times(\nabla\times\mathbf{A}) &= \nabla(\nabla\cdot\mathbf{A}) - \nabla^2 \mathbf{A}
+\end{align*}
+
+\section{Using Vector Calculus Identities: Maxwell's Equations and Continuity}
+
+From Coulomb's law, Biot Savart law, and Faraday's laws we can derive the differential form of Maxwell's equations,
+
+\begin{alignat*}{2}
+  \nabla \cdot \mathbf{E} &= \frac{\rho}{\epsilon_0} \qquad &&\nabla \times \mathbf{E} = -\frac{\partial\mathbf{B}}{\partial t} \\
+  \nabla \cdot \mathbf{B} &= 0 \qquad &&\nabla \times \mathbf{B} = \mu_0 \mathbf{J}
+\end{alignat*}
+
+Our equation, $\nabla\times\mathbf{B} = \mu_0 \mathbf{J}$, known as Ampere's circuital law is incomplete as it does not obey the continuity equation. The continuity equation describes that,
+
+\begin{align*}
+  \frac{\partial\rho}{\partial t} + \nabla\cdot\mathbf{J} = 0
+\end{align*}
+
+but we see that if we take the divergence of $\mathbf{J}$ we have zero,
+
+\begin{align*}
+  \mu_0 \nabla\cdot\mathbf{J} = \nabla\cdot(\nabla\times\mathbf{B}) = 0.
+\end{align*}
+
+by our identity that the divergence of a curl of a vector field is always zero. This implies that the rate of change of charge density, $\frac{\partial\rho}{\partial t}$ must always be equal to zero for the continuity equation to hold, but this is not necessary to be true for example with a current flowing through a wire. Therefore we must have that,
+
+\begin{align*}
+  \nabla\cdot\mathbf{J} = -\frac{\partial\rho}{\partial t}
+\end{align*}
+
+Therefore, by applying this,
+
+\begin{align*}
+  \mu_0\nabla\cdot\mathbf{J} = -\mu_0\frac{\partial\rho}{\partial t} = -\mu_0\epsilon_0\nabla\cdot\frac{\partial\mathbf{E}}{\partial t}
+\end{align*}
+
+Here we have recognised that the rate of change of charge density is given in the time derivative of Gauss' law. It follows that the continuity equation can be satisfied by writing,
+
+\begin{align*}
+  \nabla\times\mathbf{B} = \mu_0\left(\mathbf{J} + \epsilon_0 \frac{\partial \mathbf{E}}{\partial t}\right)
+\end{align*}
+
+This new term is called the displacement current, and this is known as Maxwell's addition to Ampere's circuit law.
+
+\section{Using Vector Calculus Identities: Electromagnetic Wave Equation}
+
+Maxwell's equations in free space, that is space where there are no charges or currents reduce to,
+
+\begin{alignat*}{2}
+  \nabla\cdot\mathbf{E} &= 0 \qquad &&\nabla\times\mathbf{E} = -\frac{\partial \mathbf{B}}{\partial t} \\
+  \nabla\cdot\mathbf{B} &= 0 \qquad &&\nabla\times\mathbf{B} = \mu_0\epsilon_0\frac{\partial\mathbf{E}}{\partial t}
+\end{alignat*}
+
+Taking the curl of $\nabla\times\mathbf{E}$ gives that,
+
+\begin{align*}
+  \nabla\times(\nabla\times\mathbf{E}) = \nabla\times\left(-\frac{\partial\mathbf{B}}{\partial t}\right) = -\frac{\partial}{\partial t} \left(\nabla\times\mathbf{B}\right) = -\mu_0\epsilon_0\frac{\partial^2\mathbf{E}}{\partial t^2}
+\end{align*}
+
+Therefore we have using our vector identity for the curl of a curl of a vector field,
+
+\begin{align*}
+  \nabla(\nabla\cdot\mathbf{E}) - \nabla^2 \mathbf{E} = -\mu_0\epsilon_0\frac{\partial^2\mathbf{E}}{\partial t^2}
+\end{align*}
+
+From our free space version of Gauss' law we can see that the first term goes to zero, so that
+
+\begin{align*}
+  \nabla^2\mathbf{E} = \mu_0\epsilon_0\frac{\partial^2\mathbf{E}}{\partial t^2}
+\end{align*}
+
+This is just the wave equation, just as in classical wave theory. The only difference between this and how we remember the wave equation from the first year is that instead of taking the second derivative with respect to position in one direction, we now take the second derivative in all directions, which is just the Laplacian. We therefore see that $\mathbf{E}$ satisfies the wave equation with velocity $c = \frac{1}{\sqrt{\mu_0\epsilon_0}}$.
+
+We can do the same thing with the $\mathbf{B}$-field by computing $\nabla\times(\nabla\times\mathbf{B})$,
+
+\begin{align*}
+  \nabla\times(\nabla\times\mathbf{B}) &= \mu_0\epsilon_0\frac{\partial}{\partial t}(\nabla\times\mathbf{E}) \\
+  \nabla(\nabla\cdot\mathbf{B}) - \nabla^2\mathbf{B} &= \mu_0\epsilon_0\frac{\partial}{\partial t}\left(-\frac{\partial\mathbf{B}}{\partial t}\right)
+\end{align*}
+
+Here we have used that $\nabla\times\mathbf{E} = -\frac{\partial\mathbf{B}}{\partial t}$. Again we can say that the first term $\nabla(\nabla\cdot\mathbf{B})$ is zero as Gauss' law for magnetism tells us, so finally we have,
+
+\begin{align*}
+  \nabla^2\mathbf{B} = \mu_0\epsilon_0\frac{\partial^2\mathbf{B}}{\partial t^2}
+\end{align*}
+
+Which is again the same form of the wave equation satisfied by the electric field. We therefore see that we now have two fields, the magnetic field and the electric field, which both satisfy the classical wave equation of the same form.
+
+
+
+\end{document}

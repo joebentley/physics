@@ -1,0 +1,236 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amsfonts,amsthm,amssymb, amsaddr}
+
+
+\title{Solving Kepler Problem with Vector Calculus}
+
+\author{Joe Bentley}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+
+\section{Conservation of Energy}
+
+Here we will arrive at a result which shows conservation of energy from Newton's second law of motion, $\mathbf{F} = m \mathbf{a}$
+
+First, we need to set up a differential equation describing the situation,
+
+\begin{align}
+  \label{eq:raw}
+  m \frac{d \mathbf{v}}{d t} = - \frac{GMm}{r^3} \mathbf{r}.
+\end{align}
+
+We then take the scalar product of each side with $\mathbf{v}$,
+
+\begin{align}
+  \label{eq:dotted}
+  m \mathbf{v} \cdot \frac{d \mathbf{v}}{d t} = - \frac{GMm}{r^3} \mathbf{r} \cdot \mathbf{v}.
+\end{align}
+
+In the next part we will consider the time derivative of $v^2$, we know that $v^2 = \mathbf{v} \cdot \mathbf{v}$, hence
+
+\begin{align*}
+  \frac{d}{dt}(v^2) = \frac{d}{dt}(\mathbf{v} \cdot \mathbf{v}) = \mathbf{v} \cdot \frac{d\mathbf{v}}{dt} + \frac{d\mathbf{v}}{dt} \cdot \mathbf{v} = 2 \mathbf{v} \cdot \frac{d\mathbf{v}}{dt}
+\end{align*}
+
+In the second step we applied the product rule.
+
+We can see that this is almost like the left hand of our equation, just with a factor of 2, and missing an $m$. The left hand side of our equation is then, in fact, the time derivative of the kinetic energy.
+
+\begin{align*}
+  \frac{d}{dt}\left(\frac{1}{2}mv^2\right) = m\mathbf{v}\cdot\frac{d\mathbf{v}}{dt}
+\end{align*}
+
+This is the left hand side of our equation. Now we will concentrate on the right hand side.
+
+Clearly, $r^2 = \mathbf{r} \cdot \mathbf{r}$, and thus,
+
+\begin{align*}
+  \frac{d}{dt}\left(r^2\right) = \frac{d}{dt}\left(\mathbf{r}\cdot\mathbf{r}\right) \\
+  2r\frac{dr}{dt} = 2\mathbf{r}\cdot\frac{d\mathbf{r}}{dt} = 2\mathbf{r}\cdot\mathbf{v} \\
+  \mathbf{r}\cdot\mathbf{v}=r\frac{dr}{dt}
+\end{align*}
+
+We can substitute this into eq.~\ref{eq:dotted} so the right hand side becomes,
+
+\begin{align*}
+  - \frac{GMm}{r^3} \left(r\frac{dr}{dt}\right) = - \frac{GMm}{r^2} \frac{dr}{dt} = \frac{d}{dt}\left[\frac{GMm}{r}\right]
+\end{align*}
+
+Now we have both the left hand side and right hand side of our equation,
+
+\begin{align*}
+  \frac{d}{dt}\left(\frac{1}{2}mv^2\right) = \frac{d}{dt}\left(\frac{GMm}{r}\right)
+\end{align*}
+
+By minusing the RHS,
+
+\begin{align*}
+  \frac{d}{dt}\left(\frac{1}{2}mv^2 - \frac{GMm}{r}\right) = 0
+\end{align*}
+
+Thus we see conservation of energy, the total energy in the system (the kinetic energy minus the gravitational potential energy) is invariant in time.
+
+\section{Conservation of Angular Momentum}
+
+We start by taking the vector product of eq.~\ref{eq:raw} with $\mathbf{r}$,
+
+\begin{align}
+  \label{eq:cross}
+  \mathbf{r}\times\left(m\frac{d\mathbf{v}}{dt}\right) = \mathbf{r}\times\left(- \frac{GMm}{r^3}\right)\mathbf{r} = 0.
+\end{align}
+
+This is zero because $\mathbf{r}\times\mathbf{r}$ is zero. Also used here is $\mathbf{F} = m\mathbf{a}$ in the second argument to the vector product.
+
+What is the left side in differential form? Well it kind of looks like the time derivative of the angular momentum, $\mathbf{L} = \mathbf{r}\times m\mathbf{v}$, so we will try that,
+
+\begin{align*}
+  \frac{d}{dt}\left(\mathbf{r}\times m\mathbf{v}\right) = \frac{d\mathbf{r}}{dt}\times m\mathbf{v} + \mathbf{r}\times m\frac{d\mathbf{v}}{dt} = \mathbf{v}\times m\mathbf{v} + \mathbf{0} = \mathbf{0}
+\end{align*}
+
+The $\mathbf{r}\times m\frac{d\mathbf{v}}{dt}$ is zero as we have shown in eq.~\ref{eq:cross}.
+
+Therefore we see that since the time derivative of the angular momentum is zero, it is conserved, as it is unchanging in time,
+
+\begin{align*}
+  \frac{d}{dt}\left(\mathbf{L}\right) = \frac{d}{dt}\left(\mathbf{r}\times m\mathbf{v}\right) = 0.
+\end{align*}
+
+Since $\mathbf{r}$ is perpendicular to $\mathbf{L}$, and $\mathbf{L}$ is constant, the motion takes place in the plane perpendicular to $\mathbf{L}$, which also contains the origin of rotation.
+
+\section{Laplace-Runge-Lenz Vector}
+
+To find a new unknown conserved quantity we take the vector product of $\mathbf{F} = m\mathbf{a}$ with $\mathbf{L}$,
+
+\begin{align*}
+  m\frac{d\mathbf{v}}{dt}\times\mathbf{L} = -\frac{GMm}{r^3}\mathbf{r}\times\mathbf{L}
+\end{align*}
+
+and then dividing by $m$,
+
+\begin{align}
+  \label{crossedwithL}
+  \frac{d\mathbf{v}}{dt}\times\mathbf{L} = -\frac{GM}{r^3}\mathbf{r}\times\mathbf{L}
+\end{align}
+
+The left hand side looks kind of like the time derivative of $\mathbf{v}\times\mathbf{L}$,
+
+\begin{align*}
+  \frac{d}{dt}\left(\mathbf{v}\times\mathbf{L}\right) = \frac{d\mathbf{v}}{dt}\times\mathbf{L} + \mathbf{v}\times\frac{d\mathbf{L}}{dt} = \frac{d\mathbf{v}}{dt}\times\mathbf{L}
+\end{align*}
+
+Since angular momentum $\mathbf{L}$ is conserved, we see know that $\frac{d\mathbf{L}}{dt}$ is zero. Therefore we now know that the left hand side is equal to $\frac{d}{dt}\left(\mathbf{v}\times\mathbf{L}\right)$.
+
+Now for the right hand side, we plug back in the definition of $\mathbf{L}$,
+
+\begin{align*}
+  -\frac{GM}{r^3}\mathbf{r}\times\mathbf{L}=-\frac{GMm}{r^3}\mathbf{r}\times\left(\mathbf{r}\times\mathbf{v}\right)
+\end{align*}
+
+This is just the vector triple product,
+
+\begin{align*}
+  -\frac{GMm}{r^3}\left[\left(\mathbf{r}\cdot\mathbf{v}\right)\mathbf{r}-\left(\mathbf{r}\cdot\mathbf{r}\right)\mathbf{v}\right] \\
+  = \frac{GMm}{r^3}\left[r^2 \mathbf{v}-\left(r\frac{dr}{dt}\right)\mathbf{r}\right] \\
+  = \frac{GMm}{r}\mathbf{v} - \frac{GMm}{r^2}\frac{dr}{dt}\mathbf{r} \\
+  = \frac{GMm}{r}\frac{d\mathbf{r}}{dt} + \frac{d}{dt}\left(\frac{GMm}{r}\right)\mathbf{r} \\
+  = \frac{d}{dt}\left(\frac{GMm}{r}\mathbf{r}\right)
+\end{align*}
+
+The last line was by seeing that the second to last line is just the product rule, so we just inversed it into the $\frac{d}{dt}$
+
+We therefore have finally that,
+
+\begin{align*}
+  \frac{d}{dt}\left(\mathbf{v}\times\mathbf{L}\right) = \frac{d}{dt}\left(\frac{GMm}{r}\mathbf{r}\right)
+\end{align*}
+
+And then by minusing the right side,
+
+\begin{align*}
+  \frac{d}{dt}\left(\mathbf{v}\times\mathbf{L}-\frac{GMm}{r}\mathbf{r}\right) = \mathbf{0}
+\end{align*}
+
+Which is conserved as we've shown here, as it is invariant in time. This will be written in it's final form as a vector,
+
+\begin{align*}
+  \mathbf{A} = \mathbf{v}\times\mathbf{L} - \frac{GMm}{r}\mathbf{r}
+\end{align*}
+
+This is called the Laplace-Runge-Lenz vector.
+
+\section{Shape of the Orbit}
+
+The shape of the orbit can be found by taking the scalar product of $\mathbf{A}$ with $\mathbf{r}$,
+
+\begin{align*}
+  \mathbf{r}\cdot\mathbf{A} = \mathbf{r}\cdot\left(\mathbf{v}\times\mathbf{L}\right) - \frac{GMm}{r}\mathbf{r}\cdot\mathbf{r}
+\end{align*}
+
+In the first time on the right hand side of the equation we have the scalar triple product, so $\mathbf{r}\cdot\left(\mathbf{v}\times\mathbf{L}\right) = \left(\mathbf{r}\times\mathbf{v}\right)\cdot\mathbf{L}$. $\mathbf{r}\times\mathbf{v}$ is just equal to the angular momentum divided by the mass, therefore $\mathbf{r}\times\mathbf{v} = \frac{\mathbf{L}}{m}$. Therefore we have,
+
+\begin{align*}
+  rA\cos{\theta} &= \left(\mathbf{r}\times\mathbf{v}\right)\cdot\mathbf{L} - GMmr \\
+                 &= \frac{L^2}{m} - GMmr \\
+  \implies \frac{L^2}{GMm^2} &= r\left[1 + \frac{A}{GMm}\cos{\theta}\right]
+\end{align*}
+
+Now we shall make a few definitions,
+
+\begin{align*}
+  p &= \frac{L^2}{GMm^2}, \\
+  e &= \frac{A}{GMm}
+\end{align*}
+
+where $p$ is known as the semi-latus rectum, and $e$ is known as the eccentricity.
+
+Now, if we arrange for $r$, we have the equation for a conic section,
+
+\begin{align*}
+  r = \frac{p}{1 + e\cos{\theta}}
+\end{align*}
+
+\section{Energy and the LRL Vector}
+
+The magnitude of $A$, and hence the eccentricity $e$, can be related to the energy $E$ of the orbit.
+
+\begin{align*}
+  A^2 &= \mathbf{A}\cdot\mathbf{A} = {\|\mathbf{v}\times\mathbf{L}\|}^2 + {\left(\frac{GMm}{r}\right)}^2 \mathbf{r}\cdot\mathbf{r} - 2\frac{GMm}{r} \mathbf{r}\cdot\left(\mathbf{v}\times\mathbf{L}\right) \\
+      &= {GMm}^2 - 2\frac{GM}{r} L^2 + {\|\mathbf{v}\times\mathbf{L}\|}^2
+\end{align*}
+
+The angular momentum $L^2$ appears in the final line because of the scalar triple product at the end of the first line being equal to $\frac{L^2}{m^2}$.
+
+The term ${\|\mathbf{v}\times\mathbf{L}\|}^2$ can be rewritten, which will be shown generally here,
+
+\begin{align*}
+  \mathbf{a}\cdot\mathbf{b} &= ab\cos{\theta} \\
+  \mathbf{a}\times\mathbf{b} &= ab\sin{\theta} \mathbf{\hat{n}} \\
+  \|\mathbf{a}\times\mathbf{b}\| &= ab\sin{\theta} \\
+  {\|\mathbf{a}\times\mathbf{b}\|}^2 + {\left(\mathbf{a}\cdot\mathbf{b}\right)}^2 &= a^2b^2\left[\cos^2\theta + \sin^2\theta\right] = a^2b^2 \\
+  \implies{\left(\mathbf{v}\cdot\mathbf{L}\right)}^2 + {\|\mathbf{v}\times\mathbf{L}\|}^2 &= v^2L^2
+\end{align*}
+
+But, since $\mathbf{v}$ and $\mathbf{L}$ are perpendicular by definition of $\mathbf{L}$, we see that,
+
+\begin{align*}
+  {\|\mathbf{v}\times\mathbf{L}\|}^2 = v^2L^2
+\end{align*}
+
+Now we can substitute this in to our equation from earlier to get a relation between $A^2$ and $E = \frac{1}{2}mv^2 - \frac{GMm}{r}$,
+
+\begin{align*}
+  A^2 &= {\left(GMm\right)}^2 + v^2L^2 - 2\frac{GM}{r}L^2 \\
+      &= {\left(GMm\right)}^2 + \frac{2L^2}{m} \left[\frac{1}{2}mv^2 - \frac{GMm}{r}\right] \\
+      &= {\left(GMm\right)}^2 + \frac{2L^2E}{m}
+\end{align*}
+
+We now have an expression relating the energy of the orbit to the square of the Laplace-Runge-Lenz vector.
+
+\end{document}

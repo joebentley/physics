@@ -1,0 +1,281 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amsfonts,amsthm,amssymb, amsaddr}
+
+
+\title{Line and Surface Integrals}
+
+\author{Joe Bentley}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{3D Curves and Polar Coordinate Review}
+
+We can represent a 3D curve as a vector function of a single parameter $\mathbf{r} = \mathbf{r}(u)$ for some interval $u_1 \leq u \leq u_2$. A curve such as this can be represented generally as,
+
+\begin{align*}
+  \mathbf{r}(u) = x(u)\hat{\imath} + y(u)\hat{\jmath} + z(u)\hat{k}
+\end{align*}
+
+A quick recap of polar coordinates. For example, with a flat circle in the xy plane of radius $a$, we can represent the cartesian coordinates as,
+
+\begin{align*}
+  x &= a\cos{\theta} \\
+  y &= a\sin{\theta} \\
+  z &= 0
+\end{align*}
+
+for $0 \leq \theta \leq 2\pi$.
+
+\section{Integral Over a Line}
+
+Diagram of line.
+
+For a function $\mathbf{r}(u)$ giving a value at a point $u$ on a line, we can say that there is a small change along the line which we call $d\mathbf{r}$ corresponding to a change in $u$. When $u$ increases to $u + du$, then $\mathbf{r}(u)$ changes to,
+
+\begin{align*}
+  \mathbf{r}(u + du) = \mathbf{r}(u) + d\mathbf{r} = \mathbf{r}(u) + \frac{d\mathbf{r}}{du} du
+\end{align*}
+
+The integral of a vector field $\mathbf{F}(\mathbf{r})$ along a curve $C$ defined by the vector function $\mathbf{r}(u)$ is given by,
+
+\begin{align*}
+  \int_C \mathbf{F}\cdot d\mathbf{r} = \int_{u_1}^{u_2} \mathbf{F}(\mathbf{r}(u)) \cdot \frac{d\mathbf{r}}{du} du
+\end{align*}
+
+A physical example of this is the work done $W$ performed by a force $\mathbf{F}$ in moving an object along a path $C$,
+
+\begin{align*}
+  W = \int_C \mathbf{F} \cdot d\mathbf{r}
+\end{align*}
+
+\section{Example: Integral Over a Line}
+
+In this section we will take a simple example of an integral over a closed line of a function $\mathbf{F}(\mathbf{r}) = -y\hat{\imath} + x\hat{\jmath}$. The integral we need to evaluate is $\oint_C \mathbf{F} \cdot d\mathbf{r}$. $C$ is a circle with radius $a$ in the xy plane which will be travered by $\theta$ anti-clockwise. We define a point $\mathbf{r}$ on the circumference on the circle as,
+
+\begin{align*}
+  \mathbf{r} =
+    \begin{pmatrix}
+      x \\
+      y \\
+      z
+    \end{pmatrix} =
+    \begin{pmatrix}
+      a \cos{\theta} \\
+      a \sin{\theta} \\
+      0
+    \end{pmatrix}
+\end{align*}
+
+where $0 \leq \theta \leq 2\pi$.
+
+We can see that $d\mathbf{r} = \frac{d\mathbf{r}}{d \theta} d\theta$, so we can use this to evaluate our integral. First we need to take the dot product, $\mathbf{F} \cdot d\mathbf{r}$,
+
+\begin{align*}
+  \mathbf{F} \cdot d\mathbf{r} &=
+  \begin{pmatrix}
+    -a \sin{\theta} \\
+    a \cos{\theta} \\
+  \end{pmatrix} \cdot
+  \begin{pmatrix}
+    -a \sin{\theta} \\
+    a \cos{\theta}
+  \end{pmatrix} d\theta \\
+  &= a^2 \left(\sin^2{\theta} + \cos^2{\theta}\right)d\theta \\
+  &= a^2 d\theta
+\end{align*}
+
+Now the integral can be evaluated,
+
+\begin{align*}
+  \oint_C \mathbf{F} \cdot d\mathbf{r} = \int_0^{2\pi} a^2 d\theta = 2\pi a^2
+\end{align*}
+
+So we have now evaluated the integral of our function over the circle $C$.
+
+\section{Kinetic Energy}
+
+Suppose a body of mass $m$ moves along a trajectory $\mathbf{r}(t)$ under the influence of some force $\mathbf{F}(\mathbf{r})$. We know that the work done moving from $\mathbf{r}(t_1)=\mathbf{r_1}$ at time $t_1$, to point $\mathbf{r}(t_2)=\mathbf{r_2}$ at time $t_2$ is,
+
+\begin{align*}
+  W &= \int_C \mathbf{F} \cdot d\mathbf{r} \\
+    &= \int_C m \frac{d\mathbf{v}}{dt} \cdot d\mathbf{r} \\
+    &= \int_{t_1}^{t_2} m \frac{d\mathbf{v}}{dt} \cdot \frac{d\mathbf{r}}{dt} dt \\
+    &= \int_{t_1}^{t_2} m \frac{d\mathbf{v}}{dt} \cdot \mathbf{v} dt \\
+    &= \int_{t_1}^{t_2} \frac{d}{dt} \left(\frac{1}{2}m \mathbf{v} \cdot \mathbf{v}\right) dt \\
+  W &= \frac{1}{2}m v_2^2 - \frac{1}{2}m v_1^2
+\end{align*}
+
+arriving at an expression for the work done moving through a force between two points. This can be called the kinetic energy of a body. If the force is derived from a potential energy $V$, then $\mathbf{F} = -\nabla V$,
+
+\begin{align*}
+  W &= \int_C \mathbf{F} \cdot d\mathbf{r} \\
+    &= \int_{t_1}^{t_2} -\nabla V \cdot \frac{d\mathbf{r}}{dt} dt
+\end{align*}
+
+\section{Surface Integrals}
+
+A surface can be represented by a vector function of two parameters,
+
+\begin{align*}
+  \mathbf{r} = \mathbf{r}(u, v) = x(u, v)\hat{\imath} + y(u, v)\hat{\jmath} + z(u, v)\hat{k}
+\end{align*}
+
+For example, we can describe a sphere of radius $a$ centered at the origin by the following parameterisation,
+
+\begin{align*}
+  x &= a\sin{\theta}\cos{\theta} \\
+  y &= a\sin{\theta}\sin{\phi} \\
+  z &= a\cos{\theta} \\
+  0 \leq \theta \leq \pi \\
+  0 \leq \phi \leq 2\pi
+\end{align*}
+
+so in this case $\mathbf{r}$ can be represented as,
+
+\begin{align*}
+  \mathbf{r} = a
+  \begin{pmatrix}
+    \sin{\theta}\cos{\theta} \\
+    \sin{\theta}\sin{\phi} \\
+    \cos{\theta}
+  \end{pmatrix}
+\end{align*}
+
+To evaluate a surface integral, we need an expression for a small element of surface area $dS$. We form this by considering points $\mathbf{r}(u, v)$ when $u$ ranges from $u$ to $u + du$ and $v$ ranges from $v$ to $v + dv$. This element is a parallelogram with sides $d\mathbf{r_1}$ and $d\mathbf{r_2}$ given by,
+
+\begin{align*}
+  d\mathbf{r_1} &= \frac{\partial \mathbf{r}}{\partial u} du \\
+  d\mathbf{r_2} &= \frac{\partial \mathbf{r}}{\partial v} dv
+\end{align*}
+
+The area of this small element $dS$ is given by the cross product, $\mathbf{A} = ab\sin{\theta}\hat{n} = \mathbf{a} \times \mathbf{b}$.
+
+\section{Changing Variable in the Double Integral}
+
+We can view the double integral,
+
+\begin{align*}
+  \iint_S f(x, y) dx dy
+\end{align*}
+
+as a surface integral over a surface $S$ in the $xy$ plane. We can parameterise the surface $S$ by a function of two variables, $\mathbf{r} = \mathbf{r}(u, v)$. This is equivalent to changing the variables $x, y \to u, v$. For the surface $S$ we can do this as follows,
+
+\begin{align*}
+  d\mathbf{S} &= \frac{\partial \mathbf{r}}{\partial u} \times \frac{\partial \mathbf{r}}{\partial v} du dv \\
+              &=
+  \begin{pmatrix}
+    \frac{\partial x}{\partial u} \\[4pt]
+    \frac{\partial y}{\partial u} \\[4pt]
+    0
+  \end{pmatrix} \times
+  \begin{pmatrix}
+    \frac{\partial x}{\partial v} \\[4pt]
+    \frac{\partial y}{\partial v} \\[4pt]
+    0
+  \end{pmatrix} \\
+  &= \left[ \frac{\partial x}{\partial u} \frac{\partial y}{\partial v} - \frac{\partial x}{\partial v} \frac{\partial y}{\partial u} \right] \hat{k} du dv
+\end{align*}
+
+Since $d\mathbf{S} = \hat{k} dx dy$ it follows that,
+
+\begin{align*}
+  dx dy = \left[ \frac{\partial x}{\partial u} \frac{\partial y}{\partial v} - \frac{\partial x}{\partial v} \frac{\partial y}{\partial u} \right] du dv
+\end{align*}
+
+Just like for a line integral paramterisation $dx = \frac{dx}{du} du$, here $dx dy = J du dv$ where $J$ is the differential term in square brackets above. This term $J$ is called the Jacobian determinant, as we see that it is the determinant of a 2$\times$2 matrix,
+
+\begin{align*}
+  \frac{\partial(x, y)}{\partial(u, v)} =
+  \begin{vmatrix}
+    \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} \\[4pt]
+    \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v}
+  \end{vmatrix}
+\end{align*}
+
+The formula for changing variables in a double integrals is thus given by,
+
+\begin{align*}
+  \iint_S f(x, y) dx dy = \iint_S f\left(x(u, v), y(u, v)\right) \frac{\partial (x, y)}{\partial (u, v)} du dv
+\end{align*}
+
+\section{Example: 2D Polars}
+
+We know that the $x$ and $y$ components can be parameterized in terms of $r$ and $\theta$,
+
+\begin{align*}
+  x &= r\cos\theta
+  y &= r\sin\theta
+\end{align*}
+
+Then we can calculate the Jacobian as follows,
+
+\begin{align*}
+  \frac{\partial(x, y)}{\partial(r, \theta)} &=
+  \begin{vmatrix}
+    \frac{\partial x}{\partial r} & \frac{\partial x}{\partial \theta} \\[4pt]
+    \frac{\partial y}{\partial r} & \frac{\partial y}{\partial \theta}
+  \end{vmatrix} =
+  \begin{vmatrix}
+    \cos\theta & -r\sin\theta \\
+    \sin\theta & r\cos\theta
+  \end{vmatrix} \\
+  &= r\cos^2\theta + r\sin^2\theta = r
+\end{align*}
+
+Therefore we have an expression for $dx dy$,
+
+\begin{align*}
+  dx dy = r dr d\theta
+\end{align*}
+
+This is what we expect when we parameterize to evaluate the double integral. For example, we will use this to evaluate, by way of parameterisation,
+
+\begin{align*}
+  & \iint e^{-(x^2 + y^2)} dx dy \\
+  &= \int_{-\infty}^\infty e^{-x^2} dx \int_{-\infty}^{\infty} e^{-y^2} dy \\
+  &= \int_0^\infty r dr \int_0^{2\pi} e^{-r^2} d\theta \\
+  &= \int_0^\infty 2\pi re^{-r^2} dr = {\left[-\pi e^{-r^2}\right]}_0^\infty = \pi \\
+  &\implies \int_{-\infty}^\infty e^{-x^2} dx = \sqrt{\pi}
+\end{align*}
+
+\section{Changing Variable in the Triple Integral}
+
+We already know how to perform volume integrals as it is equivalent to simply taking the triple integral over a region $V$,
+
+\begin{align*}
+  \iiint_V f(x, y, z) dx dy dz
+\end{align*}
+
+We can parameteries the volume $V$ by some vector function $\mathbf{r}(u, v, w)$ for $uvw$ in some region $\overline{V}$ in $uvw$-space. Therefore we are just changing the variables again from $x, y, z \to u, v, w$. The element of volume is a parallelepiped given by the vectors $d\mathbf{r_1}$, $d\mathbf{r_2}$, $d\mathbf{r_3}$,
+
+\begin{align*}
+  d\mathbf{r_1} = \frac{\partial \mathbf{r}}{\partial u} du
+  \qquad d\mathbf{r_2} = \frac{\partial \mathbf{r}}{\partial v} dv
+  \qquad d\mathbf{r_3} = \frac{\partial \mathbf{r}}{\partial w} dw
+\end{align*}
+
+Now we can represent an element of volume (as given by the formula for the volume of the parallelepiped) as,
+
+\begin{align*}
+  dV &= d\mathbf{r_1} \cdot \left(d\mathbf{r_2} \times d\mathbf{r_3}\right) \\
+     &= \frac{\partial \mathbf{r}}{\partial u} \cdot \left(\frac{\partial \mathbf{r}}{\partial v} \times \frac{\partial \mathbf{r}}{\partial w}\right) du dv dw
+\end{align*}
+
+Here we have the scalar triple product, and since the scalar triple product can be written as a determinant, we now have the Jacobian determinant in three dimensions,
+
+\begin{align*}
+  \frac{\partial \mathbf{r}}{\partial u} \cdot \left(\frac{\partial \mathbf{r}}{\partial v} \times \frac{\partial \mathbf{r}}{\partial w}\right) =
+  \begin{vmatrix}
+    \frac{\partial x}{\partial u} & \frac{\partial x}{\partial v} & \frac{\partial x}{\partial w} \\[6pt]
+    \frac{\partial y}{\partial u} & \frac{\partial y}{\partial v} & \frac{\partial y}{\partial w} \\[6pt]
+    \frac{\partial z}{\partial u} & \frac{\partial z}{\partial v} & \frac{\partial z}{\partial w}
+  \end{vmatrix}
+\end{align*}
+
+\end{document}

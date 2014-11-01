@@ -1,0 +1,688 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amsfonts,amsthm,amssymb, amsaddr}
+
+
+\title{Solving the Schrodinger Equation}
+
+\author{Joe Bentley}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Introduction}
+
+The Schrodinger equation cannot be derived. All we can do is take a guess at what it is based on what we it needs to satisfy. That is, we need to postulate it instead instead of derive it, and test whether it is true. In this we will show how it can be postulated, although it is worth noting that we have not done the mental heavy lifting ourselves.
+
+\section{Broglie's Relations}
+
+We know two things that our wave equation must satisfy. Firstly, it must be consistent with de Broglie's relations,
+
+\begin{align}
+\label{eq:debroglie1}
+E &= \hbar \omega \\
+\label{eq:debroglie2}
+p &= \hbar k
+\end{align}
+
+\section{Conservation of Energy}
+
+Also, it must obey the conservation of energy, that is, the total energy equals the sum of the kinetic and potential energy,
+
+\begin{align}
+\label{eq:conservation}
+E = \frac{p^2}{2m} + V(x, t)
+\end{align}
+
+By substituting in eq.\ref{eq:debroglie1} and eq.\ref{eq:debroglie2},
+
+\begin{align}
+\label{eq:energy}
+\frac{\hbar^2 k^2}{2m} + V(x, t) = \hbar \omega
+\end{align}
+
+\section{Linearity}
+
+The wave equation must also be linear. This means that we can take two solutions, add them together, and we are garunteed that this is a solution. This is required for superposition, as we need to be able to add the two waves together. Formally this means if $\Psi_1$ and $\Psi_2$ are solutions, then,
+
+\begin{align*}
+\Psi = a\Psi_1 + b\Psi_2
+\end{align*}
+
+is also a solution, where $a$ and $b$ are arbitrary constants.
+
+\section{An Expected Solution}
+
+For a free particle with no force acting on it (where the potential is constant) we expect a sinusoidal solution in the form,
+
+\begin{align*}
+\Psi(x, t) = A\left[\cos(kx - \omega t) + \gamma \sin(kx - \omega t)\right]
+\end{align*}
+
+This is because for a classical wave, we know that it must satisfy the wave equation, so we have an idea that this will be sinusoidal in nature. Also the $\gamma$ is required because we do not know if there will be a complex $\sin$ term. It is worth noting although that so far we have no reason to yet believe that $\gamma$ is complex.
+
+$k^2$ and $\omega$ are needed for the kinetic and total energy in eq.~\ref{eq:energy}, so we should to differentiate twice with respect to $x$ and once with respect to $t$.
+
+\begin{align}
+\label{eq:diff}
+\frac{\partial^2 \Psi}{\partial x^2} &= Ak^2 \left[-\cos(kx - \omega t) - \gamma \sin(kx - \omega t)\right] \\
+\frac{\partial \Psi}{\partial t} &= A \omega \left[\sin(kx - \omega t) - \gamma \cos(kx - \omega t)\right] \notag
+\end{align}
+
+By comparing eq.~\ref{eq:energy} and eq.~\ref{eq:diff} we can arrive at an approximate form of the Schrodinger equation,
+
+\begin{align}
+\label{eq:almost}
+\alpha \frac{\partial^2 \Psi}{\partial x^2} + V \Psi = \beta \frac{\partial \Psi}{\partial t}
+\end{align}
+
+Where $\alpha$ and $\beta$ are constants that we will find. The potential, $V$ is multiplied by $\Psi$ to satisfy the requirement that the equation is linear. If there were no $\Psi$ multiplying the $V$, then the equation would be non-linear.
+
+\section{Is Gamma Imaginary?}
+
+We need to find gamma in our solution to find a value of $\alpha$ and $\beta$. By substituting from eq.~\ref{eq:diff} into eq.~\ref{eq:almost},
+
+\begin{align*}
+A\left(-\alpha k^2 + V\right) \left[\cos(kx - \omega t) + \gamma \sin(kx - \omega t)\right] \\
+= A\beta\omega\left[\sin(kx - \omega t) - \gamma \cos(kx - \omega t)\right]
+\end{align*}
+
+We know that this must be valid for all $x, t$, as it must work in any point in space and time. Therefore we will consider the cases where $(kx - \omega t) = 0$, and where $(kx - \omega t) = \frac{\pi}{2}$.
+
+Firstly, we consider when $(kx - \omega t) = 0$. In this case, $\sin(\dots) = 1$ and $\cos(\dots) = 0$ and thus,
+
+\begin{align}
+\label{eq:gamma1}
+-\alpha k^2 + V = -\beta \omega \gamma
+\end{align}
+
+Secondly, we consider when $(kx - \omega t) = \frac{\pi}{2}$. In this case, $\sin(\dots) = 0$ and $\cos(\dots) = 1$ and thus,
+
+\begin{align}
+\label{eq:gamma2}
+(-\alpha k^2 + V) \gamma = \beta \omega
+\end{align}
+
+And then by dividing eq.~\ref{eq:gamma1} by eq.~\ref{eq:gamma2},
+
+\begin{align*}
+  &\frac{1}{\gamma} = -\gamma \implies \gamma^2 = -1 \\
+  &\implies \gamma = \sqrt{-1} = i
+\end{align*}
+
+We see that $\gamma$ is indeed imaginary, and therefore we will reflect this in our free particle solution,
+
+\begin{align*}
+\Psi(x, t) &= A\left[\cos(kx - \omega t) + i\sin(kx - \omega t)\right] \\
+\Psi(x, t) &= A e^{i(kx - \omega t)}
+\end{align*}
+
+Here we have used Euler's formula to write our wavefunction in the exponential form.
+
+\section{This is not even my Final Form}
+
+We can now arrive at our form of the Schrodinger equation by finding $\alpha$ and $\beta$, using de Broglie's relations, eq.~\ref{eq:debroglie1} and eq.~\ref{eq:debroglie2}.
+
+First let's find $\alpha$. We see that,
+
+\begin{align*}
+\frac{\partial^2 \Psi}{\partial x^2} = i^2 k^2 \Psi = -k^2 \Psi
+\end{align*}
+
+By substituting our relation for $p$ into $E = \frac{p^2}{2m}$, we find that $E= \frac{\hbar^2 k^2}{2m}$, therefore we have,
+
+\begin{align*}
+\alpha(-k^2) &= \frac{\hbar^2 k^2}{2m} \\
+\implies \alpha &= -\frac{\hbar^2}{2m}
+\end{align*}
+
+Now let's find $\beta$. First we see,
+
+\begin{align*}
+\frac{\partial \Psi}{\partial t} = -i \omega \Psi
+\end{align*}
+
+With $E = \hbar \omega$, we now have enough to find $\beta$,
+
+\begin{align*}
+\beta(-i \omega) &= \hbar \omega \\
+\beta &= i\hbar
+\end{align*}
+
+We now have all we need. We plug our values of $\alpha$ and $\beta$ back into eq.~\ref{eq:almost} to find our final form of the Schrodinger equation,
+
+\begin{align*}
+-\frac{\hbar^2}{2m} \frac{\partial^2 \Psi}{\partial x^2} + V\Psi = i\hbar\frac{\partial \Psi}{\partial t}
+\end{align*}
+
+\section{Interpreting the Wavefunction}
+
+So far we have a wave equation for our wavefunctions, and we have our complex wavefunction itself. We would like to be able to use our wavefunctions to extract information about the quantum states.
+
+First we will postulate that a wavefunction, $\Psi(x, t)$ always gives us a complete description of the quantum object which that wavefunction describes, containing all the physical information that is possible to know about that quantum object. This is subject to Heisenberg's uncertainty principle, $\Delta x\Delta p \geq \frac{\hbar}{2}$.
+
+In quantum mechanics, we must work in the probabilities of the object being at a given location, there are no certainties. We will use $P(x, t) dx$ to denote the probability of measuring an object between $x$ and $x + dx$ at a given time $t$. This means that $P(x, t)$ is a probability density function, in one direction. That is, the probability density $P(x, t)$, multiplied by $dx$, gives us the probability between $x$ and $x + dx$. The probability of a particle being between $x_1$ and $x_2$ can
+thus be found by integrating $P(x, t)$ with respect to $x$ from $x_1$ to $x_2$.
+
+$P(x, t)$ is required to be real, greater than zero, and must be normalized, that is, if we integrate the probability density with respect to $x$ over every possible space, the probability must be equal to one, as we know the object must be somewhere. Mathematically, this can be written as,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} P(x, t) dx = 1.
+\end{align*}
+
+In quantum mechanics, the density function $P(x, t) = {|\Psi|}^2 = \Psi^* \Psi$. We know that ${|\Psi|}^2$ will be real and greater than zero, as it is squared.
+
+First we need to be able to normalize the wave function, but how do we do this? Well we know that, since Schrodinger's equation is linear, if $\Psi_1$ is a solution, then so is $\Psi = A\Psi_1$. This means that we can multiply the wavefunction by a constant $A$ to normalize it. For example,
+
+\begin{align*}
+  \text{Let } \Psi(x, t) =
+  \begin{cases}
+    A\cos{\left(\frac{\pi x}{a}\right)} e^{\frac{-iEt}{\hbar}} & -\frac{a}{2} < x < \frac{a}{2} \\
+    0 & \text{otherwise}
+  \end{cases}
+\end{align*}
+
+Here we have used a wavefunction for particle confined to a one-dimensional line of width $a$. Why don't we use a free particle? If we used a free particle, then it could be anywhere, so we would have no idea where it was (it would have equal probabilities of being at every position).
+
+Now we need to normalize our wavefunction $\Psi(x, t)$ using $\int_{-\frac{a}{2}}^{\frac{a}{2}} \Psi^* \Psi = 1$,
+
+\begin{align*}
+  &\int_{-\frac{a}{2}}^{\frac{a}{2}} \left(A\cos{\left(\frac{\pi x}{a}\right)} e^{\frac{iEt}{\hbar}}\right)\left(A\cos{\left(\frac{\pi x}{a}\right)} e^{\frac{-iEt}{\hbar}}\right) dx = 1 \\
+  &A^2 \int_{-\frac{a}{2}}^{\frac{a}{2}} \cos^2{\left(\frac{\pi x}{a}\right)} dx = 1 \\
+  &\frac{A^2}{2} \int_{-\frac{a}{2}}^{\frac{a}{2}} \left(1 + \cos{\left(\frac{2\pi x}{a}\right)}\right) dx = 1 \\
+  &\frac{A^2}{2} \left[\frac{a}{2} + \frac{a}{2}\right] = \frac{A^2}{2} a = 1 \\
+  &\implies A = \sqrt{\frac{2}{a}}
+\end{align*}
+
+In the third line we used the double angle formula for $\cos 2x$, as well as observing that the $\cos$ term in line 3 goes to zero.
+
+\section{Expectation Values}
+
+What if we need to find the expected value of the object's position over a large number of runs? That is, by taking the average of every position of the particle, where do we expect it to be? We can find the expectation value by taking the weighted mean of the probability density with the position $x$, known as the position operator $\hat{x} = x$ which will be explained later. To find the expected (average) value of position, we take the following weighted mean,
+
+\begin{align*}
+  \langle x\rangle &= \int_{-\infty}^{\infty} x P(x, t) dx \\
+  \langle x\rangle &= \int_{-\infty}^{\infty} \Psi^* x \Psi dx
+\end{align*}
+
+The $\hat{x}$ operator is written between the wave function and it's conjugate as this is the order the operator will be applied in when we use the momentum operator $\hat{p}$ later on.
+
+\section{Extracting Other Observables}
+
+What about extracting observables other than position? For example, what if we want the momentum of a state? It is clear that it will not just be an algebraic function of $x$ as $x$ is entirely probabilistic so what approach do we take?
+
+Firstly, we will consider the free-particle wavefunction,
+
+\begin{align*}
+  \Psi = A e^{i(kx - \omega t)}
+\end{align*}
+
+To find the momentum the wavenumber $k$ is needed, as we need to use de Broglie's relation $p = \hbar k$. Therefore to extract the wavenumber $k$ we need to differentiate with respect to $x$,
+
+\begin{align*}
+  \frac{\partial \Psi}{\partial x} = ik A e^{i(kx - \omega t)} = ik \Psi
+\end{align*}
+
+Since $k = \frac{p}{\hbar}$, we will substitute this back in to find,
+
+\begin{align*}
+  \frac{\partial \Psi}{\partial x} &= i \frac{p}{\hbar} \Psi \\
+  -i\hbar \frac{\partial \Psi}{\partial x} &= p \Psi
+\end{align*}
+
+This can be written in operator form which we can apply to a wavefunction to find the momentum,
+
+\begin{align*}
+  \hat{p} = -i\hbar \frac{\partial}{\partial x}
+\end{align*}
+
+This can be used instead of $x$ in our expectation value as follows,
+
+\begin{align*}
+  \langle p\rangle = \int \Psi^* \hat{p} \Psi dx
+\end{align*}
+
+So $\hat{p} = -i\hbar \frac{\partial}{\partial x}$ we call the momentum operator, a differential operator. $\hat{x} = x$ is known as a multiplicative operator, as it just multiplies the operand.
+
+Now we will consider the kinetic energy of the quantum state,
+
+\begin{align*}
+  E &= \frac{p^2}{2m} \\
+  \implies \hat{T} &= \frac{\hat{p}}{2m} = \frac{1}{2m}{\left(-i\hbar \frac{\partial}{\partial x}\right)}^2
+\end{align*}
+
+Similarly we can show that the total energy operator, from $E = \hbar \omega$, is given by,
+
+\begin{align*}
+  \hat{E} = i\hbar \frac{\partial}{\partial t}
+\end{align*}
+
+We can now write Schrodinger's equation in a compact operator form, defining $\hat{V} = V$,
+
+\begin{align*}
+  \left[\hat{T} + \hat{V}\right]\Psi &= \hat{E}\Psi \\
+  \hat{H}\Psi &= \hat{E}\Psi
+\end{align*}
+
+where the Hamiltonian operator, $\hat{H} = \hat{T} + \hat{V}$. You can prove this to yourself be substituting in the operators and then expanding out.
+
+\section{Setting Up Schrodinger's Equation for Solving}
+
+In many cases the potential $V$ is just a function of space and not changing in time. This simplifies solving the Schrodinger equation greatly. This allows us to write the left hand side of the equation entirely in terms of $x$ operators, and the right hand side entirely in terms of $t$ operators.
+
+\begin{align*}
+  -\frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} \Psi(x, t) + V(x) \Psi(x, t) = i\hbar \frac{\partial}{\partial t} \Psi(x, t)
+\end{align*}
+
+To solve the Schrodinger equation we can use seperation of variables. First we will assume that we can split the wavefunction $\Psi(x, t)$ into the product of two functions, $\psi(x)$ and $\phi(t)$ such that $\Psi(x, t) = \psi(x)\phi(t)$. Now we can begin the seperation of variables,
+
+\begin{align*}
+  \left[-\frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2} \psi(x) + V\psi(x) \right] \phi(t) = \psi(x)\left[i\hbar \frac{\partial}{\partial t}\phi(t)\right]
+\end{align*}
+
+and then dividing by $\Psi = \psi\phi$,
+
+\begin{align*}
+  \left[-\frac{\hbar^2}{2m} \frac{\partial^2}{\partial x^2}\psi + V\psi\right] \frac{1}{\psi} = i\hbar \frac{1}{\phi} \frac{d\phi}{dt} = G
+\end{align*}
+
+Now we have gone from a partial differential equation to two ordinary differential equations equal to a constant $G$, which are significantly easier to solve.
+
+\section{Solving the Schrodinger Equation}
+
+First we consider the time-dependant form of the equation,
+
+\begin{align*}
+  i \hbar \frac{d}{dt} \phi(t) = G\phi(t)
+\end{align*}
+
+where $\phi(t)$ is our time-dependant wavefunction, the other being $\psi(x)$, such that $\Psi(x, t) = \psi(x)\phi(t)$. To find our time-dependant solution we solve the equation by seperation of variables,
+
+\begin{align*}
+  \int \frac{d\phi}{\phi} = -\frac{iG}{\hbar} \int dt
+\end{align*}
+
+therefore we have,
+
+\begin{align*}
+  \phi(t) = A e^{-\frac{iGT}{\hbar}} = A e^{-i \omega t}
+\end{align*}
+
+Here we have made observation that $\omega = \frac{G}{\hbar}$. We know that this must equal $\omega$ for the exponential to be dimensionally accurate, that is, the exponential must have no dimensions, and thus $\omega$ cancels out the time $t$ as $\omega$ has dimensions of $s^{-1}$. Earlier, in constructing the Schrodinger equation, we assumed that it must be consistent with de Broglie's relations, and thus we know $E = \hbar \omega$ which implies that $G = E$ for our solution to be consistent with de Broglie's relations.
+
+Now we need to solve the spatial form of the equation, setting $G = E$, giving us the time-independant Schrodinger equation,
+
+\begin{align*}
+  - \frac{\hbar^2}{2m} \frac{d^2}{dx^2} \psi(x) + V(x)\psi(x) = E\psi(x)
+\end{align*}
+
+Note that the time independant Schrodinger equation is real, but $\psi(x)$ might not necessarily be real, although $\Psi(x, t)$ is always complex.
+
+\section{Example: Kinetic Energy Greater Than Potential Step}
+
+To solve spatially we will first take a potential step function,
+
+\begin{align*}
+  \text{Let } V(x) =
+  \begin{cases}
+    0 & x \leq 0 \\
+    V_0 & x > 0
+  \end{cases}
+\end{align*}
+
+Let us consider a particle incident travelling to the right from $x < 0$ with energy $E > V_0$. Classically, the particle would cross the potential step and then slow down, its kinetic energy being converted into potential energy. To find a solution in this case we solve the time independent Schrodinger equation for $x \leq 0$ and $x > 0$. We expect to see a free-particle solution in both regions, as $\frac{dV}{dt} = 0$ in both regions.
+
+First we will consider the region where $x \leq 0$. In this region there is no potential so $V = 0$. We expect a standing wave solution with an incident component with an amplitude $A$ and a reflected component with an amplitude $B$,
+
+\begin{align*}
+  \psi_1(x) = A e^{i k_1 x} + B e^{-i k_1 x}
+\end{align*}
+
+From $p = \hbar k$, $T = \frac{p^2}{2m}$, and $E = T + V$, we can show that $k_1 = \frac{\sqrt{2mE}}{\hbar}$
+
+Next we will consider the region where $x > 0$. Here the potential is equal to a constant $V = V_0$. We expect a similar solution with a transferred component going to the right with an amplitude $C$ and a component reflected somewhere from the right going to the left with an amplitude $D$,
+
+\begin{align*}
+  \psi_2(x) = C e^{i k_2 x} + D e^{-i k_2 x}
+\end{align*}
+
+In this case, since the potential is non-zero, $k_2 = \frac{\sqrt{2m\left(E - V_0\right)}}{\hbar}$
+
+To find A, B, C, and D, we need to apply the boundary conditions. First, we know that there is no further change to the right of the potential step all the way to infinity. Since the particle is incident from the left of the potential step, there can be no component incident from the right of the potential step to the left, as this would require a reflection further to the right than the potential which is impossible as a change in potential is required for there to be a reflection. This
+means that the amplitude $D = 0$.
+
+Next, we know that at $x = 0$, the function $\psi(x)$ must be continuous, or else at that point $\frac{d\psi}{dx}$ would be infinite (as it would be an infinite gradient step) which would imply that $p$ is infinite, as $p \propto \frac{d\psi}{dx}$.
+
+We also know that at $x = 0$, $\frac{d\psi}{dx}$ must be continuous, or at that point $\frac{d^2 \psi}{dx^2}$ would be infinite, and similarly the kinetic energy $T$ would be infinite, since $T \propto \frac{d^2 \psi}{dx}$.
+
+So we will now use these two boundary conditions to find relations between the amplitudes. First, by noting that $\psi_1(0) = \psi_2(0)$ from our second boundary condition,
+
+\begin{align}
+  \label{eq:amplitude1}
+  A e^{i k_1 0} + B e^{-i k_1 0} &= C e^{i k_2 0} \notag\\
+  A + B &= C
+\end{align}
+
+Applying our third boundary condition, $\frac{d\psi_1}{dx} = \frac{d\psi_2}{dx}$,
+
+\begin{align}
+  \label{eq:amplitude2}
+  i k_1 \left(e^{i k_1 0} + B e^{-i k_1 0}\right) &= i k_2 C e^{i k_2 0} \notag\\
+  A - B &= \frac{k_2}{k_1} C
+\end{align}
+
+By adding eq.~\ref{eq:amplitude1} and eq.~\ref{eq:amplitude2} we obtain the relations,
+
+\begin{align*}
+  2A &= \left(1 + \frac{k_2}{k_1}\right) C \\
+  C &= \left(\frac{2 k_1}{k_1 + k_2}\right) A
+\end{align*}
+
+By minusing eq.~\ref{eq:amplitude2} from eq.~\ref{eq:amplitude1}, we obtain the relation,
+
+\begin{align*}
+  2B &= \left(1 - \frac{k_2}{k_1}\right) C \\
+  B  &= \left(\frac{k_1 - k_2}{2k_1}\right) C \\
+     &= \left(\frac{k_1 - k_2}{2k_1}\right) \left(\frac{2k_1}{k_1 + k_2}\right) A \\
+  \implies B &= \left(\frac{k_1 - k_2}{k_1 + k_2}\right) A
+\end{align*}
+
+In the third line we plug in the expression for $C$ obtained earlier. We can see that the reflection $B$ is zero only when $k_1 = k_2$, which is when $V_0 = 0$. This is intuitive as when $V_0 = 0$ there is no potential to cause a reflection. This means that there is always a reflection for $V_0 \neq 0$, even if $V_0 < 0$.
+
+We define the probability of transmission $T$ as the ratio of the transmitted flux and incident flux. The flux is given by the product of the number density and the velocity. In one dimension this is the number of particles per second passing a point. The number density is proportional to the modulus squared of the wave function, ${|\psi|}^2$, and the velocity is proportional to the wavenumber $k$. The probability $T$ can therefore be calculated by,
+
+\begin{align*}
+  T &= \frac{k_2 {|C|}^2}{k_1 {|A|}^2} = \frac{k_2}{k_1} {\left|\frac{C}{A}\right|}^2 \\
+    &= \frac{k_2}{k_1} \frac{4k_1^2}{{\left(k_1 + k_2\right)}^2} \frac{A^2}{A^2} = \frac{4 k_1 k_2}{{\left(k_1 + k_2\right)}^2}
+\end{align*}
+
+Similarly, the probability of reflection $R$ is given by the ratio of the reflected flux and the incident flux,
+
+\begin{align*}
+  R &= \frac{k_1}{k_1} {\left|\frac{B}{A}\right|}^2 = {\left(\frac{k_1 - k_2}{k_1 + k_2}\right)}^2
+\end{align*}
+
+The probabilities $T$ and $R$ can be shown to add up to $1$ as the particle must be transmitted or reflected, therefore $T + R = 1$.
+
+If we take the case where the potential $V_0 = 0$, and thus $k_1 = k_2$, $R = 0$ and $T = 1$ so the particle is totally transmitted. If we take the case where the potential $V_0 = E$ where $E$ is the particle's energy, and thus $k_2 = 0$, $R = 1$ and $T = 0$ so the particle is totally reflected.
+
+Classically we expect that if the particle's energy $E$ is above the potential $V_0$, then the particle will be totally transmitted with a kinetic energy $E - V_0$. The classical picture predicts that the particle will be transmitted fully unless the potential $V_0$ is greater than the particle's kinetic energy. In the quantum picture however, we see that the probability varies as the kinetic energy differs. That is, if the particle has kinetic energy $E > V_0$, it will be \textit{partly} transmitted. This makes no sense from the classical picture, which considers the particle as being either in $x \geq 0$ or $x < 0$, not in both.
+
+\section{Example: Kinetic Energy Less Than Potential Step}
+
+Now we will consider the case where the particle's kinetic energy $E$ is less than the potential $V_0$. Classically this would mean that the particle would not be able to cross the boundary at all, and we would expect a 100\% reflection, or we would have a kinetic energy $E - V_0$ after transmission, which would therefore be negative. We will solve the time independant Schrodinger equation again to find what will happen in quantum mechanics.
+
+For the region $x \leq 0$, we expect a free particle wavefunction of the form, and a wavenumber,
+
+\begin{align*}
+  \psi_1(x) = A e^{i k_1 x} + B e^{-i k_1 x} \\
+  k_1 = \frac{\sqrt{2mE}}{\hbar}
+\end{align*}
+
+For the region $x > 0$, we expect,
+
+\begin{align*}
+  \psi_2(x) = C e^{i k_2 x} + D e^{-i k_2 x} \\
+  k_2 = \frac{\sqrt{2m\left(E - V_0\right)}}{\hbar}
+\end{align*}
+
+But, since the kinetic energy is lower than the potential, the term $E - V_0$ inside the square root of $k_2$ must be negative. This means that the wavefunction is imaginary,
+
+\begin{align*}
+  k_2 = i \frac{\sqrt{2m\left(V_0 - E\right)}}{\hbar} = ik
+\end{align*}
+
+Where $k$ is the part of the product in $k_2$ which is real (the fraction). By plugging in for $k_2$ we can therefore rewrite the wave function as,
+
+\begin{align*}
+  \psi_2(x) = C e^{-kx} + D e^{kx}
+\end{align*}
+
+Therefore in the region $x > 0$ the solutions are real exponentials and are therefore not oscillatory as there is no $i$ in the exponential. We can apply the physical boundary conditions much like we did in the previous example. First, we know that as $x \to \infty$, then $e^{kx} \to \infty$ as it is no longer oscillatory. This means that $D = 0$ under the constraint that the wavefunction $\psi$ must remain finite.
+
+Next, we know that the wavefunction $\psi(x)$ must be continuous at the boundary $x = 0$,
+
+\begin{align}
+  \label{eq:amplitude3}
+  \psi_1(0) &= \psi_2(0) \notag\\
+  \implies A + B &= C
+\end{align}
+
+Finally, we know that $\psi'(x)$ must also be continuous at the boundary $x = 0$,
+
+\begin{align}
+  \label{eq:amplitude4}
+  \psi'_1(0) &= \psi'_2(0) \notag\\
+  ik_1(A - B) &= -kC \notag\\
+  \implies A - B &= i \frac{k}{k_1} C
+\end{align}
+
+By adding eq.~\ref{eq:amplitude3} and eq.~\ref{eq:amplitude4},
+
+\begin{align*}
+  2A = \left(1 + \frac{ik}{k_1}\right) C
+\end{align*}
+
+and by subtracting eq.~\ref{eq:amplitude4} from eq.~\ref{eq:amplitude3},
+
+\begin{align*}
+  2B = \left(1 - \frac{ik}{k_1}\right) C
+\end{align*}
+
+We can find the reflection probability by taking the ratio of the reflected flux and incident flux,
+
+\begin{align*}
+  R &= \frac{k_1 {|B|}^2}{k_1 {|A|}^2} = {|\frac{B}{A}|}^2 = {\left|\frac{k_1 - ik}{k_1 + ik}\right|}^2 \\
+  R &= \frac{(k_1 - ik) (k_1 + ik)}{(k_1 + ik) (k_1 - ik)} \\
+  R &= 1
+\end{align*}
+
+In the second line we multiply by the complex conjugate as at the end of the first line is the square of a complex number.
+
+Therefore we see that there is no chance of tranmission, so this is exactly the same as the classical result. There are however some important differences between the classical result and the quantum result. Firstly, in the region where $x \leq 0$, we have the wavefunction $\psi_1(x) = Ae^{ik_1 x} + Be^{-ik_1 x}$. We can substitute for $A$ and $B$ and show that,
+
+\begin{align*}
+  \psi_1(x) = C\left[\cos(k_1 x) - \frac{k}{k_1} \sin(k_1 x)\right]
+\end{align*}
+
+Here we have substituted in for $A$ and $B$ from our equations earlier, as well using $\cos(kx) = \left(e^{ikx} + e^{-ikx}\right) / 2$ and $\cos(kx) = \left(e^{ikx} - e^{-ikx}\right) / 2i$. We can see that this represents a standing wave with nodes where $\psi_1(x) = 0$. These nodes are given by,
+
+\begin{align*}
+  \cos(k_1 x) &= \frac{k}{k_1} \sin(k_1 x) \\
+  \tan(k_1 x) &= \frac{k_1}{k} \\
+  x &= \frac{1}{k_1} \arctan{\left(\frac{k_1}{k}\right)}
+\end{align*}
+
+Therefore on the left side of the potential, where $x \leq 0$, we have a standing wave. Nodes occur because the incident and reflected waves have the same amplitude in this case. We see from our wavefunction $\psi_2(x) = Ce^{-kx}$ that on the right side of the potential where $x > 0$ we have a non-zero exponential decay. This means that there must be a finite probability of finding the particle at $x > 0$, as $C \neq 0$ and therefore ${|\psi_2(x)|}^2 \neq 0$. Classically, this would not make sense, as for energy to be conserved, the energy of a particle at $x > 0$ must be negative as $V_0 - E < 0$.
+
+Taking into account Heisenberg's Uncertainty Principle, is it possible to measure the particle at $x > 0$? First we take the mean value of the exponential; the mean value of any exponential $e^{-Ax}$ is $1/A$, therefore,
+
+\begin{align*}
+  \overline{x} = \frac{1}{2k}
+\end{align*}
+
+We can show this by taking the weighted average which we won't evaluate here,
+
+\begin{align*}
+  \overline{x} = \frac{\int_0^{\infty} \psi^* x \psi dx}{\int_0^{\infty} \psi^* \psi dx} = \frac{\int_0^{\infty} x e^{-2kx} dx}{\int_0^{\infty} e^{-2kx} dx}
+\end{align*}
+
+Now we need to consider Heisenberg's Uncertainty Principle,
+
+\begin{align*}
+  \Delta p \Delta x \geq \frac{\hbar}{2} \qquad \Delta x = \frac{1}{2k} \\
+  \implies \Delta p \geq \hbar k = \sqrt{2m(V_0 - E)} \\
+  \implies \Delta E = \frac{{(\Delta p)}^2}{2m} \geq V_0 - E
+\end{align*}
+
+Therefore our uncertainty in the energy is greater than the energy of the particle on the right hand side, meaning we cannot measure its energy. It is not possible to measure the particle on the `classically forbidden'' region with the required precision to know that conservation of energy has been violated. This means that energy conservation can be violated, as long at the violation is small enough that Heisenberg's Uncertainty Principle means we can't measure it.
+
+\section{Example: Two Subsequent Potential Steps}
+
+In this example, the potential takes the form such that there is an upwards step in potential followed by a downwards step, such that,
+
+\begin{align*}
+  V(x) =
+  \begin{cases}
+    0 & x \leq 0 \\
+    V_0 & 0 < x < a \\
+    0 & x \geq a
+  \end{cases}
+\end{align*}
+
+A particle is incident going in the positive $x$ direction from $x < 0$ with energy $E < V_0$. Classically, the particle will not be able to get over the potential barrier. To find the solution in quantum mechanics, we will again solve the time independant Schrodinger equation for the regions, $x \leq 0$, $0 < x < a$, and $x \leq a$.
+
+Firstly, we have the region where $x \leq 0$,
+
+\begin{align*}
+  \psi_1(x) = Ae^{ik_1x} + Be^{-ik_1x}
+\end{align*}
+
+where $k_1 = \frac{\sqrt{2mE}}{\hbar}$.
+
+For the region where $0 < x < a$, we have the same solution as last time, as there is a potential $V_0 > E$,
+
+\begin{align*}
+  \psi_2(x) = Ce^{-kx} + De^{kx}
+\end{align*}
+
+where $k = \frac{\sqrt{2m(V_0 - E)}}{\hbar}$.
+
+Finally in the region where $x \geq a$, and $V = 0$, we have the same wavenumber as $\psi_1$,
+
+\begin{align*}
+  \psi_3(x) = Fe^{ik_1x} + Ge^{-ik_1x}
+\end{align*}
+
+Again we know that there will be no further reflection as there is no further change in potential as $x \to 0$ so we know that $G = 0$.
+
+Now we need to apply the boundary conditions. Unlike last time, we do not know if $D = 0$, as there is another change in potential at $x = a$, so we know that $e^{kx}$ will not be able to go all the way to infinity. We apply the following boundary conditions as normal,
+
+\begin{align*}
+  \psi_1(0) &= \psi_2(0) \\
+  \psi'_1(0) &= \psi'_2(0) \\
+  \psi_2(a) &= \psi_3(a) \\
+  \psi'_2(a) &= \psi'_3(a)
+\end{align*}
+
+note that the second pair of boundary conditions is at the boundary where $x = a$, and not at $x = 0$.
+
+Now we have the information we need to find the probability of transmission given by,
+
+\begin{align*}
+  T = \frac{k_1 {|F|}^2}{k_1 {|A|}^2} = {\left|A\right|}^2
+\end{align*}
+
+To find $A$ in terms of $F$ we first need to find $A$ in terms of $C$ and $D$, and then find $C$ and $D$ in terms of $D$. A lot of the working won't we done here, but can all be found on canvas. We find that,
+
+\begin{align*}
+  A = \frac{iF}{4k_1 k} \left[{(k - ik_1)}^2 e^{ka} - {(k + ik_1)}^2 e^{-ka}\right] e^{ik_1a}
+\end{align*}
+
+We can see that either $e^{ka}$, or $e^{-ka}$ will dominate, as they are the reciprocal of each other. For a high potential barrier, $k$ will be large, and for a wide barrier, $a$ will be large. Therefore, $ka \gg 1$ and thus $e^{-ka} \to 0$. In this limit, we see that,
+
+\begin{align*}
+  A = \frac{iF}{4k_1 k} {(k - ik_1)}^2 e^{ka} e^{ik_1a}
+\end{align*}
+
+Hence, we get the transmission probability, $T$,
+
+\begin{align*}
+  T = \frac{F^* F}{A^* A} = \frac{16 k_1^2 k^2}{{(k^2 + k_1^2)}^2} e^{-2ka}
+\end{align*}
+
+Finally, by substituting in for $k_1$ and $k$,
+
+\begin{align*}
+  T = 16\frac{E}{V_0} \left(1 - \frac{E}{V_0}\right) e^{-2ka}
+\end{align*}
+
+Since we've argued that $ka \gg 1$, the transmission probability will be very small, but it will not be completely zero. This means that there is a finite probability of finding the particle to ``tunnel'' through the potential barrier and appear on the other side.
+
+\section{Square-well Potential}
+
+In this example, we have a square well of width $a$, which follows the potential function,
+
+\begin{align*}
+  V(x) =
+  \begin{cases}
+    x < -\frac{a}{2} & \infty \\
+    -\frac{a}{2} \leq x \leq \frac{a}{2} & 0 \\
+    x > \frac{a}{2} & \infty
+  \end{cases}
+\end{align*}
+
+We need to solve the time independent Schrodinger equation inside the well where $V(x) = 0$. We know that we can either have a standing wave solution or exponential solution, in the forms,
+
+\begin{align*}
+  \psi(x) = A\sin{kx} + B\cos{kx}
+\end{align*}
+
+or,
+
+\begin{align*}
+  \psi(x) = Ce^{ikx} + De^{-ikx}
+\end{align*}
+
+We expect a standing wave between $-a/2 \leq x \leq a/2$ as the potential either side of the well is infinite, so the entire amplitude will be reflected, setting up a standing wave. Therefore we choose the first form, which can be shown to be a solution of the time independent Schrodinger equation.
+
+Next we need to apply the physical boundary conditions to the problem. First we know that the wavefunction must be zero at the boundaries. This is because we need to satisfy continuity between the inside and the outside of the potential well. If the wavefunction were not zero at the boundary, we would have an infinite gradient, as the value of the wavefunction would suddenly go to zero. We know that we cannot have an infinite gradient, as $p \propto \frac{\partial\psi}{\partial x}$, so we would therefore have an infinite momentum. Also we wouldn't have a continuous probability density, and thus the probability density would not follow $\psi^* \psi$. Therefore, by applying this boundary condition,
+
+\begin{alignat}{2}
+  \label{eq:boundary1}
+  &x = -\frac{a}{2} \qquad -&&A\sin{\left(\frac{ka}{2}\right)} + B\cos{\left(\frac{ka}{2}\right)} = 0 \\
+  \label{eq:boundary2}
+  &x =  \frac{a}{2} \qquad  &&A\sin{\left(\frac{ka}{2}\right)} + B\cos{\left(\frac{ka}{2}\right)} = 0
+\end{alignat}
+
+We can't apply a boundary condition for the gradient as we do not know what the gradient will be at $x = -a/2$ and $x = a/2$. This is because the gradient is not continuous because the potential goes to infinity. An infinite potential is not a physically realistic case.
+
+By adding eq.~\ref{eq:boundary1} and eq.~\ref{eq:boundary2},
+
+\begin{align*}
+  B \cos{\left(\frac{ka}{2}\right)} = 0
+\end{align*}
+
+and by subtracting eq.~\ref{eq:boundary1} from eq.~\ref{eq:boundary2},
+
+\begin{align*}
+  A \sin{\left(\frac{ka}{2}\right)} = 0
+\end{align*}
+
+We need a solution to this pair of simultaneous equations but we can't have $\cos{\left(\frac{ka}{2}\right)} = \sin{\left(\frac{ka}{2}\right)} = 0$ for the same $\frac{ka}{2}$. Therefore we must have that either $A$ or $B$ are zero. This means that we cannot have both $\sin$ and $\cos$ solutions at once in an infinite potential well, only one or the other. So we have that either $A = 0$ and $\cos{\left(\frac{ka}{2}\right)} = 0$, or $B = 0$ and $\sin{\left(\frac{ka}{2}\right)} = 0$.
+
+\begin{align*}
+  \cos{\left(\frac{ka}{2}\right)} &= 0 \qquad \text{when} \qquad k = \frac{\pi}{a}, \frac{3\pi}{a}, \frac{5\pi}{a} \\
+  \sin{\left(\frac{ka}{2}\right)} &= 0 \qquad \text{when} \qquad k = \frac{2\pi}{a}, \frac{4\pi}{a}, \frac{6\pi}{a}
+\end{align*}
+
+We cannot have a value of $k = 0$ for the $\sin$ solution as if $k = 0$, then the wavefunction $\psi = A\sin{\left(kx\right)}$ would be zero everywhere, and therefore the wavefunction would not describe the particle at all. We therefore have two sets of solutions,
+
+\begin{alignat*}{2}
+  \psi_n(x) &= B_n \cos(k_n x) \qquad &&k_n = \frac{n\pi}{a} \qquad n = 1, 3, 5\dots \\
+  \psi_n(x) &= A_n \sin(k_n x) \qquad &&k_n = \frac{n\pi}{a} \qquad n = 2, 4, 6\dots
+\end{alignat*}{2}
+
+Different values of $k$ correspond to different energy levels allowed inside the well. We see that for odd $n$, we have the $\cos$ solution, and for even $n$ we have the $\sin$ solution. The integer $n$ is called the quantum number, and tells us which solution and energy level we have.
+
+The corresponding energy eigenvalues of the time independent Schrodinger equation are given by,
+
+\begin{align*}
+  E_n = \frac{\hbar^2 {k_n}^2}{2m} = \frac{n^2 \pi^2 \hbar^2}{2ma^2} \qquad n \in \mathbb{N}
+\end{align*}
+
+This reveals that the energy of bound particle is quantized and only discrete values of $E_n$ are allowed. Since we cannot have $k = 0$ and thus cannot have $n = 0$, there is a minimum allowed energy state called the zero-point energy state, but there is no upper limit on the energy as the potential is infinite.
+
+We can show that the energy eigenfunctions $\psi_n$ represent an integer number of half-wavelengths,
+
+\begin{align*}
+  k = \frac{2\pi}{\lambda} = \frac{n\pi}{a} \to a = \frac{n\lambda}{2}
+\end{align*}
+
+Our solutions alternate between odd $\cos$ and even $\sin$ solutions because we chose to have the origin exactly in the center of the potential well. If we plot $\psi^*\psi$, we see that the peaks get closer together as we increase $n$, tending towards being a flat line.
+
+\end{document}

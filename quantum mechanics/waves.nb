@@ -1,0 +1,441 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     13969,        432]
+NotebookOptionsPosition[     11741,        361]
+NotebookOutlinePosition[     12399,        383]
+CellTagsIndexPosition[     12356,        380]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Quantum Mechanics 2", "Title",
+ CellChangeTimes->{{3.621060227930147*^9, 3.6210602310966597`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Wave Theory of Matter", "Chapter",
+ CellChangeTimes->{{3.6210602334808598`*^9, 3.621060238760912*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Wave-Particle Duality", "Subsubsection",
+ CellChangeTimes->{{3.62106063754572*^9, 3.62106064427385*^9}}],
+
+Cell[TextData[{
+ "Any matter can behave as a particle (e.g. photoelectric effect, showing the \
+particle-nature of light) or as a wave (e.g. diffraction, showing the \
+wave-nature of light). Whether you observe something as a particle or as a \
+wave is dependent on how you ",
+ StyleBox["measure it.",
+  FontSlant->"Italic"]
+}], "Text",
+ CellChangeTimes->{{3.621060243937207*^9, 3.6210604123042803`*^9}, {
+  3.621064628449286*^9, 3.621064643578013*^9}}],
+
+Cell["In general,", "Text",
+ CellChangeTimes->{{3.621064638916853*^9, 3.621064642217513*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Particle-like describes interactions", "Item",
+ CellChangeTimes->{{3.62106042086462*^9, 3.621060432519884*^9}}],
+
+Cell["Wave-like describes motion", "Item",
+ CellChangeTimes->{{3.62106042086462*^9, 3.621060443321568*^9}}]
+}, Open  ]],
+
+Cell["\<\
+Particle-like and wave-like quantities are connected by the plank constant h,\
+\
+\>", "Text",
+ CellChangeTimes->{{3.62106045132192*^9, 3.6210604696744967`*^9}}],
+
+Cell[BoxData[{
+ FormBox[
+  RowBox[{"E", " ", "=", " ", 
+   RowBox[{"h", " ", "\[Upsilon]"}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"p", " ", "=", " ", 
+   FractionBox["h", "\[Lambda]"]}], TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.621060471802452*^9, 3.621060478508615*^9}, {
+  3.621060512566371*^9, 3.62106054603934*^9}}],
+
+Cell["\<\
+These equations both relate particle and wave quantities. For example, energy \
+(particle-like) is related to frequency (wave-like), and momentum \
+(particle-like) is related to wavelength (wave-like)\
+\>", "Text",
+ CellChangeTimes->{{3.621060549549859*^9, 3.621060629025157*^9}, {
+  3.621064652771728*^9, 3.621064655882311*^9}}],
+
+Cell["\<\
+These equations were formulated by de Broglie, for which he won a nobel prize \
+in physics.\
+\>", "Text",
+ CellChangeTimes->{3.621064653742378*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Wavefunctions", "Subsection",
+ CellChangeTimes->{{3.621060901388302*^9, 3.621060905004414*^9}}],
+
+Cell["\<\
+The wavefunction of a particular state (this means anything, as in, the state \
+of some matter, but could be momentum or energy etc.) contains all the \
+information possible to know about something. We can extract information from \
+the wavefunction to find information about it such as its momentum.\
+\>", "Text",
+ CellChangeTimes->{{3.621060906796611*^9, 3.621060994520323*^9}, {
+  3.6210610696439342`*^9, 3.621061080923938*^9}, {3.621064605713621*^9, 
+  3.62106460983248*^9}}],
+
+Cell["\<\
+For a free particle, we might expect its wavefunction to look something like\
+\>", "Text",
+ CellChangeTimes->{3.621064607404418*^9}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{"\[CapitalPsi]", "(", 
+     RowBox[{"x", ",", " ", "t"}], ")"}], " ", "=", " ", 
+    RowBox[{"A", " ", "sin", " ", "2", "\[Pi]", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       FractionBox["x", "\[Lambda]"], " ", "-", " ", 
+       RowBox[{"\[Upsilon]", " ", "t"}]}], ")"}]}]}],
+   FontSize->16], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.621061085526431*^9, 3.62106109995719*^9}, {
+  3.621061149913486*^9, 3.621061181560687*^9}, {3.621061219420144*^9, 
+  3.621061220460948*^9}}],
+
+Cell["\<\
+Which represents a sine wave travelling in the positive x-direction.\
+\>", "Text",
+ CellChangeTimes->{{3.621061231513932*^9, 3.6210612626912403`*^9}, {
+  3.6210613178780746`*^9, 3.621061341702279*^9}, {3.621061457355451*^9, 
+  3.6210614621794367`*^9}, {3.621064585728948*^9, 3.621064586744928*^9}}],
+
+Cell["\<\
+We know from wave theory that we can write the wavefunction as,\
+\>", "Text",
+ CellChangeTimes->{{3.621064588833143*^9, 3.6210645962478933`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{"\[CapitalPsi]", "(", 
+     RowBox[{"x", ",", " ", "t"}], ")"}], " ", "=", " ", 
+    RowBox[{"A", " ", "sin", " ", 
+     RowBox[{"(", 
+      RowBox[{
+       RowBox[{"k", " ", "x"}], " ", "-", " ", 
+       RowBox[{"\[Omega]", " ", "t"}]}], ")"}]}]}],
+   FontSize->16], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.6210614651452293`*^9, 3.6210615059182653`*^9}}],
+
+Cell["Where,", "Text",
+ CellChangeTimes->{{3.621061513486854*^9, 3.621061516373536*^9}}],
+
+Cell[BoxData[{
+ FormBox[
+  StyleBox[
+   RowBox[{"k", " ", "=", " ", 
+    FractionBox[
+     RowBox[{"2", " ", "\[Pi]"}], "\[Lambda]"]}],
+   FontSize->14], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  StyleBox[
+   RowBox[{"\[Omega]", " ", "=", " ", 
+    RowBox[{"2", " ", "\[Pi]", " ", "\[Upsilon]"}]}],
+   FontSize->14], TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.6210615177017508`*^9, 3.621061563899293*^9}}],
+
+Cell["\<\
+This allows us to rewrite de Broglie\[CloseCurlyQuote]s relations in very \
+useful forms,\
+\>", "Text",
+ CellChangeTimes->{{3.621064195800428*^9, 3.621064224376378*^9}}],
+
+Cell[BoxData[{
+ FormBox[
+  StyleBox[
+   RowBox[{"E", "=", 
+    RowBox[{
+     RowBox[{"h", " ", "\[Upsilon]"}], " ", "=", " ", 
+     RowBox[{"\[HBar]", " ", "\[Omega]"}]}]}],
+   FontSize->14], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  StyleBox[
+   RowBox[{"p", " ", "=", " ", 
+    RowBox[{
+     FractionBox["h", "\[Lambda]"], "=", 
+     RowBox[{"\[HBar]", " ", "k"}]}]}],
+   FontSize->14], TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.621064228715464*^9, 3.621064306268609*^9}}],
+
+Cell["\<\
+In general the wavefunction will be complex, so we cannot directly measure it \
+as it has no physical manifestation, unlike classical waves which are \
+entirely real and measurable.\
+\>", "Text",
+ CellChangeTimes->{{3.621064324020813*^9, 3.621064405815844*^9}, {
+  3.621064620634316*^9, 3.6210646231127977`*^9}}],
+
+Cell["An example of a complex wavefunction could be,", "Text",
+ CellChangeTimes->{3.621064621484744*^9}],
+
+Cell[BoxData[{
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{"\[CapitalPsi]", "(", 
+     RowBox[{"x", ",", " ", "t"}], ")"}], " ", "=", " ", 
+    RowBox[{
+     RowBox[{"A", " ", 
+      RowBox[{"cos", "(", 
+       RowBox[{
+        RowBox[{"k", " ", "x"}], " ", "-", " ", 
+        RowBox[{"\[Omega]", " ", "t"}]}], ")"}]}], " ", "+", " ", 
+     RowBox[{"i", " ", "A", " ", 
+      RowBox[{"sin", "(", 
+       RowBox[{
+        RowBox[{"k", " ", "x"}], " ", "-", " ", 
+        RowBox[{"\[Omega]", " ", "t"}]}], ")"}]}]}]}],
+   FontSize->18], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{"\[CapitalPsi]", "(", 
+     RowBox[{"x", ",", " ", "t"}], ")"}], " ", "=", " ", 
+    RowBox[{"A", " ", 
+     SuperscriptBox[
+      StyleBox["e",
+       FontSize->16], 
+      RowBox[{"i", "(", 
+       RowBox[{
+        RowBox[{"k", " ", "x"}], " ", "-", " ", 
+        RowBox[{"\[Omega]", " ", "t"}]}], ")"}]]}]}],
+   FontSize->18], TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.621064411378662*^9, 3.6210645085330467`*^9}}],
+
+Cell["The second line is obtained by using Euler\[CloseCurlyQuote]s \
+formula.", "Text",
+ CellChangeTimes->{{3.621064517020513*^9, 3.621064561526361*^9}}],
+
+Cell["\<\
+Since this is complex there is no convenient real way to interpret this, so \
+what do we do?\
+\>", "Text",
+ CellChangeTimes->{{3.621064563990388*^9, 3.621064581335146*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Probability Interpretation", "Subsubsection",
+ CellChangeTimes->{{3.621064662026533*^9, 3.621064667466712*^9}}],
+
+Cell["\<\
+This interpretation of wavefunctions was formulated by Max Born, and it often \
+called the Born interpretation.\
+\>", "Text",
+ CellChangeTimes->{{3.621064669306819*^9, 3.621064696203994*^9}}],
+
+Cell["\<\
+Classicaly, we describe light as oscillating E and B fields, \
+\>", "Text",
+ CellChangeTimes->{{3.6210646989559317`*^9, 3.621064711140441*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    FractionBox[
+     RowBox[{
+      SuperscriptBox["\[PartialD]", "2"], "E"}], 
+     RowBox[{"\[PartialD]", " ", 
+      SuperscriptBox["x", "2"]}]], "=", 
+    RowBox[{
+     FractionBox["1", 
+      SuperscriptBox["c", "2"]], "  ", 
+     FractionBox[
+      RowBox[{
+       SuperscriptBox["\[PartialD]", "2"], "E"}], 
+      RowBox[{"\[PartialD]", " ", 
+       SuperscriptBox["t", "2"]}]]}]}],
+   FontSize->16], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.621064715063428*^9, 3.621064718063087*^9}, {
+  3.621064822018257*^9, 3.621064906253561*^9}}],
+
+Cell["\<\
+This is given in one dimension. An example solution to this wave equation is \
+as follows,\
+\>", "Text",
+ CellChangeTimes->{{3.621064921828905*^9, 3.621064940413939*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{"E", "(", 
+     RowBox[{"x", ",", " ", "t"}], ")"}], " ", "=", " ", 
+    RowBox[{
+     SubscriptBox["E", "0"], " ", 
+     RowBox[{"sin", "(", 
+      RowBox[{
+       RowBox[{"k", " ", "x"}], " ", "-", " ", 
+       RowBox[{"\[Omega]", " ", "t"}]}], ")"}]}]}],
+   FontSize->16], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.6210649434016533`*^9, 3.621064961423764*^9}}],
+
+Cell["\<\
+We know from wave theory that we can write the power density (the energy per \
+unit area per unit time) as being proportional to the square of the \
+amplitude, but what about in quantum mechanics.\
+\>", "Text",
+ CellChangeTimes->{{3.6210649806968613`*^9, 3.621065035953849*^9}, {
+  3.621065108732874*^9, 3.6210651090288467`*^9}}],
+
+Cell["\<\
+In QM, light is described as a stream of discrete \
+\[OpenCurlyDoubleQuote]packets\[CloseCurlyDoubleQuote] of energy called \
+photons. Our energy density can be described as follows,\
+\>", "Text",
+ CellChangeTimes->{{3.621065037529861*^9, 3.621065071115262*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{"power", " ", "density"}], " ", "=", " ", 
+    RowBox[{"n", " ", "\[HBar]", " ", "\[Omega]"}]}],
+   FontSize->16], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.621065073995018*^9, 3.621065085857547*^9}}],
+
+Cell["\<\
+Where n in the average number of photons per unit area per unit time. By \
+observing this power density, and the classical picture, we can see that,\
+\>", "Text",
+ CellChangeTimes->{{3.621065092332201*^9, 3.6210651468864326`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{"n", " ", "\[Proportional]", " ", 
+    SuperscriptBox[
+     RowBox[{"(", "amplitude", ")"}], "2"]}],
+   FontSize->16], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.621065148477563*^9, 3.621065167360384*^9}}],
+
+Cell["Where amplitude is of the wave function.", "Text",
+ CellChangeTimes->{{3.621065177111227*^9, 3.621065182607839*^9}}],
+
+Cell[TextData[{
+ "At very low intensities, where n << 1, photons will arrive intermittently, \
+instead of in a constant stream. Our wave picture with the amplitude and the \
+wave function can describe the ",
+ StyleBox["average",
+  FontSlant->"Italic"],
+ " power, but cannot predict the arrival of individual photons."
+}], "Text",
+ CellChangeTimes->{{3.621065184919854*^9, 3.621065240538437*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 751},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->Notebook[{
+   Cell[
+    StyleData[StyleDefinitions -> "Default.nb"]]}, WindowSize -> {808, 751}, 
+  WindowMargins -> {{Automatic, 272}, {42, Automatic}}, Visible -> False, 
+  FrontEndVersion -> 
+  "10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, 2014)", 
+  StyleDefinitions -> "PrivateStylesheetFormatting.nb"]
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 104, 1, 92, "Title"],
+Cell[CellGroupData[{
+Cell[709, 27, 108, 1, 65, "Chapter"],
+Cell[CellGroupData[{
+Cell[842, 32, 110, 1, 35, "Subsubsection"],
+Cell[955, 35, 453, 9, 68, "Text"],
+Cell[1411, 46, 93, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[1529, 51, 117, 1, 28, "Item"],
+Cell[1649, 54, 107, 1, 28, "Item"]
+}, Open  ]],
+Cell[1771, 58, 170, 4, 30, "Text"],
+Cell[1944, 64, 359, 9, 67, "Input"],
+Cell[2306, 75, 339, 6, 49, "Text"],
+Cell[2648, 83, 157, 4, 30, "Text"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2842, 92, 101, 1, 44, "Subsection"],
+Cell[2946, 95, 489, 8, 68, "Text"],
+Cell[3438, 105, 142, 3, 30, "Text"],
+Cell[3583, 110, 545, 14, 54, "Input"],
+Cell[4131, 126, 308, 5, 30, "Text"],
+Cell[4442, 133, 155, 3, 30, "Text"],
+Cell[4600, 138, 425, 12, 31, "Input"],
+Cell[5028, 152, 88, 1, 30, "Text"],
+Cell[5119, 155, 425, 12, 72, "Input"],
+Cell[5547, 169, 179, 4, 30, "Text"],
+Cell[5729, 175, 495, 15, 71, "Input"],
+Cell[6227, 192, 322, 6, 49, "Text"],
+Cell[6552, 200, 104, 1, 30, "Text"],
+Cell[6659, 203, 1051, 32, 61, "Input"],
+Cell[7713, 237, 154, 2, 30, "Text"],
+Cell[7870, 241, 182, 4, 30, "Text"],
+Cell[CellGroupData[{
+Cell[8077, 249, 117, 1, 35, "Subsubsection"],
+Cell[8197, 252, 201, 4, 30, "Text"],
+Cell[8401, 258, 153, 3, 30, "Text"],
+Cell[8557, 263, 599, 19, 61, "Input"],
+Cell[9159, 284, 180, 4, 30, "Text"],
+Cell[9342, 290, 431, 13, 31, "Input"],
+Cell[9776, 305, 339, 6, 49, "Text"],
+Cell[10118, 313, 272, 5, 49, "Text"],
+Cell[10393, 320, 268, 7, 31, "Input"],
+Cell[10664, 329, 240, 4, 49, "Text"],
+Cell[10907, 335, 259, 7, 35, "Input"],
+Cell[11169, 344, 122, 1, 30, "Text"],
+Cell[11294, 347, 395, 8, 68, "Text"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

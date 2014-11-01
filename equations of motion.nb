@@ -1,0 +1,466 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     14307,        457]
+NotebookOptionsPosition[     13200,        418]
+NotebookOutlinePosition[     13586,        435]
+CellTagsIndexPosition[     13543,        432]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Mechanics", "Title",
+ CellChangeTimes->{{3.618500898293261*^9, 3.618500904299988*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Equations of Motion", "Section",
+ CellChangeTimes->{{3.618500913612262*^9, 3.6185009186046667`*^9}, {
+  3.6185010978090143`*^9, 3.618501097815667*^9}, {3.6185110981488867`*^9, 
+  3.6185111012339973`*^9}}],
+
+Cell["\<\
+This text is an exercise in learning mathematica for taking notes, and \
+testing my algebra skills. There may be formatting errors, but I am exploring \
+this to hopefully allow me to take mathematics notes in the future.\
+\>", "Text",
+ CellChangeTimes->{{3.618511112866551*^9, 3.618511178485154*^9}}],
+
+Cell["\<\
+Acceleration is  the derivative of velocity, and velocity is the derivative \
+of displacement. From these two differential equations (and some careful \
+substitution) we can set up all of our equations of motion that we need for \
+any circumstance.\
+\>", "Text",
+ CellChangeTimes->{{3.6185009276271563`*^9, 3.618500930301231*^9}, {
+  3.61850098099194*^9, 3.6185009956558723`*^9}, {3.618501067596633*^9, 
+  3.6185011055215693`*^9}, {3.618501137171339*^9, 3.6185012022522163`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"a", "\[LongEqual]", 
+   FractionBox[
+    RowBox[{"\[DifferentialD]", "v"}], 
+    RowBox[{"\[DifferentialD]", "t"}]]}], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.618501381410619*^9, 3.618501409316554*^9}, {
+  3.618502902795088*^9, 3.6185029067391167`*^9}}],
+
+Cell["\<\
+We can solve this basic differential equation by seperating the variables and \
+then integrating.\
+\>", "Text",
+ CellChangeTimes->{{3.618501417768572*^9, 3.61850144601626*^9}, {
+  3.618501558670413*^9, 3.618501564812935*^9}}],
+
+Cell[BoxData[{
+ FormBox[
+  RowBox[{
+   RowBox[{"a", " ", 
+    RowBox[{"\[DifferentialD]", "t"}]}], "\[LongEqual]", 
+   RowBox[{"\[DifferentialD]", "v"}]}], TraditionalForm], "\n", 
+ FormBox[
+  RowBox[{
+   RowBox[{"\[Integral]", 
+    RowBox[{"a", 
+     RowBox[{"\[DifferentialD]", "t"}]}]}], "\[LongEqual]", 
+   RowBox[{"\[Integral]", 
+    RowBox[{"\[DifferentialD]", "v"}]}]}], TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.618501456726186*^9, 3.6185015503887577`*^9}, {
+   3.6185016284794292`*^9, 3.6185016811670427`*^9}, {3.6185019467176027`*^9, 
+   3.6185019509743433`*^9}, {3.618501999949018*^9, 3.618502044803581*^9}, {
+   3.618502114841104*^9, 3.6185021368787394`*^9}, 3.61850246411156*^9, {
+   3.6185025756964073`*^9, 3.618502610247979*^9}, {3.618502640290255*^9, 
+   3.618502693844228*^9}, {3.6185027359799547`*^9, 3.6185028398804407`*^9}, {
+   3.618502872527377*^9, 3.618502909691238*^9}, {3.618502945561908*^9, 
+   3.618502947339609*^9}}],
+
+Cell["We obtain the well known equation, which we will call eq. 1,", "Text",
+ CellChangeTimes->{{3.6185029484475603`*^9, 3.618502975226502*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"v", "\[LongEqual]", 
+   RowBox[{
+    StyleBox[
+     RowBox[{"a", "t"}]], "+", 
+    SubscriptBox["v", "0"]}]}], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.618502982460238*^9, 3.618503065089571*^9}, {
+  3.618503135715786*^9, 3.618503138693573*^9}, {3.6185033225049067`*^9, 
+  3.618503325178728*^9}}],
+
+Cell[TextData[{
+ "By re-writing this as a differential equation we can obtain an expression \
+for displacement at a given time ",
+ Cell[BoxData[
+  FormBox["t", TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ","
+}], "Text",
+ CellChangeTimes->{{3.6185030819088717`*^9, 3.618503154203899*^9}, {
+  3.618503347984824*^9, 3.6185033524242268`*^9}, {3.618503422254785*^9, 
+  3.618503422915742*^9}, {3.6185054350058727`*^9, 3.6185054396126842`*^9}, {
+  3.61850548603767*^9, 3.618505493484069*^9}, {3.6185055249386053`*^9, 
+  3.6185055613706083`*^9}}],
+
+Cell[BoxData[{
+ FormBox[
+  RowBox[{
+   FractionBox[
+    RowBox[{"\[DifferentialD]", "x"}], 
+    RowBox[{"\[DifferentialD]", "t"}]], "=", " ", 
+   RowBox[{"at", 
+    StyleBox[" ",
+     FontSlant->"Italic"], "+", " ", 
+    SubscriptBox["v", "0"]}]}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   RowBox[{"\[DifferentialD]", "x"}], " ", "=", " ", 
+   RowBox[{
+    RowBox[{"\[DifferentialD]", "t"}], " ", 
+    RowBox[{"(", 
+     RowBox[{"at", " ", "+", " ", 
+      SubscriptBox["v", "0"]}], ")"}]}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   RowBox[{"\[Integral]", 
+    RowBox[{"\[DifferentialD]", "x"}]}], " ", "=", " ", 
+   RowBox[{"\[Integral]", 
+    RowBox[{
+     RowBox[{"\[DifferentialD]", "t"}], " ", 
+     RowBox[{"(", 
+      RowBox[{"at", " ", "+", " ", 
+       SubscriptBox["v", "0"]}], ")"}]}]}]}], TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.618503160407105*^9, 3.618503302272036*^9}, {
+  3.618503424564456*^9, 3.618503429671723*^9}}],
+
+Cell["We obtain a relation between distance and time, eq. 2,", "Text",
+ CellChangeTimes->{{3.618503436397389*^9, 3.6185034477567*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{"x", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "2"], 
+     SuperscriptBox[
+      StyleBox[
+       RowBox[{"a", "t"}]], "2"]}], "+", " ", 
+    RowBox[{
+     SubscriptBox["v", "0"], "t"}], " ", "+", " ", 
+    SubscriptBox["x", "0"]}]}], TraditionalForm]], "Input"],
+
+Cell[TextData[{
+ "Then by rearranging and substitution we can arrive at all other equations.\n\
+If we rearrange eq. 1 for ",
+ Cell[BoxData[
+  FormBox["a", TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ", and substitute into eq. 2,"
+}], "Text",
+ CellChangeTimes->{{3.6185036014042997`*^9, 3.61850363162961*^9}, {
+  3.618503669951971*^9, 3.618503735715393*^9}, {3.618505571981803*^9, 
+  3.618505577515327*^9}}],
+
+Cell[BoxData[{
+ FormBox[
+  RowBox[{"a", " ", "=", " ", 
+   FractionBox[
+    RowBox[{"v", " ", "-", " ", 
+     SubscriptBox["v", "0"]}], "t"]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"x", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "2"], 
+     RowBox[{"(", 
+      FractionBox[
+       RowBox[{"v", " ", "-", " ", 
+        SubscriptBox["v", "0"]}], "t"], ")"}], 
+     SuperscriptBox["t", "2"]}], " ", "+", " ", 
+    RowBox[{
+     SubscriptBox["v", "0"], "t"}], " ", "+", " ", 
+    SubscriptBox["x", "0"]}]}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"x", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "2"], 
+     RowBox[{"(", 
+      RowBox[{"v", " ", "-", " ", 
+       SubscriptBox["v", "0"]}], ")"}], "t"}], " ", "+", " ", 
+    RowBox[{
+     SubscriptBox["v", "0"], "t"}], " ", "+", " ", 
+    SubscriptBox["x", "0"]}]}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  StyleBox[
+   RowBox[{"x", " ", "=", " ", 
+    RowBox[{
+     SubscriptBox["x", "0"], " ", "+", " ", 
+     RowBox[{
+      FractionBox["1", "2"], 
+      RowBox[{"(", 
+       RowBox[{"v", " ", "+", " ", 
+        SubscriptBox["v", "0"]}], ")"}], "t"}]}]}], "Input"], 
+  TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.6185037402756147`*^9, 3.6185037591075487`*^9}, {
+  3.618503832268461*^9, 3.6185039818032846`*^9}, {3.618504016398346*^9, 
+  3.618504031365365*^9}, {3.618504081633366*^9, 3.618504112782552*^9}, {
+  3.618504143603674*^9, 3.618504143632402*^9}, {3.618504205232189*^9, 
+  3.618504217351202*^9}, {3.618504316612443*^9, 3.6185043864551487`*^9}, {
+  3.618504435750087*^9, 3.618504460022743*^9}, {3.618504518187633*^9, 
+  3.618504566205255*^9}, {3.618510089427738*^9, 3.618510092653434*^9}}],
+
+Cell[TextData[{
+ "If we rearrange eq. 1 for ",
+ Cell[BoxData[
+  FormBox["t", TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ", and sub. into eq. 2,"
+}], "Text",
+ CellChangeTimes->{{3.618510110029104*^9, 3.6185101670062428`*^9}}],
+
+Cell[BoxData[{
+ FormBox[
+  RowBox[{"t", " ", "=", " ", 
+   FractionBox[
+    RowBox[{"v", " ", "-", " ", 
+     SubscriptBox["v", "0"]}], "a"]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"x", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "2"], 
+     SuperscriptBox[
+      RowBox[{"a", "(", 
+       FractionBox[
+        RowBox[{"v", " ", "-", " ", 
+         SubscriptBox["v", "0"]}], "a"], ")"}], "2"]}], "+", " ", 
+    RowBox[{
+     SubscriptBox["v", "0"], "(", 
+     FractionBox[
+      RowBox[{"v", " ", "-", " ", 
+       SubscriptBox["v", "0"]}], "a"], ")"}]}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"x", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", 
+      RowBox[{"2", "a"}]], 
+     RowBox[{"(", 
+      RowBox[{
+       SuperscriptBox["v", "2"], " ", "-", " ", 
+       RowBox[{"2", 
+        SubscriptBox["v", "0"], "v"}], " ", "+", " ", 
+       SuperscriptBox[
+        SubscriptBox["v", "0"], "2"]}], ")"}]}], " ", "+", " ", 
+    RowBox[{
+     SubscriptBox["v", "0"], "(", 
+     FractionBox[
+      RowBox[{"v", " ", "-", " ", 
+       SubscriptBox["v", "0"]}], "a"], ")"}]}]}], TraditionalForm], "\n", 
+ FormBox[
+  RowBox[{"x", " ", "=", " ", 
+   RowBox[{
+    FractionBox["1", 
+     RowBox[{"2", "a"}]], 
+    RowBox[{"(", 
+     RowBox[{
+      SuperscriptBox["v", "2"], " ", "-", " ", 
+      SuperscriptBox[
+       SubscriptBox["v", "0"], "2"]}], ")"}]}]}], 
+  TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   SuperscriptBox["v", "2"], " ", "=", " ", 
+   RowBox[{
+    SuperscriptBox[
+     SubscriptBox["v", "0"], "2"], " ", "+", " ", 
+    RowBox[{"2", 
+     StyleBox["ax",
+      FontSlant->"Italic"]}]}]}], TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.6185101689810543`*^9, 3.618510257246673*^9}, {
+  3.618510297759018*^9, 3.618510455812809*^9}, {3.6185105565426397`*^9, 
+  3.6185105606183367`*^9}, {3.6185106444196978`*^9, 3.6185107156369658`*^9}}],
+
+Cell["Which is a well known, and very useful equation.", "Text",
+ CellChangeTimes->{{3.618510719762087*^9, 3.6185107259303713`*^9}}],
+
+Cell[TextData[{
+ "We have one final equation left to find, which will be found by rearranging \
+eq. 1 for ",
+ Cell[BoxData[
+  FormBox[
+   SubscriptBox["v", "0"], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " and then substituting in eq. 2"
+}], "Text",
+ CellChangeTimes->{{3.618511193718977*^9, 3.618511247637958*^9}}],
+
+Cell[BoxData[{
+ FormBox[
+  RowBox[{
+   SubscriptBox["v", "0"], " ", "=", " ", 
+   RowBox[{"v", " ", "-", " ", 
+    StyleBox["at",
+     FontSlant->"Italic"]}]}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{
+   StyleBox["x",
+    FontSlant->"Italic"], 
+   StyleBox[" ",
+    FontSlant->"Italic"], 
+   StyleBox["=",
+    FontSlant->"Italic"], 
+   StyleBox[" ",
+    FontSlant->"Italic"], 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "2"], 
+     StyleBox[
+      SuperscriptBox["at", "2"],
+      FontSlant->"Italic"]}], 
+    StyleBox[" ",
+     FontSlant->"Italic"], 
+    StyleBox["+",
+     FontSlant->"Italic"], 
+    StyleBox[" ",
+     FontSlant->"Italic"], 
+    StyleBox[
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"v", " ", "-", " ", "at"}], ")"}], "t"}],
+     FontSlant->"Italic"], 
+    StyleBox[" ",
+     FontSlant->"Italic"], 
+    StyleBox["+",
+     FontSlant->"Italic"], 
+    StyleBox[" ",
+     FontSlant->"Italic"], 
+    SubscriptBox[
+     StyleBox["x",
+      FontSlant->"Italic"], "0"]}]}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"x", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     FractionBox["1", "2"], 
+     StyleBox[
+      SuperscriptBox["at", "2"],
+      FontSlant->"Italic"]}], 
+    StyleBox["  ",
+     FontSlant->"Italic"], 
+    StyleBox["+",
+     FontSlant->"Italic"], 
+    StyleBox[" ",
+     FontSlant->"Italic"], 
+    StyleBox["vt",
+     FontSlant->"Italic"], 
+    StyleBox[" ",
+     FontSlant->"Italic"], 
+    StyleBox["-",
+     FontSlant->"Italic"], 
+    StyleBox[" ",
+     FontSlant->"Italic"], 
+    SuperscriptBox[
+     StyleBox["at",
+      FontSlant->"Italic"], "2"], " ", "+", " ", 
+    SubscriptBox["x", "0"]}]}], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  RowBox[{"x", " ", "=", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"-", 
+      FractionBox["1", "2"]}], 
+     StyleBox[
+      SuperscriptBox["at", "2"],
+      FontSlant->"Italic"]}], 
+    StyleBox[" ",
+     FontSlant->"Italic"], 
+    StyleBox["+",
+     FontSlant->"Italic"], 
+    StyleBox[" ",
+     FontSlant->"Italic"], 
+    StyleBox["vt",
+     FontSlant->"Italic"], 
+    StyleBox[" ",
+     FontSlant->"Italic"], 
+    StyleBox["+",
+     FontSlant->"Italic"], 
+    StyleBox[" ",
+     FontSlant->"Italic"], 
+    SubscriptBox[
+     StyleBox["x",
+      FontSlant->"Italic"], "0"]}]}], TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.618511252144597*^9, 3.6185113570107718`*^9}}],
+
+Cell["\<\
+This completes our set of possible equations of motion for each case, and \
+shows how to derive each one cleanly.\
+\>", "Text",
+ CellChangeTimes->{{3.6185113678424253`*^9, 3.6185114021798153`*^9}}]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 751},
+WindowMargins->{{Automatic, 225}, {Automatic, 40}},
+Magnification:>1.25 Inherited,
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 92, 1, 114, "Title"],
+Cell[CellGroupData[{
+Cell[697, 27, 210, 3, 80, "Section"],
+Cell[910, 32, 310, 5, 85, "Text"],
+Cell[1223, 39, 489, 8, 85, "Text"],
+Cell[1715, 49, 298, 7, 61, "Input"],
+Cell[2016, 58, 235, 5, 61, "Text"],
+Cell[2254, 65, 953, 20, 79, "Input"],
+Cell[3210, 87, 144, 1, 37, "Text"],
+Cell[3357, 90, 339, 9, 35, "Input"],
+Cell[3699, 101, 548, 12, 61, "Text"],
+Cell[4250, 115, 999, 30, 127, "Input"],
+Cell[5252, 147, 134, 1, 37, "Text"],
+Cell[5389, 150, 317, 11, 61, "Input"],
+Cell[5709, 163, 416, 10, 61, "Text"],
+Cell[6128, 175, 1756, 48, 211, "Input"],
+Cell[7887, 225, 235, 7, 37, "Text"],
+Cell[8125, 234, 1958, 63, 240, "Input"],
+Cell[10086, 299, 132, 1, 37, "Text"],
+Cell[10221, 302, 327, 9, 64, "Text"],
+Cell[10551, 313, 2411, 95, 186, "Input"],
+Cell[12965, 410, 207, 4, 61, "Text"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)

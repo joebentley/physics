@@ -1,0 +1,887 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     23064,        878]
+NotebookOptionsPosition[     21423,        820]
+NotebookOutlinePosition[     21775,        836]
+CellTagsIndexPosition[     21732,        833]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell["Mathematics for Physicists 2", "Title",
+ CellChangeTimes->{{3.62107209729642*^9, 3.621072107558927*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Vector Calculus", "Chapter",
+ CellChangeTimes->{{3.62107211121525*^9, 3.6210721129272327`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Why?", "Subsubsection",
+ CellChangeTimes->{{3.621072116791444*^9, 3.621072124327742*^9}}],
+
+Cell["Vector calculus is used in many equations in physics,", "Text",
+ CellChangeTimes->{{3.621072126743948*^9, 3.621072144520735*^9}}],
+
+Cell[CellGroupData[{
+
+Cell["Maxwell\[CloseCurlyQuote]s equations (Electromagnetism)", "Item",
+ CellChangeTimes->{{3.6210721500009203`*^9, 3.621072159303492*^9}}],
+
+Cell["Continuity equation (Conservation)", "Item",
+ CellChangeTimes->{{3.6210721500009203`*^9, 3.621072191410577*^9}}],
+
+Cell["Schrodinger equation (Quantum mechanics)", "Item",
+ CellChangeTimes->{{3.6210721500009203`*^9, 3.621072187617209*^9}}],
+
+Cell["Wave equation (Optics etc.)", "Item",
+ CellChangeTimes->{{3.6210721500009203`*^9, 3.621072203465682*^9}}],
+
+Cell["Navier-Stokes equation (Fluid mechanics)", "Item",
+ CellChangeTimes->{{3.6210721500009203`*^9, 3.621072215515443*^9}}]
+}, Open  ]]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Calculating gradient, divergent, curl etc.", "Subsubsection",
+ CellChangeTimes->{{3.621072219003949*^9, 3.621072246052664*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[TextData[{
+ "A scalar field ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{"\[Phi]", "(", 
+     RowBox[{"x", ",", " ", "y", ",", " ", "z"}], ")"}], " ", "=", " ", 
+    RowBox[{"\[Phi]", "(", 
+     StyleBox["r",
+      FontWeight->"Bold"], ")"}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " is a scalar quantity defined at each point in space ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    StyleBox["r",
+     FontWeight->"Bold"], 
+    StyleBox[" ",
+     FontWeight->"Bold"], "=", " ", 
+    RowBox[{"(", 
+     RowBox[{"x", ",", " ", "y", ",", " ", "z"}], ")"}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Item",
+ CellChangeTimes->{{3.621072258789484*^9, 3.621072390991292*^9}, {
+  3.6210724711679173`*^9, 3.621072515662862*^9}}],
+
+Cell[TextData[{
+ "A vector field ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     StyleBox["A",
+      FontWeight->"Bold"], 
+     StyleBox["(",
+      FontWeight->"Plain"], 
+     StyleBox[
+      RowBox[{"x", ",", " ", "y", ",", " ", "z"}],
+      FontWeight->"Plain"], 
+     StyleBox[")",
+      FontWeight->"Plain"]}], 
+    StyleBox[" ",
+     FontWeight->"Bold"], 
+    StyleBox["=",
+     FontWeight->"Bold"], 
+    StyleBox[" ",
+     FontWeight->"Bold"], 
+    RowBox[{
+     StyleBox["A",
+      FontWeight->"Bold"], 
+     StyleBox["(",
+      FontWeight->"Plain"], 
+     StyleBox["r",
+      FontWeight->"Bold"], 
+     StyleBox[")",
+      FontWeight->"Plain"]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ " is a vector quantity defined at each point in space. It can be represented \
+by it\[CloseCurlyQuote]s cartesian components,"
+}], "Item",
+ CellChangeTimes->{{3.621072258789484*^9, 3.621072390991292*^9}, {
+  3.6210724711679173`*^9, 3.621072607600278*^9}, {3.621072640870652*^9, 
+  3.621072672038433*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{"A", 
+     StyleBox["(",
+      FontWeight->"Plain"], 
+     StyleBox[
+      RowBox[{"x", ",", " ", "y", ",", " ", "z"}],
+      FontWeight->"Plain"], 
+     StyleBox[")",
+      FontWeight->"Plain"]}], 
+    StyleBox["=",
+     FontWeight->"Plain"], " ", 
+    RowBox[{
+     StyleBox[
+      RowBox[{
+       SubscriptBox["A", "x"], "(", 
+       RowBox[{"x", ",", " ", "y", ",", " ", "z"}], ")"}],
+      FontWeight->"Plain"], "i", " ", 
+     StyleBox[
+      RowBox[{"+", " ", 
+       SubscriptBox["A", "y"]}],
+      FontWeight->"Plain"], 
+     StyleBox[
+      RowBox[{"(", 
+       RowBox[{"x", ",", " ", "y", ",", " ", "z"}], ")"}],
+      FontWeight->"Plain"], "j", " ", 
+     StyleBox[
+      RowBox[{"+", " ", 
+       SubscriptBox["A", "z"]}],
+      FontWeight->"Plain"], 
+     StyleBox[
+      RowBox[{"(", 
+       RowBox[{"x", ",", " ", "y", ",", " ", "z"}], ")"}],
+      FontWeight->"Plain"], "k"}]}],
+   FontSize->14], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.621072674227882*^9, 3.621072728548525*^9}}],
+
+Cell[TextData[{
+ "The vector differential operator ",
+ StyleBox["\[Del] ",
+  FontWeight->"Bold"],
+ "(del or nabla) is defined as"
+}], "Item",
+ CellChangeTimes->{{3.621072763034108*^9, 3.6210727965635777`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{"\[Del]", " ", 
+     StyleBox["=",
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], "i"}], " ", 
+    RowBox[{
+     StyleBox[
+      FractionBox["\[PartialD]", 
+       RowBox[{"\[PartialD]", "x"}]],
+      FontWeight->"Plain"], 
+     RowBox[{
+      StyleBox["+",
+       FontWeight->"Plain"], 
+      StyleBox["j",
+       FontWeight->"Bold"]}]}], 
+    RowBox[{
+     StyleBox[
+      FractionBox[
+       StyleBox["\[PartialD]",
+        FontWeight->"Plain"], 
+       RowBox[{"\[PartialD]", "y"}]],
+      FontWeight->"Plain"], 
+     RowBox[{
+      StyleBox["+",
+       FontWeight->"Plain"], 
+      StyleBox["k",
+       FontWeight->"Bold"]}]}], 
+    FractionBox[
+     StyleBox["\[PartialD]",
+      FontWeight->"Plain"], 
+     StyleBox[
+      RowBox[{"\[PartialD]", "z"}],
+      FontWeight->"Plain"]]}],
+   FontSize->16], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.621072800323544*^9, 3.6210728693595057`*^9}}],
+
+Cell[TextData[{
+ "If we apply ",
+ StyleBox["\[Del]",
+  FontWeight->"Bold"],
+ " to a scalar function \[Phi] we get its gradient ",
+ StyleBox["\[Del]",
+  FontWeight->"Bold"],
+ "\[Phi]"
+}], "Item",
+ CellChangeTimes->{{3.6210730312546186`*^9, 3.6210730689109497`*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{"\[Del]", 
+     StyleBox["\[Phi]",
+      FontWeight->"Plain"]}], 
+    StyleBox[" ",
+     FontWeight->"Plain"], 
+    StyleBox["=",
+     FontWeight->"Plain"], 
+    StyleBox[" ",
+     FontWeight->"Plain"], 
+    RowBox[{
+     RowBox[{
+      FractionBox[
+       StyleBox[
+        RowBox[{"\[PartialD]", "\[Phi]"}],
+        FontWeight->"Plain"], 
+       StyleBox[
+        RowBox[{"\[PartialD]", "x"}],
+        FontWeight->"Plain"]], "i"}], 
+     StyleBox["+",
+      FontWeight->"Plain"], 
+     RowBox[{
+      FractionBox[
+       StyleBox[
+        RowBox[{"\[PartialD]", "\[Phi]"}],
+        FontWeight->"Plain"], 
+       StyleBox[
+        RowBox[{"\[PartialD]", "y"}],
+        FontWeight->"Plain"]], "j"}], 
+     StyleBox["+",
+      FontWeight->"Plain"], 
+     RowBox[{
+      FractionBox[
+       StyleBox[
+        RowBox[{"\[PartialD]", "\[Phi]"}],
+        FontWeight->"Plain"], 
+       StyleBox[
+        RowBox[{"\[PartialD]", "z"}],
+        FontWeight->"Plain"]], "k"}]}]}],
+   FontSize->14], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.6210731106712093`*^9, 3.6210731733245077`*^9}}],
+
+Cell[TextData[{
+ "If we take the scalar product of ",
+ StyleBox["\[Del] ",
+  FontWeight->"Bold"],
+ "with a vector function ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " we get its divergence ",
+ StyleBox["\[Del] \[CenterDot] A",
+  FontWeight->"Bold"]
+}], "Item",
+ CellChangeTimes->{{3.621073182075452*^9, 3.621073247726362*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{
+     StyleBox["\[Del]",
+      FontWeight->"Bold"], "\[CenterDot]", 
+     StyleBox["A",
+      FontWeight->"Bold"]}], "=", 
+    RowBox[{
+     FractionBox[
+      RowBox[{"\[PartialD]", 
+       StyleBox[
+        RowBox[{"A", 
+         StyleBox["x",
+          FontSize->10]}]]}], 
+      RowBox[{"\[PartialD]", "x"}]], "+", 
+     FractionBox[
+      RowBox[{"\[PartialD]", 
+       StyleBox[
+        RowBox[{"A", 
+         StyleBox["y",
+          FontSize->10]}]]}], 
+      RowBox[{"\[PartialD]", "y"}]], "+", 
+     FractionBox[
+      RowBox[{"\[PartialD]", 
+       StyleBox[
+        RowBox[{"A", 
+         StyleBox["z",
+          FontSize->10]}]]}], 
+      RowBox[{"\[PartialD]", "z"}]]}]}],
+   FontSize->14], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.621073256265671*^9, 3.621073307389947*^9}},
+ FontWeight->"Plain"],
+
+Cell[TextData[{
+ "If we take the vector product of ",
+ StyleBox["\[Del]",
+  FontWeight->"Bold"],
+ " with a vector function ",
+ StyleBox["A",
+  FontWeight->"Bold"],
+ " we get its curl ",
+ StyleBox["\[Del] ",
+  FontWeight->"Bold"],
+ "\[Times] ",
+ StyleBox["A",
+  FontWeight->"Bold"]
+}], "Item",
+ CellChangeTimes->{{3.6210733330110283`*^9, 3.621073402644943*^9}}],
+
+Cell[BoxData[
+ StyleBox[
+  RowBox[{
+   RowBox[{
+    StyleBox["\[Del]",
+     FontWeight->"Bold"], 
+    StyleBox["\[Cross]",
+     FontWeight->"Plain"], "A"}], 
+   StyleBox["=",
+    FontWeight->"Plain"], 
+   StyleBox[
+    RowBox[{"Det", "[", 
+     RowBox[{"(", GridBox[{
+        {
+         StyleBox["i",
+          FontWeight->"Bold"], 
+         StyleBox["j",
+          FontWeight->"Bold"], 
+         StyleBox["k",
+          FontWeight->"Bold"]},
+        {
+         StyleBox[
+          FractionBox["\[PartialD]", 
+           RowBox[{"\[PartialD]", "x"}]],
+          FontWeight->"Plain"], 
+         StyleBox[
+          FractionBox["\[PartialD]", 
+           RowBox[{"\[PartialD]", "y"}]],
+          FontWeight->"Plain"], 
+         StyleBox[
+          FractionBox["\[PartialD]", 
+           RowBox[{"\[PartialD]", "z"}]],
+          FontWeight->"Plain"]},
+        {
+         SubscriptBox["A", "x"], 
+         SubscriptBox["A", "y"], 
+         SubscriptBox["A", "z"]}
+       }], ")"}], "]"}],
+    FontWeight->"Plain"]}],
+  FontSize->16]], "Input",
+ CellChangeTimes->{{3.6210734260718946`*^9, 3.621073512222031*^9}, {
+  3.621073554025313*^9, 3.6210737164928102`*^9}}],
+
+Cell[TextData[{
+ "The scalar product of ",
+ StyleBox["\[Del]",
+  FontWeight->"Bold"],
+ " with itself gives the Laplacian ",
+ Cell[BoxData[
+  FormBox[
+   SuperscriptBox["\[Del]", "2"], TraditionalForm]],
+  FormatType->"TraditionalForm"]
+}], "Item",
+ CellChangeTimes->{{3.62107376223661*^9, 3.621073786228565*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    SuperscriptBox[
+     StyleBox["\[Del]",
+      FontWeight->"Bold"], "2"], 
+    StyleBox["=",
+     FontWeight->"Plain"], 
+    StyleBox[
+     RowBox[{
+      FractionBox[
+       SuperscriptBox[
+        StyleBox["\[PartialD]",
+         FontWeight->"Plain"], "2"], 
+       RowBox[{"\[PartialD]", 
+        SuperscriptBox["x", "2"]}]], 
+      RowBox[{"+", 
+       RowBox[{
+        FractionBox[
+         SuperscriptBox[
+          StyleBox["\[PartialD]",
+           FontWeight->"Plain"], "2"], 
+         RowBox[{"\[PartialD]", 
+          SuperscriptBox["y", "2"]}]], 
+        RowBox[{"+", 
+         FractionBox[
+          SuperscriptBox[
+           StyleBox["\[PartialD]",
+            FontWeight->"Plain"], "2"], 
+          RowBox[{"\[PartialD]", 
+           SuperscriptBox["z", "2"]}]]}]}]}]}],
+     FontWeight->"Plain"]}],
+   FontSize->14], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.621073788756809*^9, 3.6210738377355423`*^9}}],
+
+Cell["The Laplacian can act on scalar and vector fields", "Item",
+ CellChangeTimes->{{3.6210738467911663`*^9, 3.6210738562153387`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell["Differentiation of Vectors", "Section",
+ CellChangeTimes->{{3.621268658257627*^9, 3.62126866742784*^9}}],
+
+Cell[TextData[{
+ "Consider a vector function of a single real variable, ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    StyleBox["r",
+     FontWeight->"Bold"], "(", "t", ")"}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ". A good example of this is position of a particle as a function of time. \
+We can describe the derivate as usual, using the definition of the derivative,"
+}], "Text",
+ CellChangeTimes->{{3.621268672444021*^9, 3.62126875819619*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  StyleBox[
+   RowBox[{
+    FractionBox[
+     StyleBox[
+      RowBox[{"d", 
+       StyleBox["r",
+        FontWeight->"Bold"]}]], "dt"], "=", 
+    RowBox[{
+     UnderscriptBox["lim", 
+      RowBox[{"\[Delta]t", "\[Rule]", "0"}]], "\[ThinSpace]", 
+     FractionBox[
+      RowBox[{
+       RowBox[{
+        StyleBox["r",
+         FontWeight->"Bold"], 
+        StyleBox["(",
+         FontWeight->"Plain"], 
+        StyleBox[
+         RowBox[{"t", " ", "+", " ", "\[Delta]t"}],
+         FontWeight->"Plain"], 
+        StyleBox[")",
+         FontWeight->"Plain"]}], 
+       StyleBox[" ",
+        FontWeight->"Plain"], 
+       StyleBox["-",
+        FontWeight->"Plain"], 
+       StyleBox[" ",
+        FontWeight->"Plain"], 
+       RowBox[{
+        StyleBox["r",
+         FontWeight->"Bold"], 
+        StyleBox["(",
+         FontWeight->"Plain"], 
+        StyleBox["t",
+         FontWeight->"Plain"], 
+        StyleBox[")",
+         FontWeight->"Plain"]}]}], 
+      StyleBox["\[Delta]t",
+       FontWeight->"Plain"]]}]}],
+   FontSize->18,
+   FontWeight->"Plain"], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.621268762451315*^9, 3.621268779264413*^9}, 
+   3.62126881130564*^9, {3.621268850878722*^9, 3.621268945629796*^9}}],
+
+Cell["\<\
+The product rules still apply, for dot product, cross product, and scalar \
+multiple of a vector,\
+\>", "Text",
+ CellChangeTimes->{{3.621269032125893*^9, 3.6212690509895973`*^9}}],
+
+Cell[BoxData[{
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{
+     StyleBox[
+      FractionBox["d", 
+       RowBox[{"d", " ", "t"}]],
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], 
+     RowBox[{
+      RowBox[{
+       StyleBox["a",
+        FontWeight->"Bold"], 
+       StyleBox["(",
+        FontWeight->"Plain"], 
+       StyleBox["t",
+        FontWeight->"Plain"], 
+       StyleBox[")",
+        FontWeight->"Plain"]}], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[CenterDot]",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      RowBox[{"b", 
+       StyleBox["(",
+        FontWeight->"Plain"], 
+       StyleBox["t",
+        FontWeight->"Plain"], 
+       StyleBox[")",
+        FontWeight->"Plain"]}]}]}], 
+    StyleBox[" ",
+     FontWeight->"Plain"], 
+    StyleBox["=",
+     FontWeight->"Plain"], 
+    StyleBox[" ",
+     FontWeight->"Plain"], 
+    RowBox[{
+     RowBox[{
+      StyleBox[
+       FractionBox[
+        RowBox[{
+         StyleBox["d",
+          FontWeight->"Plain"], 
+         StyleBox[" ",
+          FontWeight->"Plain"], 
+         StyleBox["a",
+          FontWeight->"Bold"]}], 
+        RowBox[{"d", " ", "t"}]],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[CenterDot]",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["b",
+       FontWeight->"Bold"]}], 
+     StyleBox[" ",
+      FontWeight->"Plain"], 
+     StyleBox["+",
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], 
+     RowBox[{"a", 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[CenterDot]",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      FractionBox[
+       RowBox[{
+        StyleBox["d",
+         FontWeight->"Plain"], 
+        StyleBox[" ",
+         FontWeight->"Plain"], "b"}], 
+       StyleBox[
+        RowBox[{"d", " ", "t"}],
+        FontWeight->"Plain"]]}]}]}],
+   FontSize->16], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{
+     StyleBox[
+      FractionBox["d", 
+       RowBox[{"d", " ", "t"}]],
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], 
+     RowBox[{
+      RowBox[{
+       StyleBox["a",
+        FontWeight->"Bold"], 
+       StyleBox["(",
+        FontWeight->"Plain"], 
+       StyleBox["t",
+        FontWeight->"Plain"], 
+       StyleBox[")",
+        FontWeight->"Plain"]}], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[Cross]",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      RowBox[{"b", 
+       StyleBox["(",
+        FontWeight->"Plain"], 
+       StyleBox["t",
+        FontWeight->"Plain"], 
+       StyleBox[")",
+        FontWeight->"Plain"]}]}]}], 
+    StyleBox[" ",
+     FontWeight->"Plain"], 
+    StyleBox["=",
+     FontWeight->"Plain"], 
+    StyleBox[" ",
+     FontWeight->"Plain"], 
+    RowBox[{
+     RowBox[{
+      StyleBox[
+       FractionBox[
+        RowBox[{
+         StyleBox["d",
+          FontWeight->"Plain"], 
+         StyleBox[" ",
+          FontWeight->"Plain"], 
+         StyleBox["a",
+          FontWeight->"Bold"]}], 
+        RowBox[{"d", " ", "t"}]],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[Cross]",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["b",
+       FontWeight->"Bold"]}], 
+     StyleBox[" ",
+      FontWeight->"Plain"], 
+     StyleBox["+",
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], 
+     RowBox[{"a", 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      StyleBox["\[Cross]",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      FractionBox[
+       RowBox[{
+        StyleBox["d",
+         FontWeight->"Plain"], 
+        StyleBox[" ",
+         FontWeight->"Plain"], "b"}], 
+       StyleBox[
+        RowBox[{"d", " ", "t"}],
+        FontWeight->"Plain"]]}]}]}],
+   FontSize->16], TraditionalForm], "\[IndentingNewLine]", 
+ FormBox[
+  StyleBox[
+   RowBox[{
+    RowBox[{
+     StyleBox[
+      FractionBox["d", 
+       RowBox[{"d", " ", "t"}]],
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], 
+     StyleBox[
+      RowBox[{"f", "(", "t", ")"}],
+      FontWeight->"Plain"], 
+     StyleBox["  ",
+      FontWeight->"Plain"], 
+     RowBox[{
+      StyleBox["a",
+       FontWeight->"Bold"], 
+      StyleBox["(",
+       FontWeight->"Plain"], 
+      StyleBox["t",
+       FontWeight->"Plain"], 
+      StyleBox[")",
+       FontWeight->"Plain"]}]}], 
+    StyleBox[" ",
+     FontWeight->"Plain"], 
+    StyleBox["=",
+     FontWeight->"Plain"], 
+    RowBox[{
+     RowBox[{
+      StyleBox[
+       FractionBox[
+        StyleBox[
+         RowBox[{"d", " ", "f"}],
+         FontWeight->"Plain"], 
+        RowBox[{"d", " ", "t"}]],
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], "a"}], 
+     StyleBox[" ",
+      FontWeight->"Plain"], 
+     StyleBox["+",
+      FontWeight->"Plain"], 
+     StyleBox[" ",
+      FontWeight->"Plain"], 
+     RowBox[{
+      StyleBox["f",
+       FontWeight->"Plain"], 
+      StyleBox[" ",
+       FontWeight->"Plain"], 
+      FractionBox[
+       RowBox[{
+        StyleBox["d",
+         FontWeight->"Plain"], 
+        StyleBox[" ",
+         FontWeight->"Plain"], "a"}], 
+       StyleBox[
+        RowBox[{"d", " ", "t"}],
+        FontWeight->"Plain"]]}]}]}],
+   FontSize->16], TraditionalForm]}], "Input",
+ CellChangeTimes->{{3.621269066774617*^9, 3.621269074879195*^9}, {
+  3.621269142627597*^9, 3.621269312946774*^9}}],
+
+Cell[TextData[{
+ "If we have a vector ",
+ Cell[BoxData[
+  FormBox[
+   RowBox[{
+    RowBox[{
+     StyleBox["r",
+      FontWeight->"Bold"], "(", 
+     StyleBox["t",
+      FontWeight->"Plain"], 
+     StyleBox[")",
+      FontWeight->"Plain"]}], 
+    StyleBox[" ",
+     FontWeight->"Plain"], 
+    StyleBox["=",
+     FontWeight->"Plain"], 
+    StyleBox[" ",
+     FontWeight->"Bold"], 
+    RowBox[{
+     RowBox[{
+      StyleBox[
+       RowBox[{"x", "(", "t", ")"}],
+       FontWeight->"Plain"], 
+      StyleBox["i",
+       FontWeight->"Bold"]}], 
+     StyleBox[" ",
+      FontWeight->"Bold"], "+", 
+     StyleBox[" ",
+      FontWeight->"Bold"], 
+     RowBox[{
+      StyleBox[
+       RowBox[{"y", "(", "t", ")"}],
+       FontWeight->"Plain"], 
+      StyleBox["j",
+       FontWeight->"Bold"]}], 
+     StyleBox[" ",
+      FontWeight->"Bold"], "+", 
+     StyleBox[" ",
+      FontWeight->"Bold"], 
+     RowBox[{
+      StyleBox[
+       RowBox[{"z", "(", "t", ")"}],
+       FontWeight->"Plain"], 
+      StyleBox["k",
+       FontWeight->"Bold"]}]}]}], TraditionalForm]],
+  FormatType->"TraditionalForm"],
+ ", then"
+}], "Text",
+ CellChangeTimes->{{3.621269332487286*^9, 3.621269448145739*^9}}],
+
+Cell[BoxData[
+ FormBox[
+  RowBox[{
+   FractionBox[
+    StyleBox[
+     RowBox[{
+      StyleBox["d",
+       FontWeight->"Plain"], "r"}]], 
+    StyleBox["dt",
+     FontWeight->"Plain"]], "=", 
+   RowBox[{
+    RowBox[{
+     FractionBox[
+      StyleBox["dx",
+       FontWeight->"Plain"], 
+      StyleBox["dt",
+       FontWeight->"Plain"]], "i"}], 
+    StyleBox["+",
+     FontWeight->"Plain"], 
+    RowBox[{
+     FractionBox[
+      StyleBox["dy",
+       FontWeight->"Plain"], 
+      StyleBox["dt",
+       FontWeight->"Plain"]], "j"}], 
+    StyleBox["+",
+     FontWeight->"Plain"], 
+    RowBox[{
+     FractionBox[
+      StyleBox["dz",
+       FontWeight->"Plain"], 
+      StyleBox["dt",
+       FontWeight->"Plain"]], "k"}]}]}], TraditionalForm]], "Input",
+ CellChangeTimes->{{3.621269454091002*^9, 3.621269477907552*^9}, {
+  3.621269515254266*^9, 3.621269534909739*^9}}]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{808, 751},
+WindowMargins->{{4, Automatic}, {Automatic, 4}},
+FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (June 27, \
+2014)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 110, 1, 92, "Title"],
+Cell[CellGroupData[{
+Cell[715, 27, 101, 1, 65, "Chapter"],
+Cell[CellGroupData[{
+Cell[841, 32, 95, 1, 35, "Subsubsection"],
+Cell[939, 35, 135, 1, 30, "Text"],
+Cell[CellGroupData[{
+Cell[1099, 40, 139, 1, 28, "Item"],
+Cell[1241, 43, 118, 1, 28, "Item"],
+Cell[1362, 46, 124, 1, 28, "Item"],
+Cell[1489, 49, 111, 1, 28, "Item"],
+Cell[1603, 52, 124, 1, 28, "Item"]
+}, Open  ]]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1776, 59, 133, 1, 35, "Subsubsection"],
+Cell[CellGroupData[{
+Cell[1934, 64, 764, 24, 30, "Item"],
+Cell[2701, 90, 1026, 36, 47, "Item"]
+}, Open  ]],
+Cell[3742, 129, 1067, 37, 32, "Input"],
+Cell[4812, 168, 209, 6, 28, "Item"],
+Cell[5024, 176, 993, 38, 58, "Input"],
+Cell[6020, 216, 264, 9, 28, "Item"],
+Cell[6287, 227, 1145, 43, 55, "Input"],
+Cell[7435, 272, 326, 11, 28, "Item"],
+Cell[7764, 285, 879, 33, 53, "Input"],
+Cell[8646, 320, 360, 14, 28, "Item"],
+Cell[9009, 336, 1158, 41, 87, "Input"],
+Cell[10170, 379, 312, 10, 29, "Item"],
+Cell[10485, 391, 980, 34, 58, "Input"],
+Cell[11468, 427, 135, 1, 28, "Item"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11640, 433, 110, 1, 64, "Section"],
+Cell[11753, 436, 461, 11, 50, "Text"],
+Cell[12217, 449, 1243, 44, 58, "Input"],
+Cell[13463, 495, 189, 4, 30, "Text"],
+Cell[13655, 501, 5683, 228, 159, "Input"],
+Cell[19341, 731, 1177, 48, 32, "Text"],
+Cell[20521, 781, 862, 34, 50, "Input"]
+}, Open  ]]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
