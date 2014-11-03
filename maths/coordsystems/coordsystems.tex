@@ -404,9 +404,115 @@ Therefore we have an orthogonal basis. The order of the coordinates is checked j
   \mathbf{e_u}\times\mathbf{e_v}=\mathbf{e_{\phi}}
 \end{align*}
 
+\section{The Gradient}
 
+In this section we will discover how to take the gradient of a scalar function in an orthogonal coordinate system. First we note that the gradient will be a vector function acting on a scalar field $\Psi$ such that,
 
+\begin{align*}
+  \nabla\Psi = A_1 \mathbf{e_1} + A_2 \mathbf{e_2} + A_3 \mathbf{e_3}
+\end{align*}
 
+The difficulty arises since in an orthogonal coordinate system $\mathbf{e_1}$, $\mathbf{e_2}$, and $\mathbf{e_3}$ can vary in space, unlike the Cartesian coordinate system where $\hat{\imath}$, $\hat{\jmath}$, and $\hat{k}$ are constant.
+
+The coefficients, $A_i$ can be extracted by using the orthogonality of the vectors $\mathbf{e_i}$. This allows us to use the dot product to extract each component of the gradient,
+
+\begin{align*}
+  A_i = \mathbf{e_i} \cdot \nabla\Psi = \frac{1}{h_i} \frac{\partial\mathbf{r}}{\partial u_i} \cdot \nabla\Psi
+\end{align*}
+
+Here we have used the discovery from the last section that the derivative in some direction $\partial\mathbf{r}/\partial u_i$ is just the unit vector $\mathbf{e_i}$ multiplied by some scale factor $h_i$. Expanding out this scalar product gives,
+
+\begin{align*}
+  \frac{\partial\mathbf{r}}{\partial u_i} &= \left(\frac{\partial x}{\partial u_i}, \frac{\partial y}{\partial u_i}, \frac{\partial z}{\partial u_i}\right) \cdot \left(\frac{\partial\Psi}{\partial x}, \frac{\partial\Psi}{\partial y}, \frac{\partial\Psi}{\partial z}\right) \\
+                                          &= \frac{\partial\Psi}{\partial x} \frac{\partial x}{\partial u_i} + \frac{\partial\Psi}{\partial y} \frac{\partial y}{\partial u_i} + \frac{\partial\Psi}{\partial z} \frac{\partial z}{\partial u_i} \\
+                                          &= \frac{\partial\Psi}{\partial u_i}
+\end{align*}
+
+In the last step we have just applied the chain rule in reverse, that is, that the derivative of $\Psi$ with respect to $u_i$ can be expressed as the derivatives of each Cartesian component. If you apply the chain rule to the final line it can be seen that this is what results. We now have an expression for an arbitrary coefficient $A_i$ of the gradient,
+
+\begin{align*}
+  A_i = \frac{1}{h_i} \frac{\partial\Psi}{\partial u_i}
+\end{align*}
+
+Therefore, by substituting these coefficients into our equation for the gradient,
+
+\begin{align*}
+  \nabla\Psi = \frac{1}{h_1}\frac{\partial\Psi}{\partial u_1} \mathbf{e_1} + \frac{1}{h_2}\frac{\partial\Psi}{\partial u_2} \mathbf{e_2} + \frac{1}{h_3}\frac{\partial\Psi}{\partial u_3} \mathbf{e_3}
+\end{align*}
+
+For example, in spherical polar coordinates this would be,
+
+\begin{align*}
+  \nabla\Psi = \frac{\partial\Psi}{\partial r} \mathbf{e_r} + \frac{1}{r}\frac{\partial\Psi}{\partial\theta}\mathbf{e_{\theta}} + \frac{1}{r\sin\theta}\frac{\partial\Psi}{\partial\Phi}\mathbf{e_{\Phi}}
+\end{align*}
+
+We now have an expression for the differential operator $\nabla$ in any orthogonal coordinate system,
+
+\begin{align*}
+  \nabla = \frac{\mathbf{e_1}}{h_1}\frac{\partial}{\partial u_1} + \frac{\mathbf{e_2}}{h_2}\frac{\partial}{\partial u_2} + \frac{\mathbf{e_3}}{h_3}\frac{\partial}{\partial u_3}
+\end{align*}
+
+When we evaluate $\nabla\cdot\mathbf{A}$ or $\nabla\times\mathbf{A}$, the derivative operators also apply to the unit vectors $\mathbf{e_i}$. This was fine in Cartesian coordinates because the unit vectors did not change in space, but now we have unit vectors which vary in the $x$, $y$, and $z$ directions. Therefore if we want to calculate the divergence or the curl we have to take a lot of derivatives, but this isn't necessary and it turns out that it is easier to apply Gauss' theorem and Stoke's theorem instead.
+
+\section{Divergence in Orthogonal Coordinates}
+
+Consider an infinitesimal cuboid situated at $(u_1, u_2, u_3)$ with sides of length $h_1 du_1$, $h_2 du_2$, and $h3 du_3$. We want to calculate the surface integral over the surface of the cuboid,
+
+\begin{align*}
+  \oint_S \mathbf{A}\cdot d\mathbf{S}
+\end{align*}
+
+Our vector field $\mathbf{A}$ will be of the form,
+
+\begin{align*}
+  \mathbf{A} = A_1 \mathbf{e_1} + A_2 \mathbf{e_2} + A_3 \mathbf{e_3}
+\end{align*}
+
+First we will consider the flux through the surfaces parallel to $\mathbf{e_1}$,
+
+\begin{align*}
+  \int_{S_1} \mathbf{A}\cdot d\mathbf{S_1} &= \mathbf{A}\cdot d\mathbf{S_1} = \mathbf{A}\cdot h_2 du_2 h_2 du_3 \mathbf{e_1} = h_2 h_3 A_1 du_2 du_3 \\
+  \int_{S_2} \mathbf{A}\cdot d\mathbf{S_2} &= \mathbf{A}\cdot d\mathbf{S_2} = -\mathbf{A}\cdot h_2 du_2 h_2 du_3 \mathbf{e_1} = -h_2 h_3 A_1 du_2 du_3
+\end{align*}
+
+The minus sign appears because $\mathbf{S_2}$ is in the opposite direction to $\mathbf{S_1}$. It may seem almost like when we sum them, they will disappear, but we have to remember that these coefficients will vary in different places in space; the $A_1$ in the first integral is evaluated at $(u_1 + du_1, u_2, u_3)$ whereas the $A_1$ in the second integral is evaluated at $(u_1, u_2, u_3)$. Now by summing these integrals,
+
+\begin{align*}
+  \int_{S_1 + S_2} \mathbf{A}\cdot d\mathbf{S} &= \left[h_2 h_3 A_1(u_1 + du_1) - h_2 h_3 A_1(u_1)\right] du_2 du_3 \\
+                                               &= \left[\frac{\partial}{\partial u_1} (h_2 h_3 A_1) du_1\right] du_2 du_3
+\end{align*}
+
+In this last line we have used the definition of the derivative to see that the term in square brackets in the first line is just the derivative $\partial \dots / \partial u1$ multiplied by $du_1$.
+
+When we sum all of the other pairs of surfaces we get similar results,
+
+\begin{align*}
+  \oint_S \mathbf{A}\cdot d\mathbf{S} = \left[\frac{\partial}{\partial u_1}(h_2h_3A_1) + \frac{\partial}{\partial u_2}(h_3h_1A_2) + \frac{\partial}{\partial u_3}(h_1h_2A_3)\right] du_1 du_2 du_3
+\end{align*}
+
+Gauss' theorem tells us that the divergence is just the flux per unit volume, so we define the volume of the cuboid as,
+
+\begin{align*}
+  \Delta V = h_1h_2h_3du_1du_2du_3
+\end{align*}
+
+and then by using that divergence is the flux divided by volume,
+
+\begin{align*}
+  \nabla\cdot\mathbf{A} = \frac{\oint_S \mathbf{A}\cdot d\mathbf{S}}{\Delta V} = \frac{1}{h_1h_2h_3} \left[\frac{\partial}{\partial u_1}(h_2h_3A_1) + \frac{\partial}{\partial u_2}(h_3h_1A_2) + \frac{\partial}{\partial u_3}(h_1h_2A_3)\right]
+\end{align*}
+
+Similarly this allows us to find an expression for the Laplacian of a scalar field, $\nabla^2 \Psi = \nabla \cdot (\nabla \Psi)$,
+
+\begin{align*}
+  \nabla\Psi = \frac{1}{h_1}\frac{\partial\Psi}{\partial u_1} \mathbf{e_1} + \frac{1}{h_2}\frac{\partial\Psi}{\partial u_2} \mathbf{e_2} + \frac{1}{h_3}\frac{\partial\Psi}{\partial u_3} \mathbf{e_3}
+\end{align*}
+
+and then substituting this into the divergence,
+
+\begin{align*}
+  \nabla^2\Psi = \frac{1}{h_1h_2h_3}\left[\frac{\partial}{\partial u_1}\left(\frac{h_2h_3}{h_1}\frac{\partial\Psi}{\partial u_1}\right) + \frac{\partial}{\partial u_2}\left(\frac{h_3h_1}{h_2}\frac{\partial\Psi}{\partial u_2}\right) + \frac{\partial}{\partial u_3}\left(\frac{h_1h_2}{h_3}\frac{\partial\Psi}{\partial u_3}\right)\right]
+\end{align*}
 
 
 \end{document}
