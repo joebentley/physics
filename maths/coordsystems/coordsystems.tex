@@ -1,6 +1,11 @@
 \documentclass[11pt]{amsart}
 \usepackage{amsmath,amsfonts,amsthm,amssymb, amsaddr}
 
+\makeatletter
+\def\subsection{\@startsection{subsection}{3}%
+  \z@{.5\linespacing\@plus.7\linespacing}{.1\linespacing}%
+  {\normalfont\itshape}}
+\makeatother
 
 \title{Coordinate Systems}
 
@@ -514,5 +519,87 @@ and then substituting this into the divergence,
   \nabla^2\Psi = \frac{1}{h_1h_2h_3}\left[\frac{\partial}{\partial u_1}\left(\frac{h_2h_3}{h_1}\frac{\partial\Psi}{\partial u_1}\right) + \frac{\partial}{\partial u_2}\left(\frac{h_3h_1}{h_2}\frac{\partial\Psi}{\partial u_2}\right) + \frac{\partial}{\partial u_3}\left(\frac{h_1h_2}{h_3}\frac{\partial\Psi}{\partial u_3}\right)\right]
 \end{align*}
 
+\section{Using the Laplacian in Orthogonal Coordinate Systems}
+
+\subsection*{Cylindrical Polar Coordinates}
+
+In cylindrical polar coordinates, the coordinates $(u_1, u_2, u_3)$ are given by $(\rho, \phi, z)$. From earlier we have shown that the scale factors are given by $(h_1, h_2, h_3) = (1, \rho, 1)$. We can therefore calculate the Laplacian,
+
+\begin{align*}
+  \nabla^2\Psi&=\frac{1}{\rho}\left[\frac{\partial}{\partial\rho}\left(\rho\frac{\partial\Psi}{\partial\rho}\right) + \frac{\partial}{\partial\phi}\left(\frac{1}{\rho}\frac{\partial\Psi}{\partial\phi}\right) + \frac{\partial}{\partial z}\left(\rho\frac{\partial\Psi}{\partial z}\right)\right] \\
+              &=\frac{1}{\rho}\frac{\partial}{\partial\rho}\left(\rho\frac{\partial\Psi}{\partial\rho}\right) + \frac{1}{\rho^2}\frac{\partial^2\Psi}{\partial\phi^2} + \frac{\partial^2\Psi}{\partial z^2} \\
+              &=\frac{1}{\rho}\frac{\partial\Psi}{\partial\rho}+\frac{\partial^2\Psi}{\partial\rho^2}+\frac{1}{\rho^2}\frac{\partial^2\Psi}{\partial\phi^2} + \frac{\partial^2\Psi}{\partial z^2}
+\end{align*}
+
+In the last line we have expanded the $\partial/\partial\rho$ operator using the product rule, although we will not bother to expand in later examples as it is not needed.
+
+\subsection*{Spherical Polar Coordinates}
+
+In spherical polar coordinates, $(u_1, u_2, u_3) = (r, \theta, \phi)$, and the scale factors $(h_1, h_2, h_3) = (1, r, r\sin\theta)$. We will not write the working from now on, only the result, as the method is identical to the cylindrical polar case. The Laplacian is thus given by,
+
+\begin{align*}
+  \nabla^2\Psi=\frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial\Psi}{\partial r}\right)+\frac{1}{r^2\sin\theta}\frac{\partial}{\partial\theta}\left(\sin\theta\frac{\partial\Psi}{\partial\theta}\right)+\frac{1}{r^2\sin^2\theta}\frac{\partial^2\Psi}{\partial\phi^2}
+\end{align*}
+
+\subsection*{Paraboloidal Coordinates}
+
+In paraboloidal coordinates, the coordinates are given by $(u_1, u_2, u_3) = (u, v, \phi)$, and the scale factors given by $(h_1, h_2, h_3) = (\sqrt{u^2 + v^2}, \sqrt{u^2 + v^2}, uv)$. We can see that in this case $h_1 = h_2$. The Laplacian is given by,
+
+\begin{align*}
+  \nabla^2\Psi=\frac{1}{(u^2+v^2)}\frac{1}{u}\frac{\partial}{\partial u}\left(u\frac{\partial\Psi}{\partial u}\right)+\frac{1}{(u^2+v^2)}\frac{1}{v}\frac{\partial}{\partial v}\left(v \frac{\partial\Psi}{\partial v}\right)+\frac{1}{(u^2 + v^2)}\frac{\partial^2\Psi}{\partial\phi^2}
+\end{align*}
+
+\section{Curl in Orthogonal Coordinate Systems}
+
+In this section we will find expression for the curl of a vector field in an orthogonal coordinate system. First we consider an infinitesimal rectangle in the $u_1u_2$ plane situated at $(u_1, u_2)$ such that this is the lower left corner or the rectangle. The rectangle has sides length $h_1du_1$ and $h_2du_2$. The corners are thus given such that the lower left is $(u_1, u_2)$, the lower right is $(u_1 + du_1, u_2)$, the upper left is $(u_1, u_2 + du_2)$, the upper right is $(u_1 + du_2, u_2 + du_2)$. We label the bottom side $1$, the right side $2$, the top side $3$, and the left side $4$.
+
+The circulation of a vector field $\mathbf{A}$ around this loop is given by,
+
+\begin{align*}
+  \oint_C \mathbf{A}\cdot d\mathbf{r}=\mathbf{A}\cdot d\mathbf{r_1} + d\mathbf{r}=\mathbf{A}\cdot d\mathbf{r_2} + d\mathbf{r}=\mathbf{A}\cdot d\mathbf{r_3} + d\mathbf{r}=\mathbf{A}\cdot d\mathbf{r_4}
+\end{align*}
+
+The vectors, $d\mathbf{r_i}$ are given by,
+
+\begin{alignat*}{2}
+  d\mathbf{r_1}&=h_1du_1\mathbf{e_1}\qquad d\mathbf{r_2}&&=h_2du_2\mathbf{e_2} \\
+  d\mathbf{r_1}&=-h_1du_1\mathbf{e_1}\qquad d\mathbf{r_4}&&=-h_2du_2\mathbf{e_2}
+\end{alignat*}
+
+Therefore the circulation over the entire loop is,
+
+\begin{align*}
+  \oint_C\mathbf{A}\cdot d\mathbf{r}&=h_1A_1du_1(u_1, u_2) + h_2A_2du_2(u_1+du_1, u_2)\\
+                                    &- h_1A_1du_1(u_1, u_2+du_2) - h_2A_2du_2(u_1, u_2) \\
+                                    &=\left[\frac{\partial}{\partial u_1}(h_2A_2)du_1\right]du_2 - \left[\frac{\partial}{\partial u_2}(h_1A_1)du_2\right]du_1 \\
+                                    &=\left[\frac{\partial}{\partial u_1}(h_2A_2) - \frac{\partial}{\partial u_2}(h_1A_1)\right]du_1 du_2
+\end{align*}
+
+Again here we have used the definition of the derivative. Stokes' theorem tells us that the $u_3$ component of the curl is thus given by,
+
+\begin{align*}
+  {\left[\nabla\times\mathbf{A}\right]}_3 &= \frac{\oint_C\mathbf{A}\cdot d\mathbf{r}}{\text{Area}} = \frac{\oint_C\mathbf{A}\cdot d\mathbf{r}}{h_1h_2du_1du_2} \\
+&=\left[\frac{\partial}{\partial u_1}(h_2A_2)du_1\right]du_2 - \left[\frac{\partial}{\partial u_2}(h_1A_1)du_2\right]du_1 \\
+&=\left[\frac{\partial}{\partial u_1}(h_2A_2) - \frac{\partial}{\partial u_2}(h_1A_1)\right]du_1 du_3
+\end{align*}
+
+The curl of the vector field is therefore,
+
+\begin{align*}
+  \nabla\times\mathbf{A} &= \frac{1}{h_2h_3}\left[\frac{\partial}{\partial u_2}(h_3A_3)-\frac{\partial}{\partial u_3}(h_2A_2)\right]\mathbf{e_1} \\
+&+ \frac{1}{h_3h_1}\left[\frac{\partial}{\partial u_3}(h_1A_1)-\frac{\partial}{\partial u_1}(h_3A_3)\right]\mathbf{e_2} \\
+&+ \frac{1}{h_1h_2}\left[\frac{\partial}{\partial u_1}(h_2A_2)-\frac{\partial}{\partial u_2}(h_1A_1)\right]\mathbf{e_2}
+\end{align*}
+
+By rearranging we can write this as a determinant,
+
+\begin{align*}
+  \nabla\times\mathbf{A} = \frac{1}{h_1h_2h_3}
+  \begin{vmatrix}
+    h_1\mathbf{e_1} & h_2\mathbf{e_2} & h_3\mathbf{e_3} \\[6pt]
+    \frac{\partial}{\partial u_1} & \frac{\partial}{\partial u_2} & \frac{\partial}{\partial u_3} \\[6pt]
+    h_1A_1 & h_2A_2 & h_3A_3
+  \end{vmatrix}
+\end{align*}
 
 \end{document}
