@@ -1,0 +1,65 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amsfonts,amsthm,amssymb, amsaddr}
+
+
+\title{Distributions}
+
+\author{Joe Bentley}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Dirac Delta Function}
+
+The Dirac delta function is a distribution that is defined to be zero everywhere except at $x = 0$ where is it is infinite. That is,
+
+\begin{align*}
+  \delta(x)=
+  \begin{cases}
+    0 & x\neq0 \\
+    \infty & x=0
+  \end{cases}
+\end{align*}
+
+It is also constrained to the identity,
+
+\begin{align*}
+  \int_{a}^{b} \delta(x) dx = 1 \qquad a < 0 < b
+\end{align*}
+
+The Dirac delta function is thus an infinitely tall, infinitely thin spike. We can see that any function integrated over it between $a$ and $b$ is,
+
+\begin{align*}
+  \int_{a}^{b} f(x)\delta(x) dx = f(0)
+\end{align*}
+
+and therefore,
+
+\begin{align*}
+  f(x)\delta(x) = f(0)\delta(x)
+\end{align*}
+
+\section{Heaviside Step Function}
+
+The Heaviside step function is defined such that,
+
+\begin{align*}
+  \Theta(x) =
+  \begin{cases}
+    0 & x < 0 \\
+    1 & x > 0
+  \end{cases}
+\end{align*}
+
+The gradient at the step is therefore infinite, but everywhere else it is zero. The gradient is therefore given by the Dirac delta function,
+
+\begin{align*}
+  \frac{d\Theta}{dx} = \delta(x)
+\end{align*}
+
+\end{document}
