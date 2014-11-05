@@ -685,4 +685,85 @@ We can show that the energy eigenfunctions $\psi_n$ represent an integer number 
 
 Our solutions alternate between odd $\cos$ and even $\sin$ solutions because we chose to have the origin exactly in the center of the potential well. If we plot $\psi^*\psi$, we see that the peaks get closer together as we increase $n$, tending towards being a flat line.
 
+\section{Finite Square-Well Potential}
+
+This section will be incomplete as it will be starting from a point that is half way through the notes. It may not necessarily make sense how we got here, but eventually I may add the notes to this, but they can be found on canvas easily in the QM lecture notes.
+
+Next we change the variables for our convenience,
+
+\begin{align*}
+  y = \frac{a}{\hbar}\sqrt{\frac{mE}{2}} \to E = \frac{2\hbar^2}{ma^2} y^2
+\end{align*}
+
+We then define a constant,
+
+\begin{align*}
+  \lambda = \frac{mV_0a^2}{2\hbar^2} = \text{constant}
+\end{align*}
+
+Then we have two functions of $y$ that we can plot numerically,
+
+\begin{alignat*}{2}
+  \tan(y) &= \frac{\sqrt{\lambda - y^2}}{y} \qquad &&\text{even} \\
+  -\cot(y) &= \frac{\sqrt{\lambda -y^2}}{y} \qquad &&\text{odd}
+\end{alignat*}
+
+By plotting the left hand side and right hand sides numerically we find solutions for $y$ and hence the energy $E$. See canvas for plots.
+
+There are a few comments we can make these plots,
+
+Firstly, as $\lambda$ approaches infinity, and therefore the potential $V_0$ approaches infinity, the intersections occur at poles in $\tan(y)$ and $\cot(y)$. This gives us the same solutions as in the infinite square well, which is what we expect as the potential approaches infinity.
+
+For a finite $\lambda$, where $E < V_0 < \infty$ intersections occur at lower values of $y$, and hence we have lower energies $E$.
+
+As the energy $E$ approaches $V_0$, $\lambda$ goes to $y^2$, and thus the right hand side goes to zero. This means that higher intersections disappear, and thus there are a finite number of energy eigenvalues.
+
+Provided that $V_0 > 0$, and therefore $\lambda > 0$, there is always at least one even parity eigenfunction which corresponds to the zero point energy. \textit{This will be on the exam}.
+
+\section{Simple Harmonic Oscillator Potential}
+
+In this section we will explore the case where the particle undergoes simple harmonic motion due to a varying potential. This is a more physically realistic case as we have a smoothly varying potential and not one with an infinite gradient.
+
+We have simple harmonic motion when,
+
+\begin{align*}
+  F = m\ddot{x} = -kx
+\end{align*}
+
+where $k$ is a constant. The solutions have the form,
+
+\begin{align*}
+  x(t) = A\sin(\omega t) + B\cos(\omega t)
+\end{align*}
+
+where $\omega$ is the angular frequency,
+
+\begin{align*}
+  \omega = \sqrt{\frac{k}{m}}
+\end{align*}
+
+We can find a form for the potential function by noting that the force is the negative gradient of the potential,
+
+\begin{align*}
+  F = -\frac{dV}{dt}
+\end{align*}
+
+and therefore we can find the potential function $V(x)$ by integrating,
+
+\begin{align*}
+  V &= \int kx dx \\
+    &= \frac{1}{2} kx^2 \\
+    &= \frac{1}{2} m\omega^2 x^2
+\end{align*}
+
+Therefore we see that the simple harmonic motion is due to a quadratic potential function. We need to solve the time independent Schr\"{o}dinger equation for this quadratic potential but we can't write down free particle solutions in this case. For an analytic solution we would have to use mathematics that we have not covered yet. We can although write down what we expect.
+
+Firstly we expect an infinite number of discrete energy eigenvalues within the well.
+
+The eigenfunctions will have either an even or odd parity.
+
+The wavenumber, and hence the wavelength is not constant as the kinetic energy varies across the well.
+
+The wavefunction will decay smoothly across the varying potential.
+
 \end{document}
