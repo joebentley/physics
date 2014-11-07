@@ -459,7 +459,7 @@ We now have an expression for the differential operator $\nabla$ in any orthogon
 
 When we evaluate $\nabla\cdot\mathbf{A}$ or $\nabla\times\mathbf{A}$, the derivative operators also apply to the unit vectors $\mathbf{e_i}$. This was fine in Cartesian coordinates because the unit vectors did not change in space, but now we have unit vectors which vary in the $x$, $y$, and $z$ directions. Therefore if we want to calculate the divergence or the curl we have to take a lot of derivatives, but this isn't necessary and it turns out that it is easier to apply Gauss' theorem and Stoke's theorem instead.
 
-\section{Divergence in Orthogonal Coordinates}
+\section{Divergence in Orthogonal Coordinates: Integral Approach}
 
 Consider an infinitesimal cuboid situated at $(u_1, u_2, u_3)$ with sides of length $h_1 du_1$, $h_2 du_2$, and $h3 du_3$. We want to calculate the surface integral over the surface of the cuboid,
 
@@ -549,7 +549,7 @@ In paraboloidal coordinates, the coordinates are given by $(u_1, u_2, u_3) = (u,
   \nabla^2\Psi=\frac{1}{(u^2+v^2)}\frac{1}{u}\frac{\partial}{\partial u}\left(u\frac{\partial\Psi}{\partial u}\right)+\frac{1}{(u^2+v^2)}\frac{1}{v}\frac{\partial}{\partial v}\left(v \frac{\partial\Psi}{\partial v}\right)+\frac{1}{(u^2 + v^2)}\frac{\partial^2\Psi}{\partial\phi^2}
 \end{align*}
 
-\section{Curl in Orthogonal Coordinate Systems}
+\section{Curl in Orthogonal Coordinate Systems: Integral Approach}
 
 In this section we will find expression for the curl of a vector field in an orthogonal coordinate system. First we consider an infinitesimal rectangle in the $u_1u_2$ plane situated at $(u_1, u_2)$ such that this is the lower left corner or the rectangle. The rectangle has sides length $h_1du_1$ and $h_2du_2$. The corners are thus given such that the lower left is $(u_1, u_2)$, the lower right is $(u_1 + du_1, u_2)$, the upper left is $(u_1, u_2 + du_2)$, the upper right is $(u_1 + du_2, u_2 + du_2)$. We label the bottom side $1$, the right side $2$, the top side $3$, and the left side $4$.
 
@@ -601,5 +601,138 @@ By rearranging we can write this as a determinant,
     h_1A_1 & h_2A_2 & h_3A_3
   \end{vmatrix}
 \end{align*}
+
+
+\section{Divergence in Orthogonal Coordinate Systems: Differential Approach}
+
+In earlier sections we explored how we can apply the divergence and curl in orthogonal coordinate systems by taking integrals over surfaces and lines and then applying Gauss' and Stokes' theorems to find the divergence and curl. In this section we will find the same result by using differentiation only, as well as some vector calculus identities. To see the vector calculus identities, as well as proofs for a few of them, see the separate vector calculus notes.
+
+The trick to finding the divergence and curl in orthogonal coordinate systems is to find combinations of the scale factors $h_i$ and the unit vectors $\mathbf{e_i}$ that have either zero divergence or curl. First we do this by finding the gradient of $u_1$,
+
+\begin{align*}
+  \nabla u_1 &= \frac{\mathbf{e_1}}{h_1}\frac{\partial}{\partial u_1}\left(u_1\right) + \frac{\mathbf{e_2}}{h_2}\frac{\partial}{\partial u_2}\left(u_1\right) + \frac{\mathbf{e_3}}{h_3}\frac{\partial}{\partial u_3}\left(u_1\right) \\
+             &= \frac{\mathbf{e_1}}{h_1}
+\end{align*}
+
+Since $\nabla\times\nabla\Psi = \mathbf{0}$ it follows that,
+
+\begin{align*}
+  \nabla\times\left(\frac{\mathbf{e_1}}{h_1}\right) = \mathbf{0}
+\end{align*}
+
+We can apply similar reasoning for $u_2$ and $u_3$ to give,
+
+\begin{align*}
+  \nabla\times\left(\frac{\mathbf{e_1}}{h_1}\right) = \nabla\times\left(\frac{\mathbf{e_2}}{h_2}\right) = \nabla\times\left(\frac{\mathbf{e_3}}{h_3}\right) = \mathbf{0}
+\end{align*}
+
+Using our vector calculus identity $\nabla\cdot(\mathbf{A}\times\mathbf{B}) = \mathbf{B}\cdot(\nabla\times\mathbf{A}) - \mathbf{A}\cdot(\nabla\times\mathbf{B})$ we obtain a combination that leads to zero divergence,
+
+\begin{align*}
+  \nabla\cdot\left(\frac{\mathbf{e_1}}{h_2h_3}\right) &= \nabla\cdot\left(\frac{\mathbf{e_2}}{h_2}\times\frac{\mathbf{e_3}}{h_3}\right) \\
+                                                      &= \frac{\mathbf{e_3}}{h_3}\cdot\nabla\times\left(\frac{\mathbf{e_2}}{h_2}\right) - \frac{\mathbf{e_2}}{h_2}\cdot\nabla\times\left(\frac{\mathbf{e_3}}{h_3}\right) \\
+                                                      &= 0
+\end{align*}
+
+Similar reasoning leads us to,
+
+\begin{align*}
+  \nabla\cdot\left(\frac{\mathbf{e_1}}{h_2h_3}\right)=\nabla\cdot\left(\frac{\mathbf{e_2}}{h_3h_1}\right)=\nabla\cdot\left(\frac{\mathbf{e_3}}{h_1h_2}\right)=0
+\end{align*}
+
+To calculate the divergence then, we take the divergence of a given vector field $\mathbf{A}$ in the orthogonal coordinate system,
+
+\begin{align*}
+  \nabla\cdot\mathbf{A}=\nabla\cdot(A_1\mathbf{e_1}+A_2\mathbf{e_2}+A_3\mathbf{e_3})
+\end{align*}
+
+We can write the $\mathbf{e_1}$ term as,
+
+\begin{align*}
+  \nabla\cdot(A_1\mathbf{e_1})=\nabla(h_2h_3A_1\frac{\mathbf{e_1}}{h_2h_3})
+\end{align*}
+
+Now we use identity five, which is that $\nabla\cdot(\Psi\mathbf{F})=\nabla\Psi\cdot\mathbf{F}+\Psi\nabla\cdot\mathbf{F}$. This gives us,
+
+\begin{align*}
+  \nabla\cdot\left(h_2h_3A_1\frac{\mathbf{e_1}}{h_2h_3}\right)&=\nabla(h_2h_3A_1)\cdot\frac{\mathbf{e_1}}{h_2h_3}+h_2h_3A_1\nabla\cdot\left(\frac{\mathbf{e_1}}{h_2h_3}\right) \\
+                                                              &=\left[\frac{1}{h_1}\frac{\partial}{\partial u_1}(h_2h_3A_1)\mathbf{e_1}\right]\cdot\frac{\mathbf{e_1}}{h_2h_3} + 0 \\
+                                                              &=\frac{1}{h_1h_2h_3}\frac{\partial}{\partial u_1}(h_2h_3A_1)
+\end{align*}
+
+The last term in the first line can be seen to be zero as we have shown earlier, as $\nabla\cdot\left(\frac{\mathbf{e_1}}{h_2h_3}\right) = 0$. We can get the other two terms of the divergence using cyclic interchange and we see that we get the same result as before,
+
+\begin{align*}
+  \nabla\cdot\mathbf{A}=\frac{1}{h_1h_2h_3}\left[\frac{\partial}{\partial u_1}(h_2h_3A_1)+\frac{\partial}{\partial u_2}(h_3h_1A_2)+\frac{\partial}{\partial u_3}(h_1h_2A_3)\right]
+\end{align*}
+
+
+\section{Curl in Orthogonal Coordinate Systems: Differential Approach}
+
+Similarly we can apply the same reasoning to find the curl in an orthogonal coordinate system. First we state the curl of a vector field $\mathbf{A}$ in orthogonal coordinates,
+
+\begin{align*}
+  \nabla\times\mathbf{A}=\nabla\times(A_1\mathbf{e_1}+A_2\mathbf{e_2}+A_3\mathbf{e_3})
+\end{align*}
+
+We can see that the first term can be written as,
+
+\begin{align*}
+  \nabla\times(A_1\mathbf{e_1})=\nabla\times(h_1A_1\frac{\mathbf{e_1}}{h_1})
+\end{align*}
+
+Next we use identity six which is that $\nabla\times(\Psi\mathbf{F}) = \nabla\Psi\times\mathbf{F} + \Psi\nabla\times\mathbf{F}$. Using this leads us to,
+
+\begin{align*}
+  \nabla\times(A_1\mathbf{e_1}) &= \nabla\times\left((h_1A_1\frac{\mathbf{e_1}}{h_1}\right) = \nabla(h_1A_1)\times\frac{\mathbf{e_1}}{h_1}+h_1A_1\nabla\times\frac{\mathbf{e_1}}{h_1} \\
+                                &= \left[\frac{1}{h_2}\frac{\partial}{\partial u_2}(h_1A_1)\mathbf{e_2}+\frac{1}{h_3}\frac{\partial}{\partial u_3}(h_1A_1)\mathbf{e_3}\right]\times\frac{\mathbf{e_1}}{h_1} + \mathbf{0} \\
+                                &= \frac{1}{h_3h_1}\frac{\partial}{\partial u_3}(h_1A_1)\mathbf{e_2} - \frac{1}{h_1h_2}\frac{\partial}{\partial u_2}(h_1A_1)\mathbf{e_3} \\
+\end{align*}
+
+We see that the last term of the first line goes to zero as we have shown earlier in the last section. We can get the other terms by cyclic interchange,
+
+\begin{align*}
+  \nabla\times\mathbf{A}&=\frac{1}{h_2h_3}\left[\frac{\partial}{\partial u_2}(h_3A_3)-\frac{\partial}{\partial u_3}(h_2A_2)\right]\mathbf{e_1} \\
+                        &+\frac{1}{h_3h_1}\left[\frac{\partial}{\partial u_3}(h_1A_1)-\frac{\partial}{\partial u_1}(h_3A_3)\right]\mathbf{e_2} \\
+                        &+\frac{1}{h_1h_2}\left[\frac{\partial}{\partial u_1}(h_2A_2)-\frac{\partial}{\partial u_2}(h_1A_1)\right]\mathbf{e_3}
+\end{align*}
+
+This can also be written in determinant form,
+
+\begin{align*}
+  \nabla\times\mathbf{A}=\frac{1}{h_1h_2h_3}
+  \begin{vmatrix}
+    h1\mathbf{e_1} & h2\mathbf{e_2} & h3\mathbf{e_3} \\
+    \frac{\partial}{\partial u_1} & \frac{\partial}{\partial u_2} & \frac{\partial}{\partial u_3} \\
+    h_1A_1 & h_2A_2 & h_3A_3
+  \end{vmatrix}
+\end{align*}
+
+\section{Converting Spherical Polars to Cartesian}
+
+We can write the Cartesian coordinates $(x, y, z)$ in terms of the spherical polar coordinates $(r, \theta, \phi)$,
+
+\begin{align*}
+  x &= r\sin\theta\cos\phi \\
+  y &= r\sin\theta\sin\phi \\
+  z &= r\cos\theta
+\end{align*}
+
+From this we can write $(r, \theta, \phi)$ in terms of $(x, y, z)$,
+
+\begin{align*}
+  r&=\sqrt{x^2+y^2+z^2} \\
+  \theta&=\arctan{\left(\frac{\sqrt{x^2 + y^2}}{z}\right)} \\
+  \phi&=\arctan{\left(\frac{y}{x}\right)} \\
+\end{align*}
+
+But if we need to take the cosine or sin of either $\theta$ or $\phi$ in terms of $(x, y, z)$ we need to do a difficult calculation (the sine of an arctangent) so it is better if we define the cosine and sine of $\theta$ and $\phi$ without an arctangent,
+
+\begin{alignat*}{2}
+  \cos\theta&=\frac{r\cos\theta}{\cos\theta}&&=\frac{z}{r}=\frac{z}{\sqrt{x^2 + y^2 + z^2}}\\
+  \sin\theta&=\frac{r\sin\theta}{\sin\theta}&&=\frac{\sqrt{x^2+y^2}}{\sqrt{x^2+y^2+z^2}}\\
+  \cos\phi&=\frac{r\sin\theta\cos\phi}{r\sin\theta}&&=\frac{x}{\sqrt{x^2+y^2}}\\
+  \sin\phi&=\frac{r\sin\theta\sin\phi}{r\sin\theta}&&=\frac{y}{\sqrt{x^2+y^2}}
+\end{alignat*}
 
 \end{document}
