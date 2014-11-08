@@ -2,4 +2,4 @@
 Physics Notes
 =============
 
-LaTeX physics notes that I've written in pdfTeX and am posting up here mainly for documentation and backup. Don't expect the code to be of great quality as I've made no effort to reduce the length of long lines. These notes are based directly off my lecture notes and should be regarded as such.
+Year 2 physics notes written in LaTeX. I've put some effort in to trying to make these agnostic of the course or whatever, but in some places I have referenced Canvas and things that are only available on my course.
