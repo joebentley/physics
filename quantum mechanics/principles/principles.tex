@@ -1,0 +1,74 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amsfonts,amsthm,amssymb, amsaddr}
+
+
+\title{Principles of Quantum Mechanics}
+
+\author{Joe Bentley}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Mixed States}
+
+If $\psi_n(x)$ is a solution of the time independent Schr\"{o}dinger equation, then $\psi_n(x)$ is an eigenfunction of the Hamiltonian operator with an energy eigenvalue. The full time-dependant form of the wavefunction is given by,
+
+\begin{align*}
+  \Psi_n(x, t) = \psi_n(x) e^{-\frac{iE_nt}{\hbar}}
+\end{align*}
+
+When we find the probability density, multiply the wavefunction by its complex conjugate. Since the exponential is negative when we take the complex conjugate, they cancel to give,
+
+\begin{align*}
+  {|\Psi_n|}^2 = \psi^*_n\psi_n
+\end{align*}
+
+Therefore since $\psi_n$ has no time dependence, neither does the probability density ${|\Psi_n|}^2$.
+
+Now we consider a mixed state of wavefunctions,
+
+\begin{align*}
+  \Phi(x, t) = \Psi_m(x, t) + \Psi_n(x, t)
+\end{align*}
+
+By taking the probability density of this,
+
+\begin{align*}
+  {\|\Phi\|}^2 &= {(\Psi_m + \Psi_n)}^* (\Psi_m + \Psi_n) \\
+               &= \Psi_m^* \Psi_m + \Psi_n^* \Psi_n + \Psi_m^* \Psi_n + \Psi_n^* \Psi_m
+\end{align*}
+
+The two cross terms at the end of the second line we call the interference terms, which we define as $z$ and $z^*$ such that,
+
+\begin{alignat*}{2}
+  z &= \Psi^*_m \Psi_n &&= \psi_m^* \psi_n e^{-i(E_n - E_m)t / \hbar} \\
+  z^* &= \Psi^*_m \Psi_n &&= \psi_m^* \psi_n e^{i(E_n - E_m)t / \hbar}
+\end{alignat*}
+
+We see that this satisfies $z + z^* = 2 Re\{z\}$. We can therefore write the probability density as,
+
+\begin{align*}
+  {\|\Phi\|}^2 = {\|\psi_m\|}^2 + {\|\psi_n\|}^2 + 2\psi_m^* \psi_n \cos{\left(\frac{\Delta E t}{\hbar}\right)}
+\end{align*}
+
+where $\Delta E = E_n - E_m$. Also the assumption has been made that $\psi_m^*\psi_n$ is a real quantity. We therefore see that the probability density of a mixed state $\Phi(x, t)$ varies with time unlike previous examples where the probability density function is constant in time. The mixed state $\Phi$ is an example of a superposition of states. Since Schr\"{o}dinger's equation is linear, any linear combination of mixed states is also a solution,
+
+\begin{align*}
+  \Phi = C_m \Psi_m + C_n \Psi_n
+\end{align*}
+
+Note that the time dependent solutions are used here. A mixed state of two time independent solutions, $\phi(x) = \psi_m(x) + \psi_n(x)$ would not be a solution of the time independent Schr\"{o}dinger equation, as the energy would need to be well defined, which is isn't for a mixed state,
+
+\begin{align*}
+  \hat{H}\phi = \hat{H}\psi_m + \hat{H}\psi_n = E_m\psi_m + E_n\Psi_n
+\end{align*}
+
+We see that there are two different energies defined, one for each state so this can't be a solution of the time independent Schr\"{o}dinger equation which has a single well defined energy.
+
+
+\end{document}
