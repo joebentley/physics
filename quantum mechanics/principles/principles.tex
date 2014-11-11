@@ -70,5 +70,90 @@ Note that the time dependent solutions are used here. A mixed state of two time 
 
 We see that there are two different energies defined, one for each state so this can't be a solution of the time independent Schr\"{o}dinger equation which has a single well defined energy.
 
+\section{Superposition and Measurement}
+
+Let $\Psi_i(x, t)$ where $i = 1, \dots, n$ form a complete set of solutions to the Schr\"{o}dinger equation for a given problem. The general solution is then given by,
+
+\begin{align*}
+  \Phi(x, t) = \sum\limits_{i=1}^n c_i \Psi_i(x, t)
+\end{align*}
+
+where $c_i$ are complex coefficients. We postulate that \textit{any} valid set of solutions (and thus any valid wavefunction) can be written in this form.
+
+If $\hat{A}\Psi_i = a_i\Psi_i$ then the observable $A$ (which corresponds to the operator $\hat{A}$ and the eigenvalue $a_i$) is well defined for the state. That is, $\Psi_i$ is an eigenstate of the operator $\hat{A}$. The real eigenvalues $a_i$ represent all the possible results of measuring the observable $A$ for any state, which must be real as they correspond to an observable $A$.
+
+The class of operators that always have real eigenvalues are known as Hermitian operators. An operator $\hat{o}$ is Hermitian \textit{only} if,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \Psi_b^*\hat{o}\Psi_a dx = \int_{-\infty}^{\infty} \Psi_a(\hat{o}\Psi_b)^* dx
+\end{align*}
+
+where $\Psi_a$ and $\Psi_b$ are any arbitrary function of $(x, t)$. An operator that this is true for is called a self-adjoint operator,
+
+\begin{align*}
+  \hat{o} = \hat{o}^{\dagger}
+\end{align*}
+
+A Hermitian matrix is similarly defined,
+
+\begin{align*}
+  Q &= Q^{\dagger} \\
+  Q_{nm} &= Q_{mn}^*
+\end{align*}
+
+We can show that because Hermitian operators are self-adjoint, that they are required to be real. Consider an arbitrary operator $\hat{o}$ acting on a wavefunction $\Psi_a$ which is an eigenfunction of the operator $\hat{o}$.
+
+\begin{align*}
+  \text{Let} \qquad \hat{o} \Psi_a = a \Psi_a
+\end{align*}
+
+If the operator $\hat{o}$ is Hermitian, then,
+
+\begin{align*}
+  \int\Psi_a^*\hat{o}\Psi_a dx &= \int\Psi_a(\hat{o}\Psi_a)^* dx \\
+  \int\Psi_a^* a \Psi_a dx &= \int\Psi_a(a \Psi_a)^* dx \\
+  a \int\Psi_a^* \Psi_a dx &= a^* \int\Psi_a \Psi_a^* dx \\
+\end{align*}
+
+Assuming the wavefunction $\Psi_a$ is normalized (but even if it isn't, the normalisation constants will cancel anyway),
+
+\begin{align*}
+  \int\Psi_a^*\Psi_a dx = 1
+\end{align*}
+
+Therefore we come to the conclusion that the Hermitian operator always gives real eigenvalues,
+
+\begin{align*}
+  a = a^*
+\end{align*}
+
+We postulate that all operators corresponding to observables are Hermitian.
+
+What about the relationship between two different eigenfunctions when the Hermitian is applied? First define $\Psi_b$ as another eigenfunction of $\hat{o}$, such that,
+
+\begin{align*}
+  \hat{o}\Psi_b = b\Psi_b
+\end{align*}
+
+The Hermitian operator satisfies,
+
+\begin{align*}
+  \int\Psi_b^*\hat{o}\Psi_a dx = \int\Psi_a(\hat{o}\Psi_b)^* dx
+\end{align*}
+
+Therefore by applying the operator,
+
+\begin{align*}
+  a\int\Psi_b^*\Psi_a dx &= b\int\Psi_a\Psi_b^* dx \\
+  \left(a - b\right) \int\Psi_b^*\Psi_a dx &= 0
+\end{align*}
+
+For this to be true we can have two cases. Either $a = b$ and the integral is one, which implies that $\Psi_a = \Psi_b$ or just $\Psi_a = \Psi_a$, or $a \neq b$, which requires that the integral is zero. In this case we say that the eigenfunctions $\Psi_a$ and $\Psi_b$ are orthogonal, which we can define succinctly using the Kronecker delta,
+
+\begin{align*}
+  \int\Psi_b^*\Psi_a dx = \delta_{ab}
+\end{align*}
+
+
 
 \end{document}
