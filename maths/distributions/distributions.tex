@@ -138,6 +138,228 @@ Or for a given offset $\mathbf{r_0}$,
   \delta^3(\mathbf{r} - \mathbf{r_0}) = \delta(x - x_0)\delta(y - y_0)\delta(z - z_0)
 \end{align*}
 
+\section{The Heaviside (Step) Function}
 
+The Heaviside function, also known as the step function, is defined as the integral of the Dirac delta function,
+
+\begin{align}
+  \label{eq:heavisideintegral}
+  \Theta(x) = \int_{-\infty}^x\delta(t)dt
+\end{align}
+
+By considering the definition of the Dirac delta function, and looking at the cases where $x < 0$ and $x > 0$ we can find a numerical definition of the Heaviside function,
+
+\begin{align*}
+  \Theta(x) =
+  \begin{cases}
+    0 & x < 0 \\
+    1 & x > 0
+  \end{cases}
+\end{align*}
+
+The function, when plotted, looks like an instantaneous step from zero to one at $x = 0$. By considering what happens when we have a negative $x$ as the argument to the function we can also define,
+
+\begin{align*}
+  \Theta(-x) =
+  \begin{cases}
+    1 & x < 0 \\
+    0 & x > 0
+  \end{cases}
+\end{align*}
+
+This allows us to write the expression,
+
+\begin{align*}
+  \Theta(x) + \Theta(-x) = 1
+\end{align*}
+
+which holds for all $x$ not equal to zero.
+
+By considering the definition of the Heaviside function we can define its derivative by the fundamental theorem of calculus. That is, the derivative is the opposite operation of the integral. Therefore by taking the derivative with respect to $x$ of both sides of eq.~\ref{eq:heavisideintegral} we obtain,
+
+\begin{align*}
+  \frac{d}{dx}\Theta(x) = \delta(x)
+\end{align*}
+
+So far the Heaviside function is not defined for $x = 0$, so we want to explore a way that we can define this as if it is a continuous function. Intuitively we expect that $\Theta(x = 0) = \frac{1}{2}$ which we will show by considering the integral,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \frac{\sin x}{x} dx = \pi
+\end{align*}
+
+We will not prove this result here as it is long, but the proof can be found on the internet or in the notes on Canvas. This integral can be further generalized by considering the value of,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \frac{\sin ax}{x} dx
+\end{align*}
+
+for different values of $a$.
+
+Firstly, we will consider the case when $a = 0$. First we define a placeholder value,
+
+\begin{align*}
+  y &= ax \\
+  dy &= adx
+\end{align*}
+
+By dividing the second line by the first line,
+
+\begin{align*}
+  \frac{dy}{y} = \frac{dx}{x}
+\end{align*}
+
+Therefore by substituting this back into our integral, we see that the result is independent of the value of $a$,
+
+\begin{align*}
+   \int_{-\infty}^{\infty} \frac{\sin ax}{x} dx = \int_{-\infty}^{\infty} \frac{\sin y}{y} dy = \pi
+\end{align*}
+
+It is this property of being independent of $a$ which makes this integral a good function for representing the Heaviside step function.
+
+Next, we need to consider the case where $a = 0$, which is simply
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \frac{0}{x} dx = 0
+\end{align*}
+
+Finally, for the case where $a < 0$ we let $a = -b$ where $b > 0$, such that,
+
+\begin{align*}
+  \sin ax = \sin(-bx) = -\sin bx
+\end{align*}
+
+The integral can thus be rewritten in the form,
+
+\begin{align*}
+  -\int_{-\infty}^{\infty} \frac{\sin bx}{x} dx = -\pi
+\end{align*}
+
+Therefore, we have that,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \frac{\sin ax}{x} dx =
+  \begin{cases}
+    \pi & a > 0 \\
+    0 & a = 0 \\
+    -\pi & a < 0
+  \end{cases}
+\end{align*}
+
+By adding a term and dividing by a constant we can bring this in line with the definition of the Heaviside step function,
+
+\begin{align*}
+  \Theta(a) = \frac{1}{2} + \frac{1}{2\pi}\int_{-\infty}^{\infty}\frac{\sin ax}{x} dx=
+  \begin{cases}
+    1 & a > 0 \\
+    \frac{1}{2} & a = 0 \\
+    0 & a < 0
+  \end{cases}
+\end{align*}
+
+Or, by change of variable we can make this a function of $x$,
+
+\begin{align*}
+  \Theta(x) = \frac{1}{2} + \frac{1}{2\pi}\int_{-\infty}^{\infty}\frac{\sin xt}{t} dt=
+  \begin{cases}
+    1 & x > 0 \\
+    \frac{1}{2} & x = 0 \\
+    0 & x < 0
+  \end{cases}
+\end{align*}
+
+We can see that this lends itself to a continuous representation of the step function which allows us to define a value for $\Theta(x = 0)$. This is also useful as it is directly differentiable to give a trigonometric form of the Dirac delta function,
+
+\begin{align*}
+  \delta(x) &= \frac{d}{dx}\Theta(x) \\
+  \delta(x) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \frac{t \cos xt}{t} dt \\
+  \delta(x) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \cos xt dt
+\end{align*}
+
+This can also be expressed in an exponential form by noting that,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} e^{ixt} dt &= \int_{-\infty}^{\infty} \left[\cos xt + i\sin xt\right] dt \\
+                                     &= \int_{-\infty}^{\infty} \cos xt dt
+\end{align*}
+
+In the second line we used the fact that sine is an odd function, so the integral over it from $-\infty$ to $\infty$ is zero. We can now express the Dirac delta function in the exponential form,
+
+\begin{align*}
+  \delta(x) = \frac{1}{2\pi} \int_{-\infty}^{\infty} e^{ixt} dt
+\end{align*}
+
+
+\section{Schr\"{o}dinger Equation in One Dimension}
+
+The time independent Schr\"{o}dinger equation in one dimension can be written as,
+
+\begin{align*}
+  -\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} + V(x)\psi = E\psi
+\end{align*}
+
+where $V(x)$ is the position-dependent potential energy. The Schr\"{o}dinger equation is only possible to solve for discrete values of energy $E$. We are interested in the eigenfunctions $\psi_n(x)$ and their corresponding energy eigenvalues (energy levels) $E_n$.
+
+Consider an attractive $\delta$-function potential. In this case, it is a potential of the form $V(x) = -\lambda\delta(x)$, a sharp spike potential that goes to $-\infty$ at $x = 0$. The Schr\"{o}dinger equation can be written as,
+
+\begin{align*}
+  -\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} - \lambda\delta(x)\psi = E\psi
+\end{align*}
+
+We want to look for the bound state with an energy,
+
+\begin{align*}
+  E = -\frac{\hbar^2q^2}{2m}
+\end{align*}
+
+For the case where $x \neq 0$, the potential function $V(x) = 0$, and we have,
+
+\begin{align*}
+  -\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} = E\psi = -\frac{\hbar^2q^2}{2m}\psi
+\end{align*}
+
+From this we can see that,
+
+\begin{align*}
+  \frac{d^2\psi}{dx^2} = q^2\psi
+\end{align*}
+
+The solution therefore has the form,
+
+\begin{align*}
+  \psi(x) =
+  \begin{cases}
+    Ae^{qx} & x < 0 \\
+    Be^{-qx} & x > 0
+  \end{cases}
+\end{align*}
+
+showing us that the solution has the form of an exponential decay either side of $x = 0$.
+
+By considering the Heaviside function, we can also write this in the equivalent form,
+
+\begin{align*}
+  \psi(x) = Ae^{qx}\Theta(-x) + Be^{-qx}\Theta(x)
+\end{align*}
+
+To substitute this into the Schr\"{o}dinger equation we calculate the derivatives,
+
+\begin{align*}
+  \frac{d\psi}{dx} &= Aqe^{qx}\Theta(-x) - Bqe^{-qx}\Theta{x} - Ae^{qx}\delta(x) + Be^{-qx}\delta(x) \\
+                   &= Aqe^{qx}\Theta(-x) - Bqe^{-qx}\Theta{x} + (B - A)\delta(x)
+\end{align*}
+
+In the second line we used the fact that the Dirac delta function is zero every except where $x = 0$, so we can write $e^{qx}\delta(x) = \delta(x)$ as $e^{qx}$ is zero at $x = 0$, and $\delta(x)$ is zero at $x \neq 0$. We can now compute the second derivative,
+
+\begin{align*}
+  \frac{d^2\psi}{dx^2} &= Aq^2e^{qx}\Theta(-x) + Bq^2e^{-qx}\Theta(x) \\
+                       &- Aqe^{qx}\delta(x) - Bqe^{-qx}\delta(x) \\
+                       &+ (B-A)\delta'(x)
+\end{align*}
+
+Using $e^{qx}\delta(x) = \delta(x)$ from before, as well as noting that the first line is just the wavefunction multiplied by $q^2$,
+
+\begin{align*}
+  \frac{d^2\psi}{dx^2} = q^2\psi - (A+B)q\delta(x) + (B-A)\delta'(x)
+\end{align*}
 
 \end{document}
