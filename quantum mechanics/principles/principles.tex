@@ -39,7 +39,7 @@ Now we consider a mixed state of wavefunctions,
 By taking the probability density of this,
 
 \begin{align*}
-  {\|\Phi\|}^2 &= {(\Psi_m + \Psi_n)}^* (\Psi_m + \Psi_n) \\
+  {|\Phi|}^2 &= {(\Psi_m + \Psi_n)}^* (\Psi_m + \Psi_n) \\
                &= \Psi_m^* \Psi_m + \Psi_n^* \Psi_n + \Psi_m^* \Psi_n + \Psi_n^* \Psi_m
 \end{align*}
 
@@ -53,7 +53,7 @@ The two cross terms at the end of the second line we call the interference terms
 We see that this satisfies $z + z^* = 2 Re\{z\}$. We can therefore write the probability density as,
 
 \begin{align*}
-  {\|\Phi\|}^2 = {\|\psi_m\|}^2 + {\|\psi_n\|}^2 + 2\psi_m^* \psi_n \cos{\left(\frac{\Delta E t}{\hbar}\right)}
+  {|\Phi|}^2 = {|\psi_m|}^2 + {|\psi_n|}^2 + 2\psi_m^* \psi_n \cos{\left(\frac{\Delta E t}{\hbar}\right)}
 \end{align*}
 
 where $\Delta E = E_n - E_m$. Also the assumption has been made that $\psi_m^*\psi_n$ is a real quantity. We therefore see that the probability density of a mixed state $\Phi(x, t)$ varies with time unlike previous examples where the probability density function is constant in time. The mixed state $\Phi$ is an example of a superposition of states. Since Schr\"{o}dinger's equation is linear, any linear combination of mixed states is also a solution,
@@ -154,6 +154,143 @@ For this to be true we can have two cases. Either $a = b$ and the integral is on
   \int\Psi_b^*\Psi_a dx = \delta_{ab}
 \end{align*}
 
+\section{Expectation Values for Superposition States}
+
+Consider the superposition state,
+
+\begin{align*}
+  \Phi = \sum\limits_{i=1}^n c_i \Psi_i
+\end{align*}
+
+which is a general solution to the Schr\"{o}dinger equation. We define the operator $\hat{o}$, such that $\Psi_i$ is an eigenfunction, that is, $\hat{o}\Psi_i = a_i\Psi_i$ where $a_i$ is a real eigenvalue corresponding to an observable $o$. The expectation value of $o$ can be written as,
+
+\begin{align*}
+  \langle o\rangle = \int_{-\infty}^{\infty} \Phi^* \hat{o} \Phi dx
+\end{align*}
+
+Assuming that $\Phi$ is normalized.
+
+We want to show the result of finding the expectation value of a mixed state $\Phi$,
+
+\begin{align*}
+  \langle o\rangle &= \int_{-\infty}^{\infty} \left(\sum\limits_i c_i \Psi_i\right)^* \hat{o} \left(\sum\limits_j c_j \Psi_j\right) dx \\
+                   &= \int_{-\infty}^{\infty} \sum\limits_i c_i^* \Psi_i^* \sum\limits_j c_j a_j \Psi_j \\
+                   &= \sum\limits_i\sum\limits_j c_i^* c_j a_j \int_{-\infty}^{\infty} \Psi_i^*\Psi_j dx \\
+                   &= \sum\limits_i\sum\limits_j c_i^* c_j a_j \delta_{ij}
+\end{align*}
+
+We know that the integral can be written as the Kronecker delta, because it is normalized, it obeys,
+
+\begin{align*}
+  \delta_{ij} =
+  \begin{cases}
+    0 & i \neq j \\
+    1 & i = j
+  \end{cases}
+\end{align*}
+
+This is because, as we showed before, if $i \neq j$ the wavefunctions $\Psi_i$ and $\Psi_j$ are orthogonal, and thus the integral over them is zero. If $i = j$, due to normalization, the integral over them is one. Therefore the Kronecker delta is satisfied.
+
+Since the Kronecker delta is zero for indices where $i \neq j$ we can rewrite the expectation value as a single sum,
+
+\begin{align*}
+  \langle o\rangle &= \sum\limits_j c_j^* c_j a_j \\
+  \langle o\rangle &= \sum\limits_j {|c_j|}^2 a_j
+\end{align*}
+
+Remember that $c_i$ is the weighting of the wavefunction $\Psi_i$ in the mixed state. The expectation is the weighted mean of all possible values of the eigenvalue and therefore, we can say that ${|c_j|}^2$ is the probability of measuring $a_j$ in any one measurement.
+
+Furthermore, since ${|c_j|}^2$ is the probability, it is implied that $\sum\limits_j {|c_j|}^2 = 1$, which we can show,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \Phi^*\Phi dx &= 1 \\
+  \int_{-\infty}^{\infty} \sum\limits_i c_i^* \Psi_i^* \sum\limits_j c_j \Psi_j dx &= 1 \\
+  \sum\limits_i \sum\limits_j c_i^* c_j \int_{-\infty}^{\infty} \Psi_i^* \Psi_j dx &= 1 \\
+  \sum\limits_i \sum\limits_j C_i^* c_j \delta_{ij} &= 1 \\
+  \sum\limits_j &= 1
+\end{align*}
+
+Therefore we have shown,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \Phi^*\Phi dx = \sum\limits_j {|c_j|}^2 = 1
+\end{align*}
+
+\section{Example: Expectation Value}
+
+Consider a particle confined in a potential well of width $a$ with a spatial wavefunction given by,
+
+\begin{align*}
+  \phi(x) = \sqrt{\frac{2}{a}} \cos{\left(\frac{\pi x}{a}\right)}
+\end{align*}
+
+The wavefunction $\phi(x)$ is an eigenstate of the kinetic energy $T$,
+
+\begin{align*}
+  \hat{T} = -\frac{\hbar^2}{2m} \frac{d^2}{dx^2} \to E = \frac{\pi^2\hbar^2}{2ma^2}
+\end{align*}
+
+However it is not an eigenstate of the momentum operator,
+
+\begin{align*}
+  \hat{p} = -i\hbar\frac{d}{dx}
+\end{align*}
+
+Eigenfunctions of $\hat{p}$ can be written in the form,
+
+\begin{align*}
+  \psi_+(x) &= \frac{1}{\sqrt{a}} e^{\frac{i\pi x}{a}} \\
+  \psi_-(x) &= \frac{1}{\sqrt{a}} e^{-\frac{i\pi x}{a}}
+\end{align*}
+
+Note that they are normalized with the normalization constants that can be calculated,
+
+\begin{align*}
+  A^2 \int_{-a}^{a} \psi_+^* \psi_+ dx = 1 \to A = \frac{1}{\sqrt{a}}
+\end{align*}
+
+We can write our superposition $\phi(x)$ in terms of these two eigenfunctions of $\hat{p}$ by rewriting $\cos$ in its exponential form,
+
+\begin{align*}
+  \phi(x) = \sqrt{\frac{2}{a}} \left(\frac{e^{\frac{i\pi x}{a}} + e^{-\frac{i\pi x}{a}}}{2}\right)
+\end{align*}
+
+By some rearrangement we can write this in terms of our eigenfunctions of $\hat{p}$,
+
+\begin{align*}
+  \phi(x) = \frac{1}{\sqrt{2}} \psi_+(x) + \frac{1}{\sqrt{2}} \psi_-(x)
+\end{align*}
+
+Writing this in the form $\phi = \sum\limits_i c_i \psi_i$,
+
+\begin{align*}
+  \phi(x) = c_+ \psi_+(x) + c_- \psi_-(x)
+\end{align*}
+
+The probability of measuring each eigenvalue of momentum is thus given by,
+
+\begin{alignat*}{2}
+  p_+ &= \frac{\hbar\pi}{a}  &&\to P = {|c_+|}^2 = \frac{1}{2} \\
+  p_- &= -\frac{\hbar\pi}{a} &&\to P = {|c_-|}^2 = \frac{1}{2}
+\end{alignat*}
+
+We can see that in $\phi$ is contained two superimposed eigenfunctions that are eigenfunctions of $\hat{p}$, while $\phi$ itself isn't an eigenstate of $\hat{p}$.
+
+The expectation value of $p$ is given by,
+
+\begin{align*}
+  \langle p \rangle = \frac{1}{2}\left(\frac{\hbar\pi}{a}\right) - \frac{1}{2}\left(\frac{\hbar\pi}{x}\right) = 0
+\end{align*}
+
+In general for a superposition state of many wavefunctions given by $\phi(x) = \sum\limits_i c_i \psi_i(c)$ we need to use the orthogonality of the wavefunctions to extract the coefficients $c_j$,
+
+\begin{align*}
+  \int\psi_j^*\phi dx &= \sum\limits_i c_i \int \psi_j^* \psi_i dx \\
+                      &= \sum\limits_i c_i \delta_{ij} \\
+                      &= c_j
+\end{align*}
+
+We call the integral on the left an overlap integral as we are finding how the eigenfunction $\psi_j^*$ overlaps with the superposition of eigenstates $\phi$.
 
 
 \end{document}
