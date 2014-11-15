@@ -362,4 +362,273 @@ Using $e^{qx}\delta(x) = \delta(x)$ from before, as well as noting that the firs
   \frac{d^2\psi}{dx^2} = q^2\psi - (A+B)q\delta(x) + (B-A)\delta'(x)
 \end{align*}
 
+By substituting this back into the time independent Schr\"{o}dinger equation,
+
+\begin{align*}
+  -\frac{\hbar^2}{2m}q^2\psi+\frac{\hbar^2q\left(A+B\right)}{2m}\delta(x) - \frac{\hbar^2}{2m}\left(B - A\right)\delta'(x) - \lambda\delta(x)\psi = E\psi
+\end{align*}
+
+We do not yet have a suitable expression for the third term that isn't in terms of $\psi$. Note that we can write the third term in the form,
+
+\begin{align*}
+  \delta(x)\psi=\delta(x)\left[A\Theta(-x)e^{qx}+B\Theta(x)e^{-qx}\right]
+\end{align*}
+
+Remember that $\delta(x) = 0$ for all $x \neq 0$, which means that we can write this as,
+
+\begin{align*}
+  \delta(x)\psi=\delta(x)\Theta(0)\left[A+B\right] = \frac{1}{2}(A+B)\delta(x)
+\end{align*}
+
+Subtituting this into the Schr\"{o}dinger equation we then have,
+
+\begin{align*}
+  -\frac{\hbar^2}{2m}q^2\psi+\frac{\hbar^2q\left(A+B\right)}{2m}\delta(x) - \frac{\hbar^2}{2m}\left(B - A\right)\delta'(x) - \frac{\lambda}{2}\left(A+B\right)\delta(x) = E\psi
+\end{align*}
+
+The coefficients of each term on the left hand side can be compared with the right hand side.
+
+Firstly, comparing $\delta'(x)$,
+
+\begin{align*}
+  -\frac{\hbar^2}{2m}(B-A)=0
+\end{align*}
+
+and therefore,
+
+\begin{align*}
+  B = A
+\end{align*}
+
+This is intuitive, as the wavefunction $\psi$ is clearly symmetric about $x = 0$.
+
+Next we compare $\delta(x)$,
+
+\begin{align*}
+  \frac{\hbar^2q}{2m}(A+B)-\frac{\lambda}{2}(A+B) = 0
+\end{align*}
+
+Therefore can find an expression for $q$,
+
+\begin{align*}
+  \frac{\hbar^2q}{2m} &= \frac{\lambda}{2} \\
+  q = \frac{m\lambda}{\hbar^2}
+\end{align*}
+
+Finally, comparing $\psi$ terms,
+
+\begin{align*}
+  E = -\frac{\hbar^2q}{2m} = -\frac{\hbar^2}{2m} {\left(\frac{m\lambda}{\hbar^2}\right)}^2
+\end{align*}
+
+and therefore the energy $E$ is given by,
+
+\begin{align*}
+  E = -\frac{m\lambda^2}{2\hbar^2}
+\end{align*}
+
+Since $A = B$, we can write our expression for the wavefunction as,
+
+\begin{align*}
+  \psi(x) =
+  \begin{cases}
+    Ae^{qx} & x \leq 0 \\
+    Ae^{-qx} & x \geq 0
+  \end{cases}
+\end{align*}
+
+An alternative form using the absolute value function,
+
+\begin{align*}
+  \psi(x) = Ae^{-q\|x\|}
+\end{align*}
+
+To find the constant $A$ we can normalize the wavefunction by noting that the integral of the probability density over all space must be $1$,
+
+\begin{align*}
+  \int_{-\infty}^{\infty}\psi(x)^2 dx &= A^2\int_{-\infty}^{\infty} e^{-2q\|x\|} dx \\
+                                      &= 2A^2\int_{-\infty}^{\infty} e^{-2qx} dx \\
+                                      &= {\left[-\frac{A^2}{q}e^{-2qx}\right]}^{\infty}_0 e^{-2qx} dx \\
+                                      &= \frac{A^2}{q} = 1
+\end{align*}
+
+Therefore we see that the normalization constant $A$ is given by,
+
+\begin{align*}
+  A = \sqrt{q}
+\end{align*}
+
+The wavefunction can then be written as,
+
+\begin{align*}
+  \psi(x) = \sqrt{q}e^{-q\|x\|}
+\end{align*}
+
+\section{Alternative Boundary Condition Approach}
+
+In this section we will take a boundary condition approach to solving the same problem. First consider the Schr\"{o}dinger equation for the potential $V(x) = -\lambda\delta(x)$,
+
+\begin{align*}
+  -\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} - \lambda\delta(x)\psi = E\psi
+\end{align*}
+
+Rearranging this for the second derivative we have,
+
+\begin{align}
+  \label{eq:second}
+  \frac{d^2\psi}{dx^2} = -\frac{2m\lambda}{\hbar^2}\delta(x)\psi - \frac{2mE}{\hbar^2}\psi
+\end{align}
+
+From here on we will introduce a new notation: $\psi(0+)$ will mean $\psi(x)$ as $x \to 0$ from the \textit{positive} $x$-direction, and $\psi(0-)$ will mean $\psi(x)$ as $x to 0$ from the \textit{negative} $x$-direction.
+
+At $x = 0$ there is a sharp delta potential as we have defined. We can integrate over this potential from $x = -\epsilon$ to $x = \epsilon$ where $\epsilon$ is very small. On the left side of the potential we have the approaching $\psi(\epsilon-)$, and on the right side we have $\psi(\epsilon+)$. By integrating both sides of eq.~\ref{eq:second} with respect to $dx$,
+
+\begin{align*}
+  \psi'(\epsilon+) - \psi'(\epsilon-) = -\frac{2m\lambda}{\hbar^2}\psi(0) - \frac{2mE}{\hbar^2}\int_{-\epsilon}^{\epsilon}\psi(x) dx
+\end{align*}
+
+By letting $\epsilon \to 0$ we get a discontinuous step in $\psi'(x)$ where the gradient suddenly becomes negative at $x = 0$,
+
+\begin{align}
+  \label{eq:wfderiv}
+  \psi'(0+)-\psi'(0-)=-\frac{2m\lambda}{\hbar^2}\psi(0)
+\end{align}
+
+Since this is not equal to zero, it shows us that there is a discontinuous change in the gradient at $x = 0$. If it were continuous at $x = 0$, the two gradients would be the same at $x = 0$, and thus the difference would be zero. Hence for a delta function potential, the gradient of the wavefunction is discontinuous at $x = 0$.
+
+To find the solutions to the Schr\"{o}dinger equation, consider how the Schr\"{o}dinger equation for this problem behaves in different regions. First look at the region $x \neq 0$. At $x \neq 0$, the delta function $\delta(x) = 0$, and therefore the Schr\"{o}dinger equation becomes,
+
+\begin{align*}
+  -\frac{\hbar^2}{2m}\frac{d^2\psi}{dx^2} = E\psi
+\end{align*}
+
+Since we have defined the energy $E$ as,
+
+\begin{align*}
+  E = -\frac{\hbar^2q^2}{2m}
+\end{align*}
+
+The solution has the form,
+
+\begin{align*}
+  \psi(x) =
+  \begin{cases}
+    Ae^{qx} & x < 0 \\
+    Be^{-qx} & x > 0
+  \end{cases}
+\end{align*}
+
+Next we look at the boundary where $x = 0$. Here the wavefunction is continuous, that is, $\psi(0+) = \psi(0-)$, unlike the derivative of the wavefunction, where can therefore write that $A = B$ and thus the solution now takes the form,
+
+\begin{align*}
+  \psi(x) =
+  \begin{cases}
+    Ae^{qx} & x < 0 \\
+    Ae^{-qx} & x > 0
+  \end{cases}
+\end{align*}
+
+To use eq.~\ref{eq:wfderiv} we also need the first derivative,
+
+\begin{align*}
+  \psi'(x) =
+  \begin{cases}
+    Aqe^{qx} & x < 0 \\
+    -Aqe^{-qx} & x > 0
+  \end{cases}
+\end{align*}
+
+Substituting into eq.~\ref{eq:wfderiv} we obtain,
+
+\begin{align*}
+  \psi'(0+)-\psi'(0-) &= -\frac{2m\lambda}{\hbar^2}\psi(0) \\
+  -Aq - (+Aq) &= -\frac{2m\lambda}{\hbar^2}A \\
+  -2Aq &= -\frac{2m\lambda}{\hbar} A \\
+  q &= \frac{m\lambda}{\hbar^2}
+\end{align*}
+
+We can substitute this into our equation for the energy $E$,
+
+\begin{align*}
+  E &= -\frac{\hbar^2q^2}{2m} \\
+  E &= -\frac{m\lambda^2}{2\hbar^2}
+\end{align*}
+
+which is the result we obtained last time, but we arrived at it much more easily using boundary conditions.
+
+\section{Attractive Double Delta Potential}
+
+Consider the Schr\"{o}dinger equation for an attractive double delta potential. That is, two infinitely negative potentials with strength $\lambda$, both spaced a distance $a$ away from the origin $x = 0$. We then have the potential function,
+
+\begin{align*}
+  V(x) = -\lambda\left[\delta(x - a) + \delta(x + a)\right]
+\end{align*}
+
+Since the potential function $V(x)$ is even, due to us choosing symmetrical delta potentials about $x = 0$, the solutions $\psi(x)$ will be either even or odd functions.
+
+The solutions in $x < -a$ and $x > a$ are the same as before but what in the region in between? Since it is the superposition of the two other states we can just write it as a hyperbolic $\cosh(x)$ function, as $\cosh(x) = \frac{e^x + e^{-x}}{2}$. The solutions therefore take the form,
+
+\begin{align*}
+  \psi(x) =
+  \begin{cases}
+    Ce^{qx} & x < -a \\
+    D\cosh{qx} & -a < x < a \\
+    Ce^{-qx} & x > a
+  \end{cases}
+\end{align*}
+
+We know that the two constants $C$ must be the same in both $x < -a$ and $x > a$ as the potential function is symmetric about $x = 0$. The derivative is given by,
+
+\begin{align*}
+  \psi'(x) =
+  \begin{cases}
+    qCe^{qx} & x < -a \\
+    Dq\sinh{qx} & -a < x < a \\
+    -qCe^{-qx} & x > a
+  \end{cases}
+\end{align*}
+
+Next we consider the boundary conditions.
+
+At $x = a$, we know that the wavefunction is continuous,
+
+\begin{align}
+  \label{eq:doubleone}
+  \psi(a+) &= \psi(a-) \notag\\
+  Ce^{-qa} &= D\cosh{qa}
+\end{align}
+
+The derivative has the same boundary condition as before,
+
+\begin{align}
+  \label{eq:doubletwo}
+  \psi'(a+) - \psi'(a-) &= -\frac{2m\lambda}{\hbar^2}\psi(a) \notag\\
+  -qCe^{-qs} - Dq\sinh{qa} &= -\frac{2m\lambda}{\hbar^2}Ce^{-qa} \notag\\
+  \left(\frac{2m\lambda}{\hbar^2} - q\right)Ce^{-qa} &= Dq\sinh{qa}
+\end{align}
+
+Dividing eq.~\ref{eq:doubletwo} by eq.~\ref{eq:doubleone} we obtain,
+
+\begin{align*}
+  \frac{2m\lambda}{\hbar^2} - q &= q\tanh{qa} \\
+  \frac{2m\lambda a}{\hbar^2} = qa\left[1 + \tanh{qa}\right]
+\end{align*}
+
+The quantity $qa$ must be dimensionless, as it is inside the hyperbolic tangent function. By letting $y = qa$ we can write this equation as,
+
+\begin{align*}
+  \frac{2m\lambda a}{\hbar^2} = y\left[1 + \tanh{y}\right]
+\end{align*}
+
+This is a transcendental equation, so cannot be solved analytically, although we can solve this numerically.
+
+
+
+
+\end{document}
+
+
+
+
+
 \end{document}
