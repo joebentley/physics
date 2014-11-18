@@ -622,11 +622,143 @@ The quantity $qa$ must be dimensionless, as it is inside the hyperbolic tangent 
 
 This is a transcendental equation, so cannot be solved analytically, although we can solve this numerically.
 
+We can rewrite this in an exponential form by noting,
+
+\begin{align*}
+  \tanh{y} = \frac{\sinh{y}}{\cosh{y}} = \frac{e^y - e^{-y}}{e^y + e^{-y}}
+\end{align*}
+
+and by adding one,
+
+\begin{align*}
+  \tanh y + 1 = \frac{e^y - e^{-y}}{e^y + e^{-y}} + \frac{e^y + e^{-y}}{e^y + e^{-y}} = \frac{2e^y}{e^y + e^{-y}} = \frac{2}{1 + e^{-2y}}
+\end{align*}a
+
+The condition thus becomes,
+
+\begin{align*}
+  \frac{2y}{1 + e^{-2y}} &= \frac{2m\lambda a}{\hbar^2} \\
+  \frac{z}{1 + e^{-z}} &= \frac{2m\lambda a}{\hbar^2}
+\end{align*}
+
+where $z = 2y = 2qa$.
+
+Let the function $f(z)$ be equal to the left hand side of this equation. Taking the derivative,
+
+\begin{align*}
+  f'(z) &= \frac{1 + e^{-z} + ze^{-z}}{{\left(1 + e^{-z}\right)}^2} \\
+        &= \frac{e^z\left(e^z + 1 + z\right)}{{\left(e^z + 1\right)}^2}
+\end{align*}
+
+This is clearly greater than zero for all $z$. This means that $f(z)$ is \textit{always} increasing from $f(0) = 0$ to $f(\infty) = \infty$.
+
+Therefore the function $f(z) = \frac{2m\lambda a}{\hbar^2}$ has only one solution, which is the $z$ at which $f(z) = \frac{2m\lambda a}{\hbar^2}$. There is therefore an even solution for any $\lambda$ where $0 < \lambda < \infty$.
+
+Now let us look at the odd solution, $\psi_0(x)$, where $\psi_0(-x) = -\psi_0(x)$,
+
+\begin{align*}
+  \psi(x) =
+  \begin{cases}
+    -Ce^{qx} & x < -a \\
+    D\sinh{qx} & -a < x < a \\
+    Ce^{-qx} & a < x
+  \end{cases}
+\end{align*}
+
+and its derivative is,
+
+\begin{align*}
+  \psi'(x) =
+  \begin{cases}
+    -qCe^{qx} & x < -a \\
+    qD\cosh{qx} & -a < x < a \\
+    -qCe^{-qx} & a < x
+  \end{cases}
+\end{align*}
+
+Now we apply our boundary conditions. First we have continuity of $\psi(x)$ at $x = a$,
+
+\begin{align}
+  \label{eq:evenone}
+  Ce^{-qa} = D\sinh{qa}
+\end{align}
+
+We have the same discontinuity in $\psi'(x)$ at $x = a$,
+
+\begin{align}
+  \label{eq:eventwo}
+  \psi'(a+) - \psi'(a-) &= -\frac{2m\lambda}{\hbar^2}\psi(a) \notag\\
+  -qCe^{-qa} - qD\cosh{qa} &= -\frac{2m\lambda}{\hbar^2}Ce^{-qa} \notag\\
+  \left(\frac{2m\lambda}{\hbar^2} - q\right)Ce^{-qa} &= qD\cosh{qa}
+\end{align}
+
+Diving eq.~\ref{eq:eventwo} by eq.~\ref{eq:evenone} we obtain,
+
+\begin{align*}
+  \frac{2m\lambda}{\hbar^2} - q &= q\coth{qa} \\
+  \frac{2m\lambda a}{\hbar^2} &= qa\left[1 + \coth{qa}\right]
+\end{align*}
+
+In step two, as well as rearranging the $q$ term we multiply both sides by $a$. Now let $y = qa$ as before. We can therefore write this as,
+
+\begin{align*}
+  y\left[1 + \coth{y}\right] = \frac{2m\lambda a}{\hbar^2}
+\end{align*}
+
+We can write the hyperbolic cot term in exponential form as before,
+
+\begin{align*}
+  \coth{y} = \frac{1}{\tanh{y}} = \frac{e^y + e^{-y}}{e^y - e^{-y}}
+\end{align*}
+
+and then by adding one,
+
+\begin{align*}
+  1 + \coth{y} &= \frac{e^y + e^{-y}}{e^y - e^{-y}}+\frac{e^y - e^{-y}}{e^y - e^{-y}} = \frac{2e^y}{e^y - e^{-y}} \\
+               &= \frac{2}{1 - e^{-2y}}
+\end{align*}
+
+Our equation therefore becomes,
+
+\begin{align*}
+  \frac{z}{1 - e^{-z}} = \frac{2m\lambda a}{\hbar^2}
+\end{align*}
+
+where $z = 2y = 2qa$.
+
+Consider the function $g(z) = \frac{z}{1 - e^{-z}}$. By taking the limit of $g(z)$ as $z \to 0$,
+
+\begin{align*}
+  g(0) = \lim_{z\to 0} \frac{z}{1 - e^{-z}} = \lim_{z\to 0} \frac{1}{e^-z} = 1
+\end{align*}
+
+and, as before, $g(\infty) = \infty$. By taking the first derivative of the function we can see that,
+
+\begin{align*}
+  g'(z) = \frac{1-e^{-z}-ze^{-z}}{{\left(1 - e^{-z}\right)}^2} = \frac{e^z \left[e^z - 1 - z\right]}{{\left(e^z - 1\right)}^2}
+\end{align*}
+
+We can see by using the maclaurin series that this is greater than zero for all $z$, and therefore the function $g(z)$ is increasing from $g(0) = 1$ to $g(\infty) = \infty$. This time it is possible to have no solution, as there are only solutions if $\frac{2m\lambda a}{\hbar^2} > 1$ since there is a lower limit on the function, $g(0) = 1$. This means that there is not always an odd solution to the Schr\"{o}dinger equation, specifically there isn't when $\frac{2m\lambda a}{\hbar^2} < 1$.
 
 
+\section{The Top Hat Function}
 
-\end{document}
+The top hat function $T(x; a, b)$ is defined such that,
 
+\begin{align*}
+  T(x; a, b) = \Theta(x - a) - \Theta(x - b)
+\end{align*}
+
+By considering the definition of the heaviside step function, we can see that,
+
+\begin{align*}
+  T(x; a, b) =
+  \begin{cases}
+    0 & x < a \\
+    1 & a < x < b \\
+    0 & x > b
+  \end{cases}
+\end{align*}
 
 
 
