@@ -292,5 +292,86 @@ In general for a superposition state of many wavefunctions given by $\phi(x) = \
 
 We call the integral on the left an overlap integral as we are finding how the eigenfunction $\psi_j^*$ overlaps with the superposition of eigenstates $\phi$.
 
+Using this overlap integral we can calculate the weightings $c_j$ from the previous example, checking that they give us the same answer as before,
+
+\begin{align*}
+  c_+ &= \int_{-a/2}^{a/2} \psi^*_+(x) \phi(x) dx \\
+      &= \int_{-a/2}^{a/2} {\left(\frac{1}{\sqrt{a}}\right)}^* \left(\sqrt{\frac{2}{a}} \cos{\left(\frac{\pi x}{a}\right)}\right) dx \\
+      &= \frac{\sqrt{2}}{a} \int_{-a/2}^{a/2} \left(\cos{\left(\frac{\pi x}{a}\right)} - i\sin{\left(\frac{\pi x}{a}\right)}\right) \cos{\left(\frac{\pi x}{a}\right)} dx \\
+      &= \frac{\sqrt{2}}{a} \int_{-a/2}^{a/2} \cos^2{\left(\frac{\pi x}{a}\right)} dx \\
+      &= \frac{1}{a\sqrt{2}} \int_{-a/2}^{a/2} \left(1 + \cos{\left(\frac{2\pi x}{a}\right)}\right) dx \\
+      &= \frac{1}{\sqrt{2}}
+\end{align*}
+
+In the third line we noticed that $\sin(x) \cos(x)$ is zero over symmetric limits, so we know that term will be zero. We also noticed in the second to last line, $\cos(x)$ is zero over symmetric limits, so that also goes.
+
+The weighting is thus given by $c_+ = \frac{1}{\sqrt{2}}$ and is the same as we found before. This is a general method that can be used to find $c_j$ for any eigenfunction in a superposition of eigenstates, as long as $\phi(x)$ and $\psi_j(x)$ are known.
+
+\section{Summary}
+
+Consider a particle in a superposition of eigenstates (that are solutions to the Schr\"{o}dinger equation) as described by,
+
+\begin{align*}
+  \Phi(x, t) = \sum\limits_i c_i \Psi_i(x, t)
+\end{align*}
+
+The individual states are eigenfunctions of the hamiltonian, such that,
+
+\begin{align*}
+  \hat{H} \Psi_i = i\hbar\frac{\partial}{\partial t} \Psi_i
+\end{align*}
+
+where $\hat{H} = \frac{\hat{p}^2}{2m} + V(x, t)$.
+
+In cases where the potential $V$ is only dependent on space, and not time, we can write the superposition in the form,
+
+\begin{align*}
+  \Phi(x, t) &= \sum\limits_j c_j \psi_j(x) e^{-\frac{iE_j t}{\hbar}} \\
+  \phi(x) &= \sum\limits_i c_i \psi_i(x)
+\end{align*}
+
+Let $\psi_i(x)$ where $i = 1 \dots n$ be eigenfunctions of the operator $\hat{o}$ such that $\hat{o}\psi_i = a_i \psi_i$. What happens when the observable $o$ is measured? The result will be one of the possible eigenvalues $a_j$, with a probability of measuring the particle in that eigenvalue given by ${|c_j|}^2$. If we measure the observable $o$ again on the same particle, the result will be the same eigenvalue $a_j$, but it will be \textit{certain}. That is, repeated measurements of $o$ will give the same eigenvalue $a_j$ with a probability of unity. This is because the measurement of a eigenvalue is said to collapse the wavefunction from being a superposition of multiple eigenstates to one specific eigenstate. That is, instead of the particle being in a superposition of eigenstates $\phi(x)$ is collapses to one eigenstate $\psi(x)$. The act of measuring the quantity itself causes this collapse.
+
+Measurement of the same observable $o$ on \textit{many} particles will yield different results each time, with the average result given by the expectation value,
+
+\begin{align*}
+  \langle o \rangle = \sum\limits_i {|c_i|}^2 a_i
+\end{align*}
+
+
+\section{Simultaneous Eigenfunctions}
+
+A wavefunction can be an eigenfunction of more than one operator at the same time. For example consider the free particle wavefunction,
+
+\begin{align*}
+  \Psi(x, t) = Ae^{i(kx - \omega t)}
+\end{align*}
+
+This is an eigenfunction of both the energy operator $\hat{E}$ and the momentum operator $\hat{p}$,
+
+\begin{alignat*}{3}
+  \hat{p} &= -i\hbar\frac{\partial}{\partial x} \qquad &&\hat{p}\Psi = p\Psi \qquad &&p=\hbar k\\
+  \hat{E} &= i\hbar\frac{\partial}{\partial t} \qquad &&\hat{E}\Psi = E\Psi \qquad &&E=\hbar \omega
+\end{alignat*}
+
+However it is not generally true that wavefunctions are eigenstates of both $\hat{p}$ and $\hat{E}$. This happens when the operators commute. Commutation is when the order of operations don't matter, for example numbers are commutative under multiplication and addition, that is $xy = yx$ and $y + x = y + x$. Operators however do not usually commute,
+
+\begin{align*}
+  x \frac{d}{dx}\left(f(x)\right) \neq \frac{d}{dx}\left(x f(x)\right)
+\end{align*}
+
+In quantum mechanics, operators generally don't commute either,
+
+\begin{align*}
+  \hat{A}(\hat{B}\psi) &\neq \hat{B}(\hat{A}) \\
+  (\hat{A}\hat{B} - \hat{B}\hat{A})\psi &\neq 0
+\end{align*}
+
+We call the left hand side of the second line the commutator of $\hat{A}$ and $\hat{B}$, and write it as $[\hat{A}, \hat{B}]$. If $[\hat{A}, \hat{B}] = 0$ the operators are said to commute. Note that this condition is independent of $\psi$, as if $\psi$ is zero then it does not describe the particle at all. This means that we can write,
+
+\begin{align*}
+  \text{if } [\hat{A}, \hat{B}] \neq 0 &\quad \text{$\hat{A}$ and $\hat{B}$ do not commute} \\
+  \text{if } [\hat{A}, \hat{B}] = 0 &\quad \text{$\hat{A}$ and $\hat{B}$ commute}
+\end{align*}
 
 \end{document}
