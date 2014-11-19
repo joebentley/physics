@@ -760,7 +760,117 @@ By considering the definition of the heaviside step function, we can see that,
   \end{cases}
 \end{align*}
 
+We can use the top hat function to describe a function that is defined piecewise, that is, it is described by different functions over different regions,
 
+\begin{align*}
+  f(x) =
+  \begin{cases}
+    f_1(x) & x_0 < x < x_1 \\
+    f_2(x) & x_1 < x < x_1 \\
+    \cdots & \cdots \\
+    f_n(x) & x_{n-1} < x < x_n \\
+  \end{cases}
+\end{align*}
+
+We can write this more succinctly using the top hat notation,
+
+\begin{align*}
+  f(x) &= \sum\limits_{i = 1}^n f_i(x) T(x; x_{i - 1}, x) \\
+       &= \sum\limits_{i = 1}^n f_i(x) \left[\Theta(x - x_{i - 1}) - \Theta(x - x_i)\right]
+\end{align*}
+
+The top hat function can be used to select specific regions of integration,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} f(x) dx &= \sum\limits_{i = 1}^n \int_{-\infty}^{\infty} f_i(x) T(x; x_{i - 1}, x_i) dx \\
+                                  &= \sum\limits_{i = 1}^n \int_{x_i - 1}^{x_i} f_i(x) dx
+\end{align*}
+
+The top hat function here simply selects the limits of the integration region, since the integral will be zero everywhere outside of the top hat function's width.
+
+What if $f(x)$ is defined all the way out to infinity? In this case $f(x)$ can be written as,
+
+\begin{align*}
+  f(x) =
+  \begin{cases}
+    f_0(x) & x < x_0 \\
+    f_1(x) & x_0 < x < x_1 \\
+    \cdots & \cdots \\
+    f_n(x) & x_{n-1} < x < x_n \\
+    f_{n+1}(x) & x_n < x
+  \end{cases}
+\end{align*}
+
+Note the added first and last terms, in the regions $x < x_0$ and $x_n < x$. We can writ this using the heaviside step function, such that $f(x)$ can be written as before plus the two extra terms,
+
+\begin{align*}
+  f(x) &= \sum\limits_{i=1}^n f_i(x) \left[\Theta(x - x_{i-1}) - \Theta(x - x_i)\right] \\
+       &+ f_0(x) \Theta(x_0 - x) \\
+       &+ f_{n+1}(x) \Theta(x - x_n)
+\end{align*}
+
+By expanding the summation and grouping each heaviside term $\Theta(x_i - x_{i-1})$ we can see that this can be written,
+
+\begin{align*}
+  f(x) = f_0(x) + \sum\limits_{i=0}^n \left[f_{i+1}(x) - f_i(x)\right] \Theta(x - x_i)
+\end{align*}
+
+\section{Derivatives of Delta Functions}
+
+Derivatives of the delta function can be defined using integration by parts,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \frac{d\delta(x)}{dx} f(x) dx &= {\left[\delta(x)f(x)\right]}_{-\infty}^{\infty} - \int_{-\infty}^{\infty} \delta(x) \frac{d f(x)}{dx} dx \\
+                                                        &= -f'(0)
+\end{align*}
+
+Similar analysis gives an expression for the $n$-th derivative,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \delta^n(x) f(x) dx = {(-1)}^n f^n(0)
+\end{align*}
+
+\section{Delta Function of Nontrivial Arguments}
+
+Consider the function $\delta\left(f\left(x\right)\right)$. This will only be non-zero when $f(x) = 0$, that is, only at the zeroes $x_n$ of the function $f(n)$.
+
+Let us evaluate the integral
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \delta\left(f(x)\right) dx
+\end{align*}
+
+We want to split the integration into a number of monotonic regions, such that there is only one solution in each region. First we let $y = f(x)$, and then to evaluate the integral,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \delta\left(f(x)\right) dx = \int \delta(y) \frac{dx}{dy} dy
+\end{align*}
+
+Functions only have inverses if they are monotonic. That is, only one-to-one functions have inverses, for example, $f(x) = x^2$ is not one-to-one, as for one $f(x)$ there are two values of $x$ that could correspond to that given $f(x)$, and hence there is no single inverse of this function. Therefore we will take the integral over monotonic regions instead,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \delta\left(f(x)\right) &= \int \delta(y) \left|\frac{dx}{dy}\right| dy \\
+                                                  &= \int \delta(y) \frac{1}{|f'(x)|} dy \\
+                                                  &= \sum\limits_n \frac{1}{|f'(x)|}
+\end{align*}
+
+We take the summation over $x_n$ as each $x_n$ gives a contribution. It therefore follows that,
+
+\begin{align*}
+  \delta\left(f(x)\right) = \sum\limits_n \frac{1}{|f'(x)|} \delta(x - x_n)
+\end{align*}
+
+For example, evaluating $\delta(x^2 - a^2)$, where $a > 0$. First define $f(x) = x^2 - a^2$, which has zeroes at $+a$ and $-a$. The derivative is trivially calculated as $f'(x) = 2x$, so $f'(a) = 2a$ and $f'(-a) = -2a$. Therefore is follows,
+
+\begin{align*}
+  |f'(a)| = |f'(-a)| = 2a
+\end{align*}
+
+and therefore,
+
+\begin{align*}
+  \delta(x^2 - a^2) = \frac{1}{2a}\left[\delta(x - a) + \delta(x + a)\right]
+\end{align*}
 
 
 \end{document}
