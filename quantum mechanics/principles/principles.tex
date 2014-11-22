@@ -374,4 +374,80 @@ We call the left hand side of the second line the commutator of $\hat{A}$ and $\
   \text{if } [\hat{A}, \hat{B}] = 0 &\quad \text{$\hat{A}$ and $\hat{B}$ commute}
 \end{align*}
 
+We can show that $\hat{A}$ and $\hat{B}$ commute if they share a complete set of eigenfunctions quite easily.
+
+\begin{align*}
+  \hat{A}\psi_i&=a_i\psi_i \\
+  \hat{B}\psi_i&=b_i\psi_i
+\end{align*}
+
+Here we have two operators for which $\psi_i$ are eigenfunctions of for any $i$, where $\psi_i$ for all $i$ represent a complete set of solutions to the Schr\"{o}dinger equation. Therefore by applying the commutator to the eigenfunction,
+
+\begin{align*}
+  \left[\hat{A}, \hat{B}\right]\psi_i &= \hat{A}\hat{B}\psi_i - \hat{B}\hat{A}\psi_i \\
+                                      &= \hat{A}(b_i \psi_i) - \hat{B}(a_i \psi_i) \\
+                                      &= a_ib_i\psi_i - b_ia_i\psi_i \\
+                                      &= 0
+\end{align*}
+
+Therefore we have shown that two operators $\hat{A}$ and $\hat{B}$ commute, for any eigenfunction of $\hat{A}$ and $\hat{B}$.
+
+This also holds true for any superposition of eigenstates, as a superposition state is just a linear combination of eigenstates,
+
+\begin{align*}
+  \phi = \sum\limits_{i=1}^n c_i \psi_i
+\end{align*}
+
+and then by applying the commutator,
+
+\begin{align*}
+  \left[\hat{A}, \hat{B}\right]\psi_i = \sum\limits_{i=1}^n c_i \left[\hat{A}, \hat{B}\right]\psi_i = 0
+\end{align*}
+
+So now that we have the mathematics that we need in applying the commutator, how can we relate this to actually measuring an eigenvalue? Let us consider the situation where we measure two observables $A$ and $B$, in that order, first $A$, and then $B$.
+
+First we measure $A$, the result is the eigenvalue $a_j$ with probability given by ${|c_j|}^2$. This, as we have seen before, collapses the wavefunction from a superposition of eigenstates to one eigenstate $\psi_j$.
+
+When we take the next measurement, the measurement of $B$, we get the result $b_j$ with a probability of unity. This is because we have \textit{already} collapsed the superposition of eigenstates to a single eigenstate $\psi_j$ by the act of measurement. Therefore when we apply the operator $\hat{B}$ we just obtain a single eigenvalue with no uncertainty.
+
+We have therefore shown that if two operators commute, such that $\left[\hat{A}, \hat{B}\right] = 0$, then it is possible to measure both $A$ \textit{and} $B$ simultaneously with no uncertainty. However it is not generally the case, and we will next explore what happens when they do \textit{not} commute.
+
+For example, take the position and momentum operators, $\hat{x}$ and $\hat{p_x}$. We can easily show that they do not commute,
+
+\begin{align*}
+  \left[\hat{x}, \hat{p_x}\right]\psi &= \left[x, -i\hbar\frac{\partial}{\partial x}\right]\psi \\
+                                      &= -i\hbar\left(x\frac{\partial\psi}{\partial x} - \frac{\partial}{\partial x}\left(x\psi\right)\right) \\
+                                      &= -i\hbar\left(x\frac{\partial\psi}{\partial x} - \psi - x\frac{\partial\psi}{\partial x}\right) \\
+                                      &= i\hbar\psi
+\end{align*}
+
+Therefore we have shown that for \textit{any} wavefunction $\psi$, the position and momentum operators do not commute. This implies that $\hat{x}$ and $\hat{p_x}$ do not share a simultaneous set of eigenfunctions. We therefore can not know both $x$ and $p_x$ simultaneously. This can be related to the Heisenberg Uncertainty Principle.
+
+Let us define uncertainty as the statistical mean-square deviation of a distribution. The standard deviation squared is given by,
+
+\begin{align*}
+  {(\Delta A)}^2 = \langle {\left(A - \langle A\rangle\right)}^2 \rangle = \langle A^2\rangle - {\langle A\rangle}^2
+\end{align*}
+
+It can be shown that the product of the uncertainty for any two observables can be related to the commutator of the operators relating to those observables. A proof for this will not be shown here however, this relation is given by,
+
+\begin{align*}
+  {(\Delta A)}^2 {(\Delta B)}^2 \geq \frac{1}{4} {\left|\langle\left[\hat{A},\hat{B}\right]\rangle\right|}^2
+\end{align*}
+
+For example, applying this to the position and momentum,
+
+\begin{align*}
+  {(\Delta x)}^2 {(\Delta p_x)}^2 \geq \frac{1}{4} \hbar^2
+\end{align*}
+
+and thus we obtain the Heisenberg Uncertainty Principle,
+
+\begin{align*}
+  \Delta x \Delta p \geq \frac{\hbar}{2}
+\end{align*}
+
+Uncertainty relations exist for any non-commuting pair of operators. For example we can show the same thing for energy and time, by showing that the commutator is the same as for momentum and position.
+
+
 \end{document}
