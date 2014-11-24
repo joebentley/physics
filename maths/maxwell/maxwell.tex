@@ -1,0 +1,231 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amsfonts,amsthm,amssymb, amsaddr}
+
+
+\title{Maxwell's Equations}
+
+\author{Joe Bentley}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Electrostatics}
+
+Consider the electric field $\mathbf{E}(\mathbf{r})$ at a point $\mathbf{r}$ due to a charge distribution $\rho(\mathbf{r'})$. The point $\mathbf{r}$ is the point at which we want to measure the electric field, and the point $\mathbf{r'}$ is the point at which the source of the charge we are considering resides. The infinitesimal charge at that point is given by,
+
+\begin{align*}
+  dq' = \rho(\mathbf{r'}) dV'
+\end{align*}
+
+The infinitesimal volume $dV'$ can also be written as $dV' = d^3\mathbf{r'}$. Coulomb's law gives us that the infinitesimal electric field at point $\mathbf{r}$ is,
+
+\begin{align*}
+  d\mathbf{E}(\mathbf{r}) &= \frac{dq'}{4\pi\epsilon_0 {|\mathbf{r}-\mathbf{r'}|}^2} \frac{(\mathbf{r} - \mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|} \\
+  &= \frac{\rho(\mathbf{r'})(\mathbf{r}-\mathbf{r'})}{4\pi\epsilon_0{|\mathbf{r}-\mathbf{r'}|}^3} dV' \\
+  \mathbf{E}(\mathbf{r}) &= \frac{\rho(\mathbf{r'})(\mathbf{r}-\mathbf{r'})}{4\pi\epsilon_0{|\mathbf{r}-\mathbf{r'}|}^3} dV'
+\end{align*}
+
+In the second line we substitute in our expression for an infinitesimal charge element $dq' = \rho(\mathbf{r'}) dV'$. The divergence of the electric field is then given by,
+
+\begin{align*}
+  \nabla\cdot\mathbf{E}(\mathbf{r}) &= \int\frac{\rho(\mathbf{r'})}{4\pi\epsilon_0} \nabla r \cdot \frac{(\mathbf{r}-\mathbf{r'})}{{|\mathbf{r}-\mathbf{r'}|}^3} d^3\mathbf{r'}
+  &= \int \frac{\rho(\mathbf{r'})}{4\pi\epsilon_0} 4\pi\delta^3(\mathbf{r} - \mathbf{r'}) d^3\mathbf{r'}
+\end{align*}
+
+In the distributions notes we showed that $\nabla\cdot\frac{\mathbf{r}}{r^3}=4\pi\delta^3(\mathbf{r})$, which is what we wrote on the second line of the last equation. By cancelling the values of $4\pi$ and then integrating the delta function over volume, we obtain our first Maxwell equation,
+
+\begin{align*}
+  \nabla\cdot\mathbf{E}(\mathbf{r}) = \frac{\rho(\mathbf{r})}{\epsilon_0}
+\end{align*}
+
+If we integrate both sides of this over a volume $V$, bounded by a surface $S = \partial V$ and apply the divergence theorem we get,
+
+\begin{align*}
+  \int_V \nabla\cdot\mathbf{E} dV = \int_V \frac{\rho(\mathbf{r})}{\epsilon_0} dV 
+\end{align*}
+
+Which gives us an equation known as Gauss' law,
+
+\begin{align*}
+  \oint_S \mathbf{E}\cdot d\mathbf{S} = \frac{Q}{\epsilon_0}
+\end{align*}
+
+We can show that the curl of the electric field is zero, $\nabla\times\mathbf{E}=0$, since we can write the electric field as the gradient of a scalar field $\mathbf{E} = -\nabla\phi$, where $\phi(r)$ is given by,
+
+\begin{align*}
+  \phi(r) = \int_V \frac{\rho(\mathbf{r'})d^3\mathbf{r'}}{4\pi\epsilon_0 |\mathbf{r} - \mathbf{r'}|}
+\end{align*}
+
+We therefore know that the curl of the electric field must be zero, from the vector identity that the curl of a gradient of a scalar field is always zero $\nabla\times(\nabla\phi) = \mathbf{0}$. However this is only true in the static case, where there is no time dependence in the electric or magnetic fields. We will explore the electromagnetic case later.
+
+
+\section{Magnetostatics}
+
+
+The Biot-Savart law gives us that the magnetic field $\mathbf{B}(\mathbf{r})$ due to a current density distribution $\mathbf{j}(\mathbf{r'})$ is given by,
+  
+\begin{align*}
+  \mathbf{B}(\mathbf{r})=\frac{\mu_0}{4\pi}\int_V\frac{\mathbf{j}(\mathbf{r'})\times(\mathbf{r}-\mathbf{r'})}{{|\mathbf{r}-\mathbf{r'}|}^3} d^3\mathbf{r'}
+\end{align*}
+
+The cross product shows us that the magnetic field $\mathbf{B}(\mathbf{r})$ will be perpendicular to both the current density $\mathbf{j}(\mathbf{r'})$ (and thus the current) and the radial direction $(\mathbf{r} - \mathbf{r'})$.
+
+We can rewrite this by noting that if a vector $\mathbf{c}$ is constant in space, then we can write,
+
+\begin{align*}
+  \nabla\times(\phi\mathbf{c}) = \nabla\phi\times\mathbf{c}+\phi\nabla\times\mathbf{c} = \nabla\phi\times\mathbf{c}
+\end{align*}
+
+The second term $\phi\nabla\times\mathbf{c} = 0$ because the curl of a constant vector is zero, since it is unchanging in space so the derivative of each component will be zero. In this case our constant vector is given by,
+
+\begin{align*}
+  \mathbf{c} = \frac{(\mathbf{r}-\mathbf{r'})}{{|\mathbf{r}-\mathbf{r'}|}^3}
+\end{align*}
+
+and then by applying this to the expression inside the integral in the Biot-Savart law,
+
+\begin{align*}
+  \mathbf{j}(\mathbf{r'})\times\frac{(\mathbf{r}-\mathbf{r'})}{{|\mathbf{r}-\mathbf{r'}|}^3} &= -\frac{(\mathbf{r}-\mathbf{r'})}{{|\mathbf{r}-\mathbf{r'}|}^3}\times \\
+  &= \left(\nabla_r \frac{1}{|\mathbf{r}-\mathbf{r'}|}\right)\times\mathbf{j}(\mathbf{r'}) \\
+  &= \nabla_r\times\left(\frac{\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}\right)
+\end{align*}
+
+By applying these results, the Biot-Savart law may be rewritten as,
+
+\begin{align*}
+  \mathbf{B}(\mathbf{r}) = \frac{\mu_0}{4\pi}\int_V\nabla_r\times\frac{\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|} d^3\mathbf{r'}
+\end{align*}
+
+It follows that we can write the magnetic field as,
+
+\begin{align*}
+  \mathbf{B}(\mathbf{r}) = \nabla\times\mathbf{A}(\mathbf{r})
+\end{align*}
+
+where,
+
+\begin{align*}
+  \mathbf{A}(\mathbf{r}) = \frac{\mu_0}{4\pi}\int_V\frac{\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}d^3\mathbf{r'}
+\end{align*}
+
+We immediately see from our vector identities, that taking the divergence of the magnetic field is taking the divergence of the curl of a vector field, which our vector identities show is zero, $\nabla\cdot(\nabla\times\mathbf{A})=0$. Therefore the divergence of the magnetic field is zero,
+
+\begin{align*}
+  \nabla\cdot\mathbf{B}(\mathbf{r}) = 0
+\end{align*}
+
+which is another of Maxwell's equations.
+
+The curl of the magnetic field can be calculated using the vector identity,
+
+\begin{align*}
+  \nabla\times\mathbf{B}=\nabla\times(\nabla\times\mathbf{A})=\nabla(\nabla\cdot\mathbf{A})-\nabla^2\mathbf{A}
+\end{align*}
+
+First we will calculate the laplacian of the vector field, as this is much easier than the first term,
+
+\begin{align*}
+  \nabla_r^2\mathbf{A}(\mathbf{r})&=\frac{\mu_0}{4\pi}\int_V\left(\nabla_r^2\frac{1}{|\mathbf{r}-\mathbf{r'}|}\right)\mathbf{j}(\mathbf{r'})d^3\mathbf{r'} \\
+  &= \frac{\mu_0}{4\pi}\int_V -4\pi\delta^3(\mathbf{r}-\mathbf{r'})\mathbf{j}(\mathbf{r'})d^3\mathbf{r'} \\
+  &= -\mu_0\mathbf{j}(\mathbf{r'})
+\end{align*}
+
+Next we need to calculate the first term. First we will try and work out a nice form for the divergence of $\mathbf{A}$,
+
+\begin{align*}
+  \nabla_r\cdot\int_V\frac{\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}d^3\mathbf{r'}=\int_V\nabla_r\cdot\left[\frac{\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}\right]d^3\mathbf{r'}
+\end{align*}
+
+Much as with the curl of a scalar field multiplied by a constant vector, we can write $\nabla\cdot(\phi\mathbf{c})=(\nabla\phi)\cdot\mathbf{c}+\phi\nabla\cdot\mathbf{c}=(\nabla\phi)\cdot\mathbf{c}$. We know that the second term is zero, since the divergence of a constant vector must be zero due to the fact that vector is unchanging in space. We can therefore write,
+
+\begin{align*}
+  \int_V\nabla_r\left[\frac{\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}\right]d^3\mathbf{r'}=\int_V\left[\nabla_r\frac{1}{|\mathbf{r}-\mathbf{r'}|}\right]\cdot\mathbf{j}(\mathbf{r'})d^3\mathbf{r'}
+\end{align*}
+
+We want to know this in terms of $\nabla_{r'}$ instead of $\nabla_r$. We can write,
+
+\begin{align*}
+  \nabla_{r'} \frac{1}{|\mathbf{r}-\mathbf{r'}|} = \frac{(\mathbf{r}-\mathbf{r'})}{{|\mathbf{r}-\mathbf{r'}|}^3} = -\nabla_r\frac{1}{|\mathbf{r}-\mathbf{r'}|}
+\end{align*}
+
+Using this we can write,
+
+\begin{align*}
+  \nabla_r\cdot\int_v\frac{\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}d^3\mathbf{r}=-\int_V\left[\nabla_{r'}\frac{1}{|\mathbf{r}-\mathbf{r'}|}\right]\cdot\mathbf{j}(\mathbf{r'})d^3\mathbf{r'}
+\end{align*}
+
+Here we can use the vector identity, $\nabla\cdot(\phi\mathbf{A})=(\nabla\phi)\cdot\mathbf{A}+\phi\nabla\cdot\mathbf{A}$, so that we can write,
+
+\begin{align*}
+  \nabla_{r'}\cdot\left[\frac{\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}\right] = \left[\nabla_{r'}\frac{1}{|\mathbf{r}-\mathbf{r'}|}\right]\cdot\mathbf{j}(\mathbf{r'}) + \frac{1}{|\mathbf{r}-\mathbf{r'}|}\nabla_{r'}\cdot\mathbf{j}(\mathbf{r'})
+\end{align*}
+
+Subtituting this back into our integral we obtain,
+
+\begin{align*}
+  \nabla_r\cdot\int\frac{\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}d^3\mathbf{r'}&=-\int_V\nabla_{r'}\cdot\left[\frac{\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}\right]d^3\mathbf{r'} + \int_V\frac{\nabla_{r'}\cdot\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}d^3\mathbf{r'} \\
+  &=-\oint_S\frac{\mathbf{j}(\mathbf{r'})\cdot d\mathbf{S'}}{|\mathbf{r}-\mathbf{r'}|} + \int_V\frac{\nabla_{r'}\cdot\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}d^3\mathbf{r'}
+\end{align*}
+
+
+For the first term we have used the divergence theorem to convert the volume integral into a surface intagral at infinity. Since $\mathbf{j}(\mathbf{r'})=\mathbf{0}$ along the surface, this integral will be zero.
+
+From the continuity equation we have that,
+
+\begin{align}
+  \label{eq:continuity}
+  \nabla_{r'}\cdot\mathbf{j}(\mathbf{r'}, t) = -\frac{\partial\rho(\mathbf{r'}, t)}{\partial t} = 0
+\end{align}
+
+This is zero as charge (and thus current) is always conserved.
+
+Since we have already shown that the first integral is zero, and this shows that the second integral is zero, we therefore have that in the static case,
+
+\begin{align*}
+  \nabla_{r'}\cdot\mathbf{A}(\mathbf{r}) = \frac{\mu_0}{4\pi}\int_V\nabla_r\cdot\left[\frac{\mathbf{j}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}\right]d^3\mathbf{r'} = 0
+\end{align*}
+
+Therefore, in the case where the magnetic and electric fields are constant in time, we have that,
+
+\begin{align*}
+  \nabla\times\mathbf{B}(\mathbf{r})&=\nabla(\nabla\cdot\mathbf{A})-\nabla^2\mathbf{A} \\
+  &=\mu_0\mathbf{j}(\mathbf{r})
+\end{align*}
+
+In the general, non static case, we calculate the divergence of $\mathbf{A}$ as,
+
+\begin{align*}
+  \nabla_r\cdot\mathbf{A}(\mathbf{r}, t)&=\frac{\mu_0}{4\pi}\int_V\nabla_r\cdot\left[\frac{\mathbf{j}(\mathbf{r'}, t)}{|\mathbf{r}-\mathbf{r'}|}\right]d^3\mathbf{r'} \\
+  &=\frac{\mu_0}{4\pi}\int_V\frac{\nabla_{r'}\cdot\mathbf{j}(\mathbf{r'}, t)}{|\mathbf{r}-\mathbf{r'}|}d^3\mathbf{r'} \\
+  &=-\frac{\mu_0}{4\pi}\frac{\partial}{\partial t}\int_V\frac{\rho(\mathbf{r'}, t)}{|\mathbf{r}-\mathbf{r'}|}d^3\mathbf{r'}
+\end{align*}
+
+In the third line we have used the continuity equation, eq.~\ref{eq:continuity}. By taking the gradient of this we get the result we need,
+
+\begin{align*}
+  \nabla_r\left(\nabla_r\cdot\mathbf{A}(\mathbf{r}, t)\right) &=\frac{\mu_0}{4\pi}\frac{\partial}{\partial t}\int_{V'}\frac{\rho(\mathbf{r'}, t)}{{|\mathbf{r}-\mathbf{r'}|}^3}d^3\mathbf{r'} \\
+  &= \mu_0\epsilon_0\frac{\partial\mathbf{E}(\mathbf{r}, t)}{\partial t}
+\end{align*}
+
+We therefore have, in the general case where the magnetic and electric field need not be constant,
+
+\begin{align*}
+  \nabla\times\mathbf{B}=\mu_0\mathbf{j}+\mu_0\epsilon_0\frac{\partial\mathbf{E}}{\partial t}
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
