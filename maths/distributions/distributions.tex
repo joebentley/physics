@@ -872,5 +872,11 @@ and therefore,
   \delta(x^2 - a^2) = \frac{1}{2a}\left[\delta(x - a) + \delta(x + a)\right]
 \end{align*}
 
+Next, consider the function $\delta(\sin{x})$. The function $f(x) = \sin{x}$ has zeroes when $x = n\pi$ where $n$ is any integer. Differentiating $f(x)= \sin{x}$ gives us $f'(x) = \cos{x}$. Our zeroes thus give us $f'(n\pi) = \cos n\pi = {(-1)}^n$, and therefore we can write the delta function as,
+
+\begin{align*}
+  \delta(\sin{x}) = \sum\limits_{n=-\infty}^{\infty} \delta(x - n\pi)
+\end{align*}
+
 
 \end{document}
