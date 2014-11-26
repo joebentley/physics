@@ -1,0 +1,147 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amsfonts,amsthm,amssymb, amsaddr}
+
+
+\title{Schr\"{o}dinger equation in 3-D}
+
+\author{Joe Bentley}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Introduction}
+
+In this we will look at how use the Schr\"{o}dinger equation in three dimensions, as well as seeing how it relates to the one dimensional Schr\"{o}dinger equation. This should be quite simple and does use some of the vector calculus stuff from the mathematics module, but mainly this should be simple to follow for the most part.
+
+\section{Momentum in 3-D and the Schr\"{o}dinger Equation}
+
+Before our concept of momentum was limited to one dimension, which meant we could represent the momentum operator using a single differential operator of the form $\hat{p} = -i\hbar\frac{\partial}{\partial x}$. However now, our momentum has three perpendicular components in the $x$, $y$, and $z$ directions, which are all independent of each other. We can therefore write that we have three momentum operators, one for each momentum eigenvalue corresponding to a given direction,
+
+\begin{align*}
+  \hat{p_x} = -i\hbar\frac{\partial}{\partial x} \qquad \hat{p_y} = -i\hbar\frac{\partial}{\partial y} \qquad \hat{p_z} = -i\hbar\frac{\partial}{\partial z}
+\end{align*}
+
+We can write this concisely using vector notation as $\hat{p} = (\hat{p_x}, \hat{p_y}, \hat{p_z})$. Substituting each one of these in,
+
+\begin{align*}
+  \hat{p}=-i\hbar
+  \begin{pmatrix}
+    \frac{\partial}{\partial x} \\[4pt]
+    \frac{\partial}{\partial y} \\[4pt]
+    \frac{\partial}{\partial z}
+  \end{pmatrix}
+\end{align*}
+
+From vector calculus, the vector here is just the gradient operator, so this can be very concisely written as,
+
+\begin{align*}
+  \hat{p}=-i\hbar\nabla
+\end{align*}
+
+Similarly, for the kinetic energy operator,
+
+\begin{align*}
+  \hat{T}=\frac{{\hat{p}}^2}{2m}=-\frac{\hbar^2}{2m}\nabla^2
+\end{align*}
+
+Here the operator $\nabla^2$ is just the Laplacian. We can therefore see that the Schr\"{o}dinger equation, when expanded out of operator form, can be expressed as,
+
+\begin{align*}
+  -\frac{\hbar^2}{2m}\nabla^2\Psi+V\Psi=i\hbar\frac{\partial}{\partial t}\Psi
+\end{align*}
+
+where $\Psi = \Psi(\mathbf{r}, t)$, and $V = V(\mathbf{r}, t)$; both are a function of three dimensional space ($\mathbf{r} = (x, y, z)$) and time.
+
+If the potential $V$ is only spatially varying, and is constant in time, we can write the time independent Schr\"{o}dinger equation as,
+
+\begin{align*}
+  -\frac{\hbar^2}{2m}\nabla^2\psi(\mathbf{r})+V(\mathbf{r})\psi(\mathbf{r})=E\psi(\mathbf{r})
+\end{align*}
+
+where, just as before, we say that the full time dependent wavefunction is the product of a spatial and temporal part $\Psi(\mathbf{r},t)=\psi(\mathbf{r})e^{-\frac{iEt}{\hbar}}$.
+
+For a travelling wave in three-dimensions we can extend our one dimensional form by considering the wavefunction as a product of three spatial parts,
+
+\begin{align*}
+  \psi(\mathbf{r})&=e^{ik_xx}e^{ik_yy}e^{ik_zz} \\
+                  &=e^{i(k_xx+k_yy+k_zz)} \\
+                  &=e^{i(\mathbf{k}\cdot\mathbf{r})}
+\end{align*}
+
+where the vector $\mathbf{k}=(k_x,k_y,k_z)$ is called the wavevector, and is the vector analogue of the wavenumber.
+
+As before, the wavefunction $\psi(\mathbf{r})$ is an eigenfunction of $\hat{p}$ with an eigenvalue of the three-dimensional momentum,
+
+\begin{align*}
+  \hat{p}e^{i\mathbf{k}\cdot\mathbf{r}}&=-i\hbar\nabla e^{i\mathbf{k}\cdot\mathbf{r}}\\
+                                       &=\hbar\mathbf{k} e^{i\mathbf{k}\cdot\mathbf{r}}\\
+                                       &=\mathbf{p}e^{i\mathbf{k}\cdot\mathbf{r}}\\
+\end{align*}
+
+
+We can write uncertainty relations for each orthogonal direction just as we could before, for example in the $y$-direction we can write $[\hat{y},\hat{p_y}]=i\hbar$ such that we can write our usual relation for the Heisenberg uncertainty principle, $\Delta y\Delta p_y \geq \hbar/2$. This is exactly the same in the $x$ and $y$ directions. However, note that if the observables are perpendicular to each other, such as the $x$-position and the $y$-momentum, there exists no uncertainty relation, as $[\hat{x},\hat{p_y}]=0$ which can be shown easily. This means that we can know both the momentum in one direction and the position in an orthogonal direction precisely and simultaneously.
+
+\section{Solving the Schr\"{o}dinger Equation in 3-D: Infinite Potential Box}
+
+Consider a particle confined to a cuboid potential, with sides length $a$, $b$, $c$, such that,
+
+\begin{align*}
+  V(\mathbf{r})=
+  \begin{cases}
+    0 & 0\leq x\leq a \\
+    \dots & 0\leq y\leq b \\
+    \dots & 0\leq z\leq c \\
+    \infty & \text{elsewhere}
+  \end{cases}
+\end{align*}
+
+This is perfectly analogous to the one dimensional infinite square well, just extended again into three independent directions. Outside the box the potential is infinite so there is no chance the particle will be there, and thus the wavefunction outside will be zero. Inside however the potential is zero, so the total energy will just be equal to the kinetic energy. Therefore by applying the kinetic energy operator $\hat{T}$,
+
+\begin{align*}
+  -\frac{\hbar^2}{2m}\nabla^2\psi(\mathbf{r}) &= -\frac{\hbar^2}{2m}\left(\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}\right)\psi(\mathbf{r}) \\
+                                              &= E\psi(\mathbf{r})
+\end{align*}
+
+There are no cross-dimensional terms as the energy is independent in each orthogonal direction, so we can separate the wavefunction in to a part for each direction,
+
+\begin{align*}
+  \psi(\mathbf{r})=X(x)Y(y)Z(z)
+\end{align*}
+
+and therefore we have three equations to solve of the form
+
+\begin{align*}
+  -\frac{\hbar^2}{2m} \frac{d^2 X(x)}{dx^2} = E_x X(x) \qquad 0\leq x\leq a
+\end{align*}
+
+The other two equation are the same but with the $y$ and $z$ coordinates instead. The total energy is written as $E=E_x+E_y+E_z$.
+
+We already know the solutions as they are the same as an infinite square well in one dimension for each direction,
+
+\begin{align*}
+  X(x) = A_x\sin{\left(n_x\frac{\pi x}{a}\right)} \qquad n_x\in\mathbb{N}
+\end{align*}
+
+and similarly for the $y$ and $z$ directions. Note that the quantum number, $n_x$, can be different for each direction. There is no limitation that requires the quantum number to be the same in every direction! Note that this time we only have sine solutions, and we don't have solutions that switch between sine and cosine. This is because this our potential isn't symmetric about the origin, as one corner of the box is at the origin.
+
+The full solution is then given by,
+
+\begin{align*}
+  \psi(\mathbf{r}) = A\sin{\left(\frac{n_x \pi}{a} x\right)}\sin{\left(\frac{n_y \pi}{b} y\right)}\sin{\left(\frac{n_z \pi}{c} z\right)}
+\end{align*}
+
+The coefficient of the coordinate in each sine is then just the wavenumber, for example $k_x = \frac{n_x \pi}{a}$. We can find the energy eigenvalues by applying the kinetic energy operator (the potential is zero inside the well) finding,
+
+\begin{align*}
+  E=E_x+E_y+E_z=\frac{\pi^2\hbar^2}{2m}\left(\frac{n_x^2}{a^2}+\frac{n_y^2}{b^2}+\frac{n_z^2}{c^2}\right)
+\end{align*}
+
+where each of the quantum numbers $n_x, n_y, n_z$ can vary independently.
+
+
+\end{document}
