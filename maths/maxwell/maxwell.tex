@@ -46,7 +46,7 @@ In the distributions notes we showed that $\nabla\cdot\frac{\mathbf{r}}{r^3}=4\p
 If we integrate both sides of this over a volume $V$, bounded by a surface $S = \partial V$ and apply the divergence theorem we get,
 
 \begin{align*}
-  \int_V \nabla\cdot\mathbf{E} dV = \int_V \frac{\rho(\mathbf{r})}{\epsilon_0} dV 
+  \int_V \nabla\cdot\mathbf{E} dV = \int_V \frac{\rho(\mathbf{r})}{\epsilon_0} dV
 \end{align*}
 
 Which gives us an equation known as Gauss' law,
@@ -68,7 +68,7 @@ We therefore know that the curl of the electric field must be zero, from the vec
 
 
 The Biot-Savart law gives us that the magnetic field $\mathbf{B}(\mathbf{r})$ due to a current density distribution $\mathbf{j}(\mathbf{r'})$ is given by,
-  
+
 \begin{align*}
   \mathbf{B}(\mathbf{r})=\frac{\mu_0}{4\pi}\int_V\frac{\mathbf{j}(\mathbf{r'})\times(\mathbf{r}-\mathbf{r'})}{{|\mathbf{r}-\mathbf{r'}|}^3} d^3\mathbf{r'}
 \end{align*}
@@ -218,9 +218,132 @@ We therefore have, in the general case where the magnetic and electric field nee
   \nabla\times\mathbf{B}=\mu_0\mathbf{j}+\mu_0\epsilon_0\frac{\partial\mathbf{E}}{\partial t}
 \end{align*}
 
+\section{Faraday's Law}
+
+Our final (and easiest) equation to find is the non-static form of $\nabla\times\mathbf{E}$. This is a very simple equation to find as it is not much more than a restatement of an empirical law known as Faraday's law.
+
+Faraday's law tells us that the emf induced in a loop $C$ is equal to the rate of change of the magnetic flux through the loop,
+
+\begin{align*}
+  \epsilon &= -\frac{d\Phi_B}{dt}
+\end{align*}
+
+Where the magnetic flux is defined as $\Phi_B = \int_S\mathbf{B}\cdot d\mathbf{S}$. The emf is also defined by the integral of the electric field around the closed loop,
+
+\begin{align*}
+  \epsilon &= \oint_C\mathbf{E}\cdot d\mathbf{r}
+\end{align*}
+
+Using these with Faraday's law we have that,
+
+\begin{align*}
+  \oint_C\mathbf{E}\cdot d\mathbf{r}=-\frac{\partial}{\partial t}\int_S\mathbf{B}\cdot d\mathbf{S}=-\int_S\frac{\partial\mathbf{B}}{\partial t}\cdot d\mathbf{S}
+\end{align*}
+
+By applying Stokes' theorem we have,
+
+\begin{align*}
+  \int_S(\nabla\times\mathbf{E})\cdot d\mathbf{S} = -\int_S\frac{\partial\mathbf{B}}{\partial t}\cdot d\mathbf{S}
+\end{align*}
+
+Therefore we have our final Maxwell equation, which is now valid for the non-static case,
+
+\begin{align*}
+  \nabla\times\mathbf{E}=-\frac{\partial\mathbf{B}}{\partial t}
+\end{align*}
 
 
 
+\section{Helmholtz's Theorem}
+
+Any vector field $\mathbf{V}(\mathbf{r})$ which is defined on all space and falls off at infinite at least as fast as $1 / r^2$ can be written as the sum of the gradient of some scalar field $\phi$ and the curl of some vector field $\mathbf{A}$.
+
+To prove this, consider the fields $\phi(\mathbf{r})$ and $\mathbf{V}(\mathbf{r})$, defined by,
+
+\begin{align*}
+  \phi(\mathbf{r})&=\nabla\cdot\mathbf{B}(\mathbf{r}) \\
+  \mathbf{A}(\mathbf{r})&=\nabla\times\mathbf{B}(\mathbf{r}) \\
+\end{align*}
+
+where,
+
+\begin{align*}
+  \mathbf{B}(\mathbf{r})=\frac{1}{4\pi}\int\frac{\mathbf{V}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|} d^3r'
+\end{align*}
+
+It therefore follows from our vector identities that,
+
+\begin{align*}
+  -\nabla\phi + \nabla\times\mathbf{A} &= -\nabla(\nabla\cdot\mathbf{B})+\nabla\times(\nabla\times\mathbf{B}) \\
+                                       &= -\nabla^2\mathbf{B}
+\end{align*}
+
+By looking at the definition of $\mathbf{B}(\mathbf{r})$ and applying the Laplacian,
+
+\begin{align*}
+  \nabla^2\mathbf{B}(\mathbf{r})&=\frac{1}{4\pi}\nabla^2\int\frac{\mathbf{V}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}d^3r' \\
+                                &=\frac{1}{4\pi}\int\mathbf{V}(\mathbf{r'})\nabla_r^2\frac{1}{|\mathbf{r}-\mathbf{r'}|}d^3r' \\
+                                &=\frac{1}{4\pi}\int\mathbf{V}(\mathbf{r'})\left[-4\pi\delta^3(\mathbf{r}-\mathbf{r'})\right]d^3r' \\
+                                &=-\mathbf{V}(\mathbf{r})
+\end{align*}
+
+In the third line we just used that the Laplacian of $1/|r|$ is given by the delta function, which we have shown in other notes.
+
+We have therefore proved that,
+
+\begin{align*}
+  -\nabla\phi+\nabla\times\mathbf{A}=-\nabla^2\mathbf{B}=\mathbf{V}(\mathbf{r})
+\end{align*}
+
+A vector field $\mathbf{V}(\mathbf{r})$ with $\nabla\cdot\mathbf{V}=0$ is known as solenoidal, and with $\nabla\times\mathbf{V}=0$ is known as irrotational. Since if we take the divergence, we get $\nabla\cdot(\nabla\times\mathbf{A})=0$ or if we take the curl $\nabla\times\nabla\phi=\mathbf{0}$, we can express a vector field as the sum of a solenoidal and irrotational part. In $\mathbf{V}=-\nabla\phi+\nabla\times\mathbf{A}$, $-\nabla\phi$ is the irrotational part, as when the curl is taken this part goes to zero, and $\nabla\times\mathbf{A}$ is the solenoidal part, as when the divergence is taken that part goes to zero.
+
+Using some vector calculus we can show that $\phi(\mathbf{r})$ and $\mathbf{A}(\mathbf{r})$ can be written in terms of the divergence $D(\mathbf{r})=\nabla\cdot\mathbf{V}(\mathbf{r})$, and the curl $\mathbf{C}(\mathbf{r})=\nabla\times\mathbf{V}(\mathbf{r})$,
+
+\begin{align*}
+  \phi(\mathbf{r})&=\frac{1}{4\pi}\int\frac{D(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}d^3r' \\
+  \mathbf{A}(\mathbf{r})&=\frac{1}{4\pi}\int\frac{\mathbf{C}(\mathbf{r'})}{|\mathbf{r}-\mathbf{r'}|}d^3r'
+\end{align*}
+
+Therefore Helmholtz shows that any vector field $\mathbf{V}(\mathbf{r})$ which is defined on all space and falls off at infinity at least as fast as $1/r^2$ is uniquely defined by its divergence and curl,
+
+\begin{itemize}
+  \item If $\mathbf{V}$ is solenoidal, and therefore $\phi=0$, then $\mathbf{V}$ can be written as just the curl of $\mathbf{A} \to \mathbf{V}=\nabla\times\mathbf{A}(\mathbf{r})$
+  \item If $\mathbf{V}$ is irrotational, and therefore $\mathbf{A}=\mathbf{0}$, then $\mathbf{V}$ can be written as just the gradient of $\phi \to \mathbf{V}=-\nabla\phi$.
+\end{itemize}
+
+\section{Example: Maxwell's Equations}
+
+Writing out the differential form of Maxwell's equations,
+
+\begin{alignat*}{2}
+  &\nabla\cdot\mathbf{E}=\frac{\rho}{\epsilon_0}\qquad&&\nabla\times\mathbf{E}=-\frac{\partial\mathbf{B}}{\partial t} \\
+  &\nabla\cdot\mathbf{B}=0\qquad&&\nabla\times\mathbf{B}=\mu_0\mathbf{j}+\mu_0\epsilon_0\frac{\partial\mathbf{E}}{\partial t}
+\end{alignat*}
+
+we notice that two of the equations involve a source term. These equations are $\nabla\cdot\mathbf{E}$ and $\nabla\times\mathbf{B}$, which contain the source terms $\rho$, and $\mathbf{j}$ respectively. They both contain a term which is the source of the field.
+
+Consider the two other equations which do not have a source term. Firstly we have $\nabla\cdot\mathbf{B}=0$, this means that $\mathbf{B}$ is solenoidal, and therefore as we have shown by Helmholtz's theorem, $\mathbf{B}$ can be written as the curl of another vector field $\mathbf{A}$, $\mathbf{B}=\nabla\times\mathbf{A}$.
+
+Next we have $\nabla\times\mathbf{E}$. As we have just shown we can write the $\mathbf{B}=\nabla\times\mathbf{A}$, which allows us to write,
+
+\begin{align*}
+  \nabla\times\mathbf{E} = -\frac{\partial\mathbf{B}}{\partial t} = -\frac{\partial}{\partial t}(\nabla\times\mathbf{A}) = -\nabla\times\frac{\partial\mathbf{A}}{\partial t}
+\end{align*}
+
+By grouping both terms onto one side we can see that,
+
+\begin{align*}
+  \nabla\times\left(\mathbf{E}\times\frac{\partial\mathbf{A}}{\partial t}\right) = \mathbf{0}
+\end{align*}
+
+This means that the part between the parenthesis is irrotational, and thus from Helmholtz this can be written as the gradient of a scalar field, $\mathbf{E} + \frac{\partial\mathbf{A}}{\partial t} = -\nabla\phi$.
+
+We have shown that we can write the electric and magnetic field in terms of a scalar and vector potential $\phi$ and $\mathbf{A}$,
+
+\begin{align*}
+  \mathbf{B}&=\nabla\times\mathbf{A}\\
+  \mathbf{E}&=-\nabla\phi-\frac{\partial\mathbf{A}}{\partial t}
+\end{align*}
 
 
 
