@@ -1,0 +1,164 @@
+\documentclass[11pt]{amsart}
+\usepackage{amsmath,amsfonts,amsthm,amssymb, amsaddr}
+
+
+\title{Fourier Series}
+
+\author{Joe Bentley}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\newpage
+
+\section{Periodicity}
+
+A function $f(x)$ is said to be periodic with period $L$ if it has the same value at $x$ and $x + L$,
+
+\begin{align*}
+  f(x + L) = f(x)
+\end{align*}
+
+If a function has a period $L$ then it clearly also has period $nL$ for any positive integer $n$, as shown by,
+
+\begin{align*}
+  f(x + 2L) = f\left((x+L)+L\right) = f(x+L) = f(x)
+\end{align*}
+
+The minimum period of a periodic function, which cannot be divided into any more sections, is called the fundamental period of the function. For example the fundamental period of $f(x) = \sin{x}$ is $2\pi$.
+
+If we know the value of a periodic function $f(x)$ over an interval of the length of its fundamental period $L$, we know the value of the function everywhere, as it is just that interval repeated.
+
+\section{Fourier Series}
+
+Sine and cosine are periodic functions with a fundamental period of $2\pi$. These functions are useful as we know much about them, for example we can integrate and differentiate them, and we can evaluate them for any value of $x$. Therefore it would be useful to be able to use them to represent a periodic function, much as we do with the maclaurin series except that instead of using a polynomial, we are using sines and cosines.
+
+$\sin nx$ and $\cos nx$ are also periodic over $2\pi$, as we have shown earlier, as long as $n$ is a positive integer. It follows that $\sin{\frac{2\pi nx}{L}}$ and $\cos{\frac{2\pi nx}{L}}$ are periodic over length $L$. We can see this because if $x = L$, then it cancels to give $\sin{2\pi n}$, which we know represents a full cycle as the period of $\sin{nx}$ is $2\pi$. Think of this like the wavenumber, $k = \frac{2\pi}{\lambda}$.
+
+As we have mentioned, the idea of the Fourier series is to be able to write function $f(x)$ of period $L$ in terms of sines and cosines of the same period $L$ but different amplitudes.
+
+\begin{align*}
+  f(x) = \frac{1}{2}a_0 + \sum\limits_{n=1}^{\infty}\left[a_n\cos{\frac{2\pi nx}{L}} + b_n\sin{\frac{2\pi nx}{L}}\right]
+\end{align*}
+
+We will show that we can find these coefficients for a function $f(x)$ by evaluating the overlap integral over a full period $L$,
+
+\begin{align*}
+  a_n &= \frac{2}{L}\int_0^L f(x) \cos{\frac{2\pi nx}{L}} dx \\
+  b_n &= \frac{2}{L}\int_0^L f(x) \sin{\frac{2\pi nx}{L}} dx
+\end{align*}
+
+Note that the limits do not have to be from $0$ to $L$, but just need to be over any length of the fundamental period, so for example can be from $-L/2$ to $L/2$.
+
+
+\section{Orthogonality Relations}
+
+In this section we will prove that the functions $\sin{\frac{2\pi nx}{L}}$ (where $n = 1, 2, 3\dots$) and $\cos{\frac{2\pi nx}{L}}$ (where $n = 0, 1, 2\dots$) can be considered mutually orthogonal, such that if $\phi(x)$ and $\psi(x)$ are two different functions from the set then,
+
+\begin{align*}
+  \int_0^L\phi(x)\psi(x) dx = 0
+\end{align*}
+
+To show this we will consider the three cases where, $\phi = \cos$ and $\psi = \cos$, $\phi = \sin$ and $\psi = \sin$, and $\phi = \sin$ and $\psi = \cos$.
+
+First consider the integral,
+
+\begin{align*}
+  I_{mn} = \int_0^L \cos{\frac{2\pi mx}{L}} \cos{\frac{2\pi nx}{L}} dx
+\end{align*}
+
+For this we will use a trigonometric product identity (which can be obtained from the addition formula),
+
+\begin{align*}
+  \cos{A}\cos{B} = \frac{1}{2}\left[\cos(A+B)+\cos(A-B)\right]
+\end{align*}
+
+Plugging this into our integral,
+
+\begin{align*}
+  I_{mn} &= \frac{1}{2}\int_0^L\left[\cos{\frac{2\pi(m+n)x}{L}}+\cos{\frac{2\pi(m-n)x}{L}}\right] dx \\
+         &= \frac{L}{4\pi}\left[\frac{1}{m+n}\sin{\frac{2\pi(m+n)x}{L}}+\frac{1}{m-n}\sin{\frac{2\pi(m-n)x}{L}}\right]_0^L
+\end{align*}
+
+This has different values for different $m$ and $n$. For $m \neq n$, $I_{mn} = 0$, since both of the sine functions are periodic over the limits of $L$. For $m = n \neq 0$, $I_{mn} = \frac{1}{2} L$, and finally for $m = n = 0$, $I_{mn} = L$.
+
+Next we need to evaulate the integral,
+
+\begin{align*}
+  J_{mn} = \int_0^L \sin{\frac{2\pi mx}{L}} \sin{\frac{2\pi nx}{L}} dx
+\end{align*}
+
+This time we need the product identity for sine,
+
+\begin{align*}
+  \sin{A}\sin{B} = \frac{1}{2}\left[\cos(A-B)-\cos(A+B)\right]
+\end{align*}
+
+The result is simply the negative of what we had before,
+
+\begin{align*}
+  J_{mn} = \frac{1}{2}\int_0^L\left[\cos{\frac{2\pi(m-n)x}{L}}-\cos{\frac{2\pi(m+n)x}{L}}\right] dx
+\end{align*}
+
+This time the results are the same unless $m = n = 0$. We have for $m \neq n$, that $J_{mn} = 0$. For $m = n$ we have $J_{mn} = \frac{1}{2} L$ (even if $m = n = 0$).
+
+Finally we need to consider the integral for sine and cosine. This time we need the product identity $\sin{A}\cos{B} = \frac{1}{2}\left[\sin(A+B)+\sin(A-B)\right]$,
+
+\begin{align*}
+  K_{mn} &= \int_0^L\sin{\frac{2\pi mx}{L}}\cos{\frac{2\pi nx}{L}} dx \\
+         &= \frac{1}{2}\int_0^L\left[\sin{\frac{2\pi(m+n)x}{L}}+\sin{\frac{2\pi(m-n)x}{L}}\right] dx \\
+         &= \frac{L}{4\pi}\left[-\frac{1}{m+n}\cos{\frac{2\pi(m+n)x}{L}}-\frac{1}{m-n}\cos{\frac{2\pi(m-n)x}{L}}\right]_0^L \\
+         &= 0
+\end{align*}
+
+Again, by periodicity, $K_{mn} = 0$, for all $m$ and $n$.
+
+We have shown therefore that the sine and cosine functions are orthogonal. This is similar to the scalar product, for example let's say we have a vector $\mathbf{A} = A_x\hat{\imath}+A_y\hat{\jmath}+A_z\hat{k}$, if we want the $x$ component of the vector we can use the scalar product $\hat{\imath}\cdot\mathbf{A} = A_x$. We can use this similarly to find the coefficients in the fourier series, but instead using an integral.
+
+If we take the formula for the Fourier series and multiply both sides by $\cos{\frac{2\pi nx}{L}}$ and then integrate,
+
+\begin{align*}
+  \int_0^L f(x)\cos{\frac{2\pi nx}{L}} dx &= \frac{1}{2} a_0 \int_0^L\cos{\frac{2\pi nx}{L}} dx \\
+                                          &+ \sum\limits_{m=1}^{\infty}\left[a_m\int_0^L\cos{\frac{2\pi mx}{L}}\cos{\frac{2\pi nx}{L}} dx + b_m\int_0^L\sin{\frac{2\pi mx}{L}}\cos{\frac{2\pi nx}{L}} dx\right]
+\end{align*}
+
+We know that the first term goes to zero due to periodicity. We also know that the last term inside the sum will be zero for all $m$ and $n$. Finally we know that the first term in the sum will be zero if $m \neq n$, but if $m = n \neq 0$ it will be $\frac{1}{2}L$, so we can represent this using the Kronecker delta $\delta_mn$. Now the integral goes to,
+
+\begin{align*}
+  \int_0^L f(x)\cos{\frac{2\pi nx}{L}} dx &= \sum_{m=1}^{\infty} a_m\frac{1}{2}\delta{mn} \\
+                                          &= \frac{1}{2}L a_n
+\end{align*}
+
+Therefore we have shown that the coefficient $a_n$ can be written in the form,
+
+\begin{align*}
+  a_n = \frac{2}{L}\int_0^L f(x)\cos{\frac{2\pi nx}{L}} dx
+\end{align*}
+
+for $n = 1, 2, 3\dots$.
+
+If we instead multiply by $\sin{\frac{2\pi nx}{L}}$ and integrate, we get the same result,
+
+\begin{align*}
+  b_n = \frac{2}{L}\int_0^L f(x)\sin{\frac{2\pi nx}{L}} dx
+\end{align*}
+
+for $n = 0, 1, 2\dots$.
+
+To find the coefficient $a_0$, we take the formula for the Fourier series and integrate it alone,
+
+\begin{align*}
+  \int_0^L f(x)dx = \frac{1}{2} a_0 \int_0^L dx = \frac{1}{2} L a_0
+\end{align*}
+
+Therefore,
+
+\begin{align*}
+  a_0 = \frac{2}{L}\int_0^L f(x) dx
+\end{align*}
+
+
+\end{document}
