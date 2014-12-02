@@ -242,9 +242,108 @@ Now we can calculate our first term, using these relations,
 
 \begin{align*}
   [\hat{L_x^2}, \hat{L_z}] &= [\hat{L_x}\hat{L_x}, \hat{L_z}] \\
-                           &= \hat{L_x}[\hat{L_x}, \hat{L_z}] + [\hat{L_x}, \hat{L_x}]\hat{L_x} \\
+                           &= \hat{L_x}[\hat{L_x}, \hat{L_z}] + [\hat{L_x}, \hat{L_z}]\hat{L_x} \\
                            &= \hat{L_x}(-i\hbar\hat{L_y}) + (-i\hbar\hat{L_y})\hat{L_x} \\
                            &= -i\hbar(\hat{L_x}\hat{L_y} + \hat{L_y}\hat{L_x}) \neq 0
 \end{align*}
+
+And the second term, similarly,
+
+\begin{align*}
+  [\hat{L_y^2}, \hat{L_z}] &= [\hat{L_y}\hat{L_y}, \hat{L_z}] \\
+                           &= \hat{L_y}[\hat{L_y}, \hat{L_z}] + [\hat{L_y}, \hat{L_z}]\hat{L_y} \\
+                           &= \hat{L_y}(-i\hbar\hat{L_x}) + (-i\hbar\hat{L_x})\hat{L_y} \\
+                           &= i\hbar(\hat{L_y}\hat{L_x} + \hat{L_x}\hat{L_y}) = -[\hat{L_x^2}, \hat{L_z}]
+\end{align*}
+
+We therefore find by adding each term together the commutator for the magnitude of the angular momentum and the $z$-component,
+
+\begin{align*}
+  [\hat{L^2}, \hat{L_z^2}] &= -i\hbar(\hat{L_x}\hat{L_y}+\hat{L_y}\hat{L_x}) + i\hbar(\hat{L_x}\hat{L_y}+\hat{L_y}\hat{L_x}) + 0 \\
+                           &= 0
+\end{align*}
+
+Therefore we can know both the magnitude of the angular momentum and the $z$-component simultaneously and precisely. Similarly this is true for the $x$ and $y$-components as well which can be shown by calculating their commutators. Therefore we see that since $\hat{L^2}$ commutes with each of $\hat{L_x}$, $\hat{L_y}$, and $\hat{L_z}$, then $\hat{L^2}$ shares a set of simultaneous eigenfunctions with $\hat{L_x}$, $\hat{L_y}$, and $\hat{L_z}$. However there is a different set of eigenfunctions for each component as $\hat{L_x}$, $\hat{L_y}$, and $\hat{L_z}$ do not commute with each other in any order. Therefore we can know precisely the value of $L^2$ but can only know a single component of $\mathbf{L}$. For simplicity we choose the $L_z$ component as that single component as it has the simplest form in spherical polar coordinates.
+
+
+\section{Central Potentials}
+
+A central potential is defined such that the potential energy is only dependent on the radial distance from the origin. This is the same as a Coulomb potential due to point-like electric charge. This is much simpler to work out in spherical polar coordinates, so we will transform our potential into spherical polars. Since our potential is just a function of the radial distance, it is just a function of the spherical polar coordinate $r$.
+
+The Cartesian coordinates can be written in terms of the spherical polar coordinates using the following relations,
+
+\begin{align*}
+  x &= r\sin{\theta}\cos{\phi} \\
+  y &= r\sin{\theta}\sin{\phi} \\
+  z &= r\cos{\theta}
+\end{align*}
+
+We call $\theta$ the polar angle, and $\phi$ the azimuthal angle.
+
+The $z$-component of the angular momentum can be written in the form (which will be proven),
+
+\begin{align*}
+  \hat{L_z} &= -i\hbar\left(x\frac{\partial}{\partial y}-y\frac{\partial}{\partial x}\right) \\
+            &= -i\hbar\frac{\partial}{\partial\phi}
+\end{align*}
+
+This is because rotation about the axis is not dependent on the polar angle $\theta$.
+
+We can show that this is true by finding $\frac{\partial}{\partial\phi}$ in terms of $\frac{\partial}{\partial x}$, $\frac{\partial}{\partial y}$, $\frac{\partial}{\partial z}$. By using the chain rule we see that,
+
+\begin{align*}
+  \frac{\partial}{\partial\phi}=\frac{\partial}{\partial x}\frac{\partial x}{\partial\phi}+\frac{\partial}{\partial y}\frac{\partial y}{\partial\phi}+\frac{\partial}{\partial z}\frac{\partial z}{\partial\phi}
+\end{align*}
+
+The last term is clearly zero as the $z$-component has no dependence on the azimuthal angle $\phi$. We now need to calculate each of the partial derivatives,
+
+\begin{alignat*}{2}
+  \frac{\partial x}{\partial\phi} &= -r\sin{\theta}\sin{\phi} &&= -y \\
+  \frac{\partial y}{\partial\phi} &= r\sin{\theta}\cos{\phi}  &&= x \\
+\end{alignat*}
+
+Therefore we see that $\frac{\partial}{\partial\phi}$ is indeed such that,
+
+\begin{align*}
+  \hat{L_z}=-i\hbar\left(x\frac{\partial}{\partial y}-y\frac{\partial}{\partial x}\right)=-i\hbar\frac{\partial}{\partial\phi}
+\end{align*}
+
+$\hat{L_z}$ has the simplest form in spherical polar coordinates, which is why we chose it earlier when talking about the commutator. For reference here I will also write $\hat{L_x}$ and $\hat{L_y}$ in spherical polar coordinates, but I will not derive them,
+
+\begin{align*}
+  \hat{L_x} &= i\hbar\left(\sin{\phi}\frac{\partial}{\partial\theta}+\cot{\theta}\cos{\phi}\frac{\partial}{\partial\phi}\right) \\
+  \hat{L_y} &= i\hbar\left(-\cos{\phi}\frac{\partial}{\partial\theta}+\cot{\theta}\sin{\phi}\frac{\partial}{\partial\phi}\right) \\
+\end{align*}
+
+and the magnitude is given by,
+
+\begin{align*}
+  \hat{L^2} = -\hbar^2\left(\frac{1}{\sin{\theta}}\frac{\partial}{\partial\theta}\left(\sin{\theta}\frac{\partial}{\partial\theta}\right)+\frac{1}{\sin^2{\theta}}\frac{\partial^2}{\partial\phi^2}\right)
+\end{align*}
+
+Note that all of them are dependent on both the polar and azimuthal angle except for the $z$-component of the angular momentum which is only dependent on the azimuthal angle. \textit{We are not expected to memorise these formulae.}
+
+\section{Single Electron Atoms}
+
+In this section will we will solve the time independent Schr\"{o}dinger equation for an electron in a central Coulomb potential given by,
+
+\begin{align*}
+  V(r) = \frac{q_1 q_2}{4\pi\epsilon_0 r}
+\end{align*}
+
+The charge $q_1 = Ze$ is the charge of the nucleus with atomic (proton) number $Z$. The charge $q_2 = -e$ is the charge of a single electron. Since there is only one electron this is a hydrogen-like atom.
+
+Classically the electron and nucleus will rotate about a common centre-of-mass, such that the electron and nucleus are seperated by a distance $r$. However it is easier to assume that the mass of the nucleus goes to infinity. To keep the distance equal to $r$ we then have to decrease the mass of the electron to a reduced mass to shift the centre of mass back to where it was. This new mass is given by,
+
+\begin{align*}
+  \mu = \left(\frac{M}{M+m}\right) M
+\end{align*}
+
+where $m$ is the mass of the electron, and $M$ is the mass of the nucleus. The problem is now reduced to one particle moving in a Coulomb potential, and thus the time independent Schr\"{o}dinger equation becomes,
+
+\begin{align*}
+  \left(-\frac{\hbar^2}{2\mu}\nabla^2+V(r)\right)\psi(r,\theta,\phi)=E\psi(r,\theta,\phi)
+\end{align*}
+
 
 \end{document}
