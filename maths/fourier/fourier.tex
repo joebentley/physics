@@ -47,8 +47,9 @@ As we have mentioned, the idea of the Fourier series is to be able to write func
 We will show that we can find these coefficients for a function $f(x)$ by evaluating the overlap integral over a full period $L$,
 
 \begin{align*}
+  a_0 &= \frac{2}{L}\int_0^L f(x) dx \\
   a_n &= \frac{2}{L}\int_0^L f(x) \cos{\frac{2\pi nx}{L}} dx \\
-  b_n &= \frac{2}{L}\int_0^L f(x) \sin{\frac{2\pi nx}{L}} dx
+  b_n &= \frac{2}{L}\int_0^L f(x) \sin{\frac{2\pi nx}{L}} dx \\
 \end{align*}
 
 Note that the limits do not have to be from $0$ to $L$, but just need to be over any length of the fundamental period, so for example can be from $-L/2$ to $L/2$.
