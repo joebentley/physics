@@ -161,4 +161,149 @@ Therefore,
 \end{align*}
 
 
+\section{Finding the Fourier Series}
+
+In the following sections we will apply what we know to a few functions and evaluate their Fourier series.
+
+First let's consider what happens if our function $f(x)$, which we wish to evaluate the Fourier series for, is even such that $f(x) = f(-x)$. In this case,
+
+\begin{align*}
+  b_n = \frac{2}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}}f(x)\sin{\frac{2\pi nx}{L}}dx = 0
+\end{align*}
+
+so only $a_n$ terms remain.
+
+Similarly, if $f(x)$ is odd such that $f(x) = -f(-x)$,
+
+\begin{align*}
+  a_n = \frac{2}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}}f(x)\cos{\frac{2\pi nx}{L}}dx = 0
+\end{align*}
+
+so only $b_n$ terms remain.
+
+\section{Finding the Fourier Series: Example 1}
+
+Consider the periodic function which is defined over the interval $x\in\left(-\frac{L}{2}, \frac{L}{2}\right)$ as $f(x) = |x|$. This can be written equivalently as,
+
+\begin{align*}
+  f(x)=
+  \begin{cases}
+    -x -\frac{L}{2} \leq & x \leq 0 \\
+    x 0 \leq & x \leq \frac{L}{2} \\
+  \end{cases}
+\end{align*}
+
+This function is clearly even, as $f(x) = f(-x)$, so we only get cosine ($a_n$) coefficients,
+
+\begin{align*}
+  a_n = \frac{2}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}} |x| \cos{\frac{2\pi nx}{L}} dx
+\end{align*}
+
+Since the function is even, this means that it is symmetric over the limits, so we can just integrate over half the limits (for example from $0$ to $L/2$ instead of $-L/2$ to $L/2$) and then multiply by two,
+
+\begin{align*}
+  a_n = \frac{4}{L}\int_0^{\frac{L}{2}} x\cos{\frac{2\pi nx}{L}} dx
+\end{align*}
+
+To simplify solving this we make the solution $y = \frac{2\pi nx}{L}$ and thus $x = \frac{L}{2\pi n} y$ and $dx = \frac{L}{2\pi n}dy$. The integral therefore becomes,
+
+\begin{align*}
+  a_n &= \frac{4}{L}{\left(\frac{L}{2\pi n}\right)}^2\int_0^{\pi n} y\cos{y} dy \\
+      &= \frac{L}{\pi^2n^2}{\left[y\sin{y}+\cos{y}\right]}_0^{\pi n} \\
+      &= \frac{L}{\pi^2n^2}\left[\cos{\pi n} - 1\right] \\
+      &= \frac{L}{\pi^2n^2}\left[{(-1)}^n - 1\right]
+\end{align*}
+
+In the third line we noted that $\cos{\pi n}$ will be negative for odd integers of $n$, and positive for even integers of $n$. If it is positive then it cancels out with the other $1$ to give zero in brackets. If it is negative it will add up to give two inside the brackets. This behaviour is summarized here,
+
+\begin{align*}
+  a_n=
+  \begin{cases}
+    -\frac{2L}{\pi^2n^2} & \text{n is odd} \\
+    0 & \text{n is even}
+  \end{cases}
+\end{align*}
+
+Finally we need to calculate our zeroth coefficient, $a_0$,
+
+\begin{align*}
+  a_0 = \frac{4}{L}\int_0^{\frac{L}{2}} x dx = \frac{4}{L}{\left[\frac{1}{2}x^2\right]}_0^{\frac{L}{2}} = \frac{L}{2}
+\end{align*}
+
+We now have all the information we need to subsitute into the Fourier series,
+
+\begin{align*}
+  f(x) &= \frac{L}{4}-\frac{2L}{\pi^2}\sum\limits_{\text{n odd}}\frac{1}{n^2}\cos{\frac{2\pi nx}{L}} \\
+       &= \frac{L}{4}-\frac{2L}{\pi^2}\sum\limits_{k=0}^{\infty}\frac{1}{{(2k+1)}^2}\cos{\frac{2\pi(2k+1)x}{L}}
+\end{align*}
+
+By letting $x = 0$ we can find the value of the sum of $\frac{1}{{(2k+1)}^2}$,
+
+\begin{align*}
+  \sum\limits_{k=0}^{\infty} \frac{1}{{(2k+1)}^2} = \frac{\pi^2}{8}
+\end{align*}
+
+\section{The Riemann Zeta Function}
+
+In this section we will explore the Riemann Zeta function, but this is not examinable material. The Riemann Zeta function is defined as,
+
+\begin{align*}
+  \zeta(z) = \sum\limits_{n=1}^{\infty} \frac{1}{n^z} \qquad \Re{z} > 1
+\end{align*}
+
+For other values of $z$ the value of $\zeta{z}$ can be found by using analytic continuoations. From the definition we see that,
+
+\begin{alignat*}{8}
+  \zeta(2) &= 1 + &&\frac{1}{2^2} &&+ \frac{1}{3^2} &&+ \frac{1}{4^2} &&+ \frac{1}{5^2} &&+ \frac{1}{6^2} &&+ \frac{1}{7^2} &&+ \dots \\
+  \frac{1}{4}\zeta(2) &= &&\frac{1}{2^2} && &&+ \frac{1}{4^2} && &&+ \frac{1}{5^2} && &&+ \dots \\
+  \zeta(2) - \frac{1}{4}\zeta(2) = \frac{3}{4}\zeta(2) &= 1 && &&+ \frac{1}{3^2} && &&+ \frac{1}{5^2} && &&+ \frac{1}{7^2} &&+ \dots \\
+\end{alignat*}
+
+We can see that the last sequence is just equal to the sum that we found at the end of the last section, as it is just hte sum of all odd $n$ squared. Therefore $\frac{3}{4}\zeta(2) = \frac{\pi^2}{8}$, and it follows that,
+
+\begin{align*}
+  \zeta(2) = 1 + \frac{1}{4} + \frac{1}{9} + \frac{1}{16} + \frac{1}{25} + \dots = \frac{\pi^2}{6}
+\end{align*}
+
+$\zeta(2n)$ where $n$ is a positive integer, is always a rational multiple of $\pi^{2n}$. The general formula is given by,
+
+\begin{align*}
+  \zeta(2n) = \frac{2^{2n-1} |B_{2n}|}{2n!} \pi^{2n}
+\end{align*}
+
+where $B_k$ are the Bernoulli numbers defined as,
+
+\begin{align*}
+  \frac{z}{e_z - 1} = \sum\limits_{k=0}^{\infty}\frac{B_k}{k!} z^k
+\end{align*}
+
+The only non-zero values of $B_k$ for odd $k$ is $B_1$, all others are odd. The first few Bernoulli numbers are,
+
+\begin{align*}
+  B_0 = 1 \qquad B_1 = -\frac{1}{2} \qquad B_2 = \frac{1}{6} \qquad B_4 = -\frac{1}{30} \qquad B_6 = \frac{1}{42}
+\end{align*}
+
+
+\section{Parseval's Theorem}
+
+In this section we return to examinable stuff. Consider the Fourier series of a periodic function $f(x)$ given by,
+
+\begin{align*}
+  f(x) = \frac{1}{2}a_0 + \sum\limits_{n=1}^{\infty}\left[a_n\cos{\frac{2\pi nx}{L}} + b_n\sin{\frac{2\pi nx}{L}}\right]
+\end{align*}
+
+If we square $f(x)$ we get a complicated double series. It we then take the integral over a full period length $L$ then orthogonality means that we only get the diagonal (squared) terms, as we have shown that the integral over a full period of a product of two different cosines, two different sines, or a sine and a cosine is zero,
+
+\begin{align*}
+  \int_0^L f^2(x) dx = \frac{1}{4}a_0^2\int_0^Ldx + \sum\limits_{n=1}^{\infty}\left[\int_0^L a_n^2\cos^2{\frac{2\pi nx}{L}} dx + \int_0^L b_n^2 \sin^2{\frac{2\pi nx}{L}} dx\right]
+\end{align*}
+
+Or since $\sin^2{x} + \cos^2{x} = 1$ this can be written as,
+
+\begin{align*}
+  \int_0^L f^2(x) dx = \frac{1}{2}L\left[\frac{1}{2}a_0^2 + \sum\limits_{n=1}^{\infty}\left(a_n^2+b_n^2\right)\right]
+\end{align*}
+
+Note that the limits on the integral can be over any full period length, and don't have to be between $0$ and $L$.
+
 \end{document}
