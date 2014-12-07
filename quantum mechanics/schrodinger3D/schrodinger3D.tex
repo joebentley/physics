@@ -348,5 +348,112 @@ where $m$ is the mass of the electron, and $M$ is the mass of the nucleus. The p
   \left(-\frac{\hbar^2}{2\mu}\nabla^2+V(r)\right)\psi(r,\theta,\phi)=E\psi(r,\theta,\phi)
 \end{align*}
 
+The Laplacian in spherical polar coordinates is given by,
+
+\begin{align*}
+  \nabla^2=\frac{1}{r^2}\frac{\partial}{\partial r}\left(r^2\frac{\partial}{\partial r}\right)+\frac{1}{r^2\sin{\theta}}\frac{\partial}{\partial\theta}\left(\sin{\theta}\frac{\partial}{\partial\theta}\right)+\frac{1}{r^2\sin^2{\theta}}\frac{\partial^2}{\partial\phi^2}
+\end{align*}
+
+For our solution we use seperation of variables again, but for each polar coordinate instead of each Cartesian coordinate,
+
+\begin{align*}
+  \psi(r, \theta, \phi) = R(r)\Theta(\theta)\Phi(\phi)
+\end{align*}
+
+This allows us to isolate each variable in turn so that instead of having one partial differential equation, which is extremely hard to solve, we have three ordinary differential equations to solve which is much easier. In this section we will not go through the entire procedure of solving these, we will only provide an outline. The full procedures can be found in Eisberg and Resnick chapter 7.
+
+First we need to solve the azimuthal differential equation given by,
+
+\begin{align*}
+  \frac{d^2\Phi}{d\phi^2} = m^2\Phi
+\end{align*}
+
+Solutions therefore have the form $\Phi = Ae^{im\phi}$. We need to normalize this to find the constant. Our normalization will range over the entire range of the azimuthal angle, from $0$ to $2\pi$,
+
+\begin{align*}
+  \int_0^{2\pi}\Phi^*\Phi d\phi = 1 \to A = \frac{1}{\sqrt{2\pi}}
+\end{align*}
+
+We can show that $\Phi(\phi)$ is an eigenfunction of the angular momentum $z$-component,
+
+\begin{align*}
+  \hat{L_z}\Phi &= -i\hbar\frac{\partial}{\partial\phi}\frac{1}{\sqrt{2\pi}}e^{im\phi} \\
+                &= m\hbar\Phi
+\end{align*}
+
+The eigenvalues of the angular momentum component $L_z$ are thus given by $m\hbar$.
+
+Also, we know that the wavefunction $\Phi(\phi)$ must be periodic and is therefore single valued. This means that we can determine different allowed values of $m$ based on our boundary conditions. First we know that the boundaries must be equal for equal $m$, that is $\Phi_m(0)=\Phi_m(2\pi)$ because of periodicity. By plugging these values into our wavefunction we get,
+
+\begin{align*}
+  1 &= e^{im 2\pi} \\
+  1 &= \cos(2\pi m) + i\sin(2\pi m)
+\end{align*}
+
+For this to be true, $m$ must be any integer. The rotation about the $z$-axis is therefore quantized. We can't just have any continuous rotation, it is discrete in nature.
+
+Next we need to solve the polar equaiton, given by,
+
+\begin{align*}
+-\frac{1}{\sin{\theta}}\frac{d}{d\theta}\left(\sin{\theta}\frac{d}{d\theta}\Theta\right) + \frac{m^2\Theta}{\sin^2{\theta}} = l(l+1)\Theta
+\end{align*}
+
+Note that this is much more complicated to solve, which we won't do here. The solutions have the form,
+
+\begin{align*}
+  \Theta(\theta) = \sin^{|m|}F_{l|m|}(\cos{\theta})
+\end{align*}
+
+where $F_{l|m|}(\cos{\theta})$ are polynomials in $\cos{\theta}$.
+
+Since $\hat{L^2}$ and $\hat{L_z}$ commute, they share a simultaneous set of eigenfunctions known as the spherical harmonics,
+
+\begin{align*}
+  \Upsilon_{lm}(\theta,\phi)=\Theta(\theta)\Phi(\phi)
+\end{align*}
+
+When we apply the $\hat{L^2}$ operator to this we get,
+
+\begin{align*}
+  \hat{L^2}\Upsilon_{lm} = l(l+1)\hbar^2\Upsilon_{lm}
+\end{align*}
+
+for $l = 0, 1, 2\dots$.
+
+When we apply the $\hat{L_z}$ operator,
+
+\begin{align*}
+  \hat{L_z}\Upsilon_{lm} = m\hbar\Upsilon_{lm}
+\end{align*}
+
+for all integer $m$. Note that this is the same result as just acting on $\Phi(\phi)$ alone, this is because $\hat{L_z}$ is only dependent on the azimuthal angle.
+
+We see from applying $\hat{L^2}$ to $\Upsilon_{lm}$ that $l(l+1)\hbar^2$ are eigenvalues of the square of the angular momentum magnitude. A relation can be found between the quantum numbers $l$ and $m$ by applying physical ideas.
+
+\begin{align*}
+  L_z^2 \leq L^2
+\end{align*}
+
+This must be true, as if there is any $L_x$ or $L_y$ component then the component $L_z$ must be smaller than the magnitude of $L$. If there is no $L_x$ or $L_y$ component, then the component $L_z$ must be \textit{equal} to the magnitude. By subsituting in the eigenvalues for $L_z$ and $L^2$,
+
+\begin{align*}
+  m^2\hbar^2 \leq l(l+1)\hbar^2
+\end{align*}
+
+Since both $m$ and $l$ are integers we can write,
+
+\begin{align*}
+  |m| \leq l
+\end{align*}
+
+We can check that this is true by checking two different values. First if $m = l$, then it implies that $l^2 \leq l^2 + l$, which is definitely true for all $l \geq 0$. What about if $m = l + 1$ breaking our equality by one? This would imply that $m^2 > l(l + 1)$ which is not physically possible as it would imply that $L_z > L$. Therefore we can be justified in saying $|m| \leq l$. This implies that,
+
+\begin{align*}
+  L_z^2 < L^2
+\end{align*}
+
+except for the special case where $l = 0$ and then $L_z^2 = L^2 = 0$. We therefore come to the conclusion that the angular momentum $\mathbf{L}$ cannot be aligned purely along the $z$-axis, that is, unless it is zero it must have an $x$ or $y$ component. This means we can never know the direction of $\mathbf{L}$ precisely.
+
+Consider a specific quantum number $l = 2$. The magnitude squared of the angular momentum is thus given by $L^2 = 2(2+1)\hbar^2 = 6\hbar^2$. The magnitude of the angular momentum is therefore $|L| = \sqrt{6}\hbar$. The quantum numbers of $m$ can only be, due to our relation, $m = -2, -1, 0, 1, 2$, and therefore the $z$-component of the angular momentum can only take the values $L_z = 0, \pm\hbar, \pm 2\hbar$. See diagrams on Canvas for more detail.
 
 \end{document}
