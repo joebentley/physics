@@ -326,7 +326,7 @@ and the magnitude is given by,
 
 Note that all of them are dependent on both the polar and azimuthal angle except for the $z$-component of the angular momentum which is only dependent on the azimuthal angle. \textit{We are not expected to memorise these formulae.}
 
-\section{Single Electron Atoms}
+\section{Single Electron Atom}
 
 In this section will we will solve the time independent Schr\"{o}dinger equation for an electron in a central Coulomb potential given by,
 
@@ -455,5 +455,63 @@ We can check that this is true by checking two different values. First if $m = l
 except for the special case where $l = 0$ and then $L_z^2 = L^2 = 0$. We therefore come to the conclusion that the angular momentum $\mathbf{L}$ cannot be aligned purely along the $z$-axis, that is, unless it is zero it must have an $x$ or $y$ component. This means we can never know the direction of $\mathbf{L}$ precisely.
 
 Consider a specific quantum number $l = 2$. The magnitude squared of the angular momentum is thus given by $L^2 = 2(2+1)\hbar^2 = 6\hbar^2$. The magnitude of the angular momentum is therefore $|L| = \sqrt{6}\hbar$. The quantum numbers of $m$ can only be, due to our relation, $m = -2, -1, 0, 1, 2$, and therefore the $z$-component of the angular momentum can only take the values $L_z = 0, \pm\hbar, \pm 2\hbar$. See diagrams on Canvas for more detail.
+
+Finally consider the solution to the radial equation. The radial differential equation is given by,
+
+\begin{align*}
+  \frac{1}{r^2}\frac{d}{dr}\left(r^2\frac{dR}{dr}\right)+\frac{2\mu}{\hbar^2}\left[E-V(r)\right]R=l(l+1)\frac{R}{r^2}
+\end{align*}
+
+where $\mu$ is the reduced mass from earlier and $R$ is our solution to the differential equation.
+
+What we find is that we only have solutions when the energy $E$ is quantized, which takes the form,
+
+\begin{align*}
+  E_n = -\frac{\mu Z^2e^4}{{(4\pi\epsilon_0)}^2 2\hbar^2 n^2} = -\frac{13.6}{n^2} Z^2 eV
+\end{align*}
+
+In the second step all of the constants were calculated to the value of $13.6$. In the case of hydrogen there is only one proton so $Z = 1$. See Canvas for a diagram on the energy levels in the hydrogen atom.
+
+The radial solutoins have the form,
+
+\begin{align*}
+  R_{nl}(r)=e^{-\frac{Zr}{na_0}}{\left(\frac{Zr}{a_0}\right)}^l G_{nl}\left(\frac{Zr}{a_0}\right)
+\end{align*}
+
+where $G_{nl}$ is a polynomial in $\left(\frac{Zr}{a_0}\right)$ of order $n - (l + 1)$. The constant $a_0 = \frac{4\pi\epsilon_0\hbar^2}{\mu e^2} = 0.529\times10^{-10} m$, which is known as the Bohr radius.
+
+The first few unnormalized eigenfunctions are given by,
+
+\begin{align*}
+  R_{10} &\propto e^{-\frac{Zr}{a_0}} \\
+  R_{20} &\propto \left(1-\frac{Zr}{2a_0}\right) e^{-\frac{Zr}{a_0}} \\
+  R_{21} &\propto \frac{Zr}{a_0} e^{-\frac{Zr}{a_0}}
+\end{align*}
+
+We can use these eigenfunctions to find the radial probability density, as given by the square of the wavefunction as normal,
+
+\begin{align*}
+  P(r)dr = {|R_{nl}(r)|}^2 4\pi r^2 dr
+\end{align*}
+
+The wavefunction squared gives us the probability \textit{volume} density so we have to multiply by a value element as shown so we can get the probability density as a function of radius and not volume. See Canvas for plots of the probability density. There are a few things to note from these plots.
+
+\begin{enumerate}
+  \item $\langle r \rangle$ gets larger for higher values of $n$
+  \item The ground states peaks at $r = a_0$ (Bohr radius) and for the state where $n > 1$ with $l = n - 1$ (maximum $l$) is peaks at $r = n^2a_0$
+  \item There is an exponential tail which dominates as $r \to \infty$
+\end{enumerate}
+
+
+\section{Atomic Quantum Numbers}
+
+To summarise we have three quantum numbers.
+
+First we have $n$, the principle quantum number (also known as the radial or shell quantum number), this determines the energy $E$ of the electron. It is an integer.
+
+Second we have $l$, the angular momentum quantum number. The values are restricted such that $0 \leq l < n$, where $l$ is an integer. The magnitude of the angular momentum can be calculated from $l$ by $|\mathbf{L}| = \sqrt{l(l+1)}\hbar$.
+
+Finally we have $m$, the magnetic quantum number. This is constrained such that $|m| \leq l$, and is an integer. Multiplied by $\hbar$ it is the $z$-component of the angular momentum, $L_z = m\hbar$.
+
 
 \end{document}
