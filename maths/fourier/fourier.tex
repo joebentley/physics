@@ -445,4 +445,130 @@ Multiplying the top and bottom of the left hand side by $e^{-\pi a}$,
   \pi a\coth{\pi a} &= 1 + \sum\limits_{n=1}^{\infty}\frac{2a^2}{n^2+a^2}
 \end{align*}
 
+Using this we can find an expression for the Riemann Zeta $\zeta(2k)$. First we let $a$ be small, so that we can expand using the Maclaurin series,
+
+\begin{align*}
+  \frac{a^2}{n^2+a^2}=\frac{a^2/n^2}{1 + a^2/n^2} = \frac{a^2}{n^2}\left[1 - \frac{a^2}{n^2} + \frac{a^4}{n^4} - \frac{a^6}{n^6} \dots\right]
+\end{align*}
+
+Our previous equation therefore becomes,
+
+\begin{align*}
+  \pi a\coth{\pi a} &= 1 + 2\sum\limits_{n=1}^{\infty}\left[\frac{a^2}{n^2}-\frac{a^4}{n^4}+\frac{a^6}{n^6} \dots\right] \\
+                    &= 1 + 2\left[a^2\zeta(2)-a^4\zeta(4)+a^6\zeta(6)\dots \right] \\
+                    &= 1 + 2\sum\limits_{n=1}^{\infty} {(-1)}^{k+1}a^{2k}\zeta(2k)
+\end{align*}
+
+Next look at the definition of the Bernoulli numbers, which gives us,
+
+\begin{align*}
+  \frac{x}{e^x - 1} &= \sum_{n=0}^{\infty} \frac{B_n}{n!}x^n \\
+                    &= x \frac{e^{-\frac{x}{2}}}{e^{\frac{x}{2}}-e^{-\frac{x}{2}}} \\
+                    &= \frac{1}{2}x\left[\frac{e^{\frac{x}{2}}+e^{-\frac{x}{2}}}{e^{\frac{x}{2}}-e^{-\frac{x}{2}}} - 1\right] \\
+                    &= \frac{1}{2}x\left[\coth{\frac{x}{2}} - 1\right]
+\end{align*}
+
+Therefore we have,
+
+\begin{align*}
+  \frac{1}{2}x\left[\coth{\frac{x}{2}} - 1\right] = \sum\limits_{n=0}^{\infty}\frac{B_n}{n!}x^n
+\end{align*}
+
+Setting $x = 2\pi a$ gives us the left hand side the same as our equation earlier,
+
+\begin{align*}
+  \pi a\coth{\pi a} - \pi a = \sum\limits_{n=0}^{\infty}\frac{B_n}{n!}{(2\pi a)}^n
+\end{align*}
+
+By comparing the coefficients of this equation with the other equation equal to $\pi a\coth{\pi a} - \pi a$ we find that the only term of the Bernoulli number expression that survives is when $n = 2k$, such that,
+
+\begin{align*}
+  2{(-1)}^{k+1}\zeta(2k) = \frac{B_{2k}}{(2k)!}{(2\pi)}^{2k}
+\end{align*}
+
+Therefore we can now find an expression for the zeta,
+
+\begin{align*}
+  \zeta(2k) = \frac{|B_{2k}|2^{2k-1}\pi^{2k}}{(2k)!}
+\end{align*}
+
+
+\section{Complex Fourier Series}
+
+So far we have written the Fourier series using sines and cosines to represent our function. Because of the deep relation between sines and cosines this means that we can write the Fourier series in terms of complex exponentials,
+
+\begin{align*}
+  f(x) = \sum\limits_{n=-\infty}^{\infty} C_n e^{\frac{2\pi inx}{L}}
+\end{align*}
+
+The complex exponential functions $\phi_n(x) = e^{2\pi inx}{L}$ are orthogonal such that,
+
+\begin{align*}
+  \int_{x_0}^{x_0+L} \phi_m^*(x)\phi_n(x) dx &= \int_{x_0}^{x_0+L}e^{-\frac{2\pi imx}{L}}e^{\frac{2\pi inx}{L}}dx \\
+                                             &= \int_{x_0}^{x_0+L}e^{\frac{2\pi i(n - m)x}{L}} dx\\
+                                             &=
+  \begin{cases}
+    0 & n \neq m \\
+    L & n = m
+  \end{cases}
+\end{align*}
+
+The integral is zero over the whole period because of the periodicity of the function $e^{\frac{2\pi ix}{L}}$. Therefore we have shown that the functions are orthogonal, which can be expressed by,
+
+\begin{align*}
+  \int_{x_0}^{x_0+L}\phi_m^*(x)\phi_n(x) dx = L\delta_{mn}
+\end{align*}
+
+The coefficients $C_n$ can be extracted using these relations by performing an overlap integral of the form,
+
+\begin{align*}
+  \int_{x_0}^{x_0+L}f(x)\phi^*(x)dx &= \sum\limits_{m=-\infty}^{\infty}C_m\int_{x_0}^{x_0+L}\phi_n^*(x)\phi_m(x) dx \\
+                                    &= \sum\limits_{m=-\infty}^{\infty}C_m L \delta_{mn} = LC_n
+\end{align*}
+
+The coefficients are therefore given by,
+
+\begin{align*}
+  C_n = \frac{1}{L}\int_{x_0}^{x_0+L}f(x)e^{-\frac{2\pi inx}{L}} dx
+\end{align*}
+
+Parseval's theorem for this series can be found in the same way as usual, but we multiply the function by it's complex conjugate instead of just squaring it,
+
+\begin{align*}
+  f(x)f^*(x) = \sum\limits_{m=-\infty}^{\infty}\sum\limits_{n=-\infty}^{\infty}C_m^*C_n\phi_m^*(x)\phi_n(x)
+\end{align*}
+
+Parseval's theorem is found by integrating over this over a whole period,
+
+\begin{align*}
+  \int_{x_0}^{x_0+L}{|f(x)|}^2 dx &= \sum\limits_{m=-\infty}^{\infty}\sum\limits_{n=-\infty}^{\infty}C_m^* C_n \int_{x_0}^{x_0+L}\phi_m^*\phi_ndx \\
+                                  &= \sum\limits_{m=-\infty}^{\infty}\sum\limits_{n=-\infty}^{\infty}C_m^* C_N L \delta_{mn} \\
+                                  &= L\sum\limits_{n=-\infty}^{\infty}{|C_n|}^2
+\end{align*}
+
+We can manipulate the complex Taylor series to find the real Taylor series quite easily. First we note that the complex conjugate of the coefficients $C_n$ are given by,
+
+\begin{align*}
+  C_n^* = \frac{1}{L}\int_{x_0}^{\infty}f(x)e^{\frac{2\pi inx}{L}} dx
+\end{align*}
+
+Therefore, if $f(x)$ is real the coefficients are related by $C_n^* = C_{-n}$. It is possible to write the complex coefficients in terms of the real coefficients such that $C_n = \frac{1}{2}(a_n - ib_n)$ as shown by,
+
+\begin{align*}
+  C_n &= \frac{1}{L}\int_{x_0}^{x_0+L}f(x)e^{-\frac{2\pi inx}{L}} dx \\
+      &= \frac{1}{L}\int_{x_0}^{x_0+L}f(x)\left[\cos{\frac{2\pi nx}{L}}-i\sin{\frac{2\pi nx}{L}}\right] dx \\
+      &= \frac{1}{2}(a_n - ib_n)
+\end{align*}
+
+The complex conjugate of the coefficients is thus $C^* = C_{-n} = \frac{1}{2}(a_n + ib_n)$. Adding together the $C_n$ and $C_{-n}$ terms of the Taylor series gives us,
+
+\begin{align*}
+  C_n e^{\frac{2\pi inx}{L}} + C_{-n}e^{-\frac{2\pi inx}{L}} &= C_n e^{\frac{2\pi inx}{L}} + C^*_{-n}e^{-\frac{2\pi inx}{L}} \\
+                                                             &= 2\Re{C_n e^{\frac{2\pi inx}{L}}} \\
+                                                             &= \Re{(a_n - ib_n)\left(\cos{\frac{2\pi nx}{L}} + i\sin{\frac{2\pi nx}{L}}\right)} \\
+                                                             &= a_n\cos{\frac{2\pi nx}{L}} + b_n\sin{2\pi nx}{L}
+\end{align*}
+
+Which is just our real Taylor series.
+
 \end{document}
