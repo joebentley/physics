@@ -571,4 +571,102 @@ The complex conjugate of the coefficients is thus $C^* = C_{-n} = \frac{1}{2}(a_
 
 Which is just our real Taylor series.
 
+\section{Fourier Transform}
+
+In this section we will use the complex Fourier series to relate the time (or space) domain of a function to the frequency (or wavenumber) of the sine waves that make up the function in the Fourier series. First recall the form of the complex Fourier series,
+
+\begin{align*}
+  f(x) = \sum\limits_{n=-\infty}^{\infty} C_n e^{\frac{2\pi inx}{L}}
+\end{align*}
+
+The coefficients $C_n$ are given by,
+
+\begin{align*}
+  C_n = \frac{1}{L}\int_{-\frac{L}{2}}^{\frac{L}{2}} f(x) e^{-\frac{2\pi inx}{L}} dx
+\end{align*}
+
+By taking the factor of $L$ out of the expression for $C_n$ and instead writing it explicitly in $f(x)$ we can write these as,
+
+\begin{align*}
+  f(x) &= \sum\limits_{n=-\infty}^{\infty} \tilde{C_n}\frac{1}{L}e^{\frac{2\pi inx}{L}} \\
+  \tilde{C_n} &= \int_{-\frac{L}{2}}^{\frac{L}{2}}f(x)e^{-\frac{2\pi inx}{L}} dx
+\end{align*}
+
+If we let the period $L$ go to infinity, then the wavenumber given by $k = \frac{2\pi n}{L}$ will become a real number, and the first sum will become an integral with $\frac{2\pi}{L}\to dk$. Also renaming $\tilde{C_n}$ as $\tilde{f}(k)$ gives us,
+
+\begin{align*}
+  f(x) = \frac{1}{2\pi}\int_{-\infty}^{\infty}\tilde{f}(k)e^{ikx} dk
+\end{align*}
+
+where $\tilde{f}(k)$ is the Fourier transform, given by,
+
+\begin{align*}
+  \tilde{f}(k) = \int_{-\infty}^{\infty}f(x) e^{-ikx} dx
+\end{align*}
+
+The Fourier transform takes a function in terms of a space $x$ and gives us the amount of each sine wave with wavenumber $k = \frac{2\pi n}{L}$. That is, it transforms the function from the spatial domain to the wavenumber domain. Commonly, for example in a signal, the signal will be a function of time $f(t)$, but we want to know the frequencies that make it up in the Fourier series, so we use the Fourier transform to transform from the time domain $f(t)$ to the frequency domain $f(\zeta)$.
+
+The factor of $\frac{1}{2\pi}$ can be split up to make the definitions symmetrical,
+
+\begin{align*}
+  \tilde{f}(k) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}f(x)e^{-ikx} dx \\
+  f(x) &= \frac{1}{\sqrt{2\pi}}\int_{-\infty}^{\infty}\tilde{f}(k)e^{ikx} dx
+\end{align*}
+
+Parseval's theorem for the Fourier transforms can be derived by starting at Parseval's theorem for the complex Fourier series,
+
+\begin{align*}
+  \int_{-\frac{L}{2}}^{\frac{L}{2}}{|f(x)|}^2 dx &= L\sum\limits_{n=-\infty}^{\infty}{|C_n|}^2 \\
+                                                 &= L\sum\limits_{n=-\infty}^{\infty}\frac{1}{L^2}{|\tilde{C_n}|}^2 \\
+                                                 &= \frac{1}{2\pi}\sum\limits_{n=-\infty}^{\infty}\frac{2\pi}{L}{|\tilde{C_n}|}^2
+\end{align*}
+
+By letting $L$ go to infinity, $\frac{2\pi n}{x}$ go to $k$, and $\tilde{c_n}$ go to $\tilde{f(k)}$ we get the equivalent for the Fourier transform,
+
+\begin{align*}
+  \int_{-\infty}^{\infty}{|f(x)|}^2dx = \frac{1}{2\pi}\int_{-\infty}^{\infty}{|\tilde{f}(k)|}^2 dk
+\end{align*}
+
+\section{Example 1: Top Hat Function}
+
+Consider the top hat function of width $a$ defined as,
+
+\begin{align*}
+  f(x) = T\left(x; -\frac{a}{2}, \frac{a}{2}\right) =
+  \begin{cases}
+    1 & -\frac{a}{2} < x < \frac{a}{2} \\
+    0 & \text{elsewhere}
+  \end{cases}
+\end{align*}
+
+The Fourier transform is therefore just the integral over that region, as outside the region of width $a$ the value of the function is zero,
+
+\begin{align*}
+  \tilde{f}(k) &= \int_{-\infty}^{\infty}f(x)e^{-ikx} dx \\
+               &= \int_{-\frac{a}{2}}^{\frac{a}{2}}e^{-ikx} dx \\
+               &= {\left[\frac{e^{-ikx}}{-ik}\right]}_{-\frac{a}{2}}^{\frac{a}{2}} \\
+               &= \left[\frac{e^{-ik\frac{a}{2}}-e^{ik\frac{a}{2}}}{-ik}\right] \\
+               &= \frac{2i\sin{\frac{ka}{2}}}{ik}
+\end{align*}
+
+The Fourier transform for the top hat function is therefore given by,
+
+\begin{align*}
+  \tilde{f}(k) = \frac{2\sin{\frac{ka}{2}}}{k}
+\end{align*}
+
+This is our relationship that allows us to find the amplitude of the sine wave of a given wavenumber which makes up our function $f(x)$ in the Fourier series.
+
+Another way to find the Fourier transform is to write the exponential in the form of sines and cosines, which is easier. First we note that $f(x)$ is even, so when multiplied by the sine term and integrated it goes to zero,
+
+\begin{align*}
+  \tilde{f}(k) &= \int_{-\infty}^{\infty} f(x) \left[\cos{kx}-i\sin{kx}\right] dx \\
+               &= \int_{-\infty}^{\infty} f(x) \cos{kx} dx \\
+               &= 2 \int_0^{\infty} f(x) \cos{kx} dx \\
+               &= \frac{2\sin{k\frac{a}{2}}}{k}
+\end{align*}
+
+Note that we arrived at the same result, but didn't have to mess with any imaginary numbers. Finally, we will come up with some notion of an uncertainty relationship as in quantum mechanics for the Fourier transform. First we come up with a vague notion of width. Suppose that our width is given by $\Delta x = a$, that is, the width of one of the spatial function period. The corresponding width of the wavenumber is therefore given by $\Delta k = \frac{2\pi}{a}$. By multiplying these together we find an uncertainty relationship much like Heisenberg's uncertainty principle, $\Delta x \Delta k = 2\pi$.
+
+
 \end{document}
