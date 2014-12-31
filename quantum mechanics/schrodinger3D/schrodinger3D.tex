@@ -155,7 +155,7 @@ Consider the special case where the sides are all the same lengths, such that $a
   & $(1, 2, 1)$ & \\
   & $(1, 1, 2)$ & \\[6pt]
   Second excited state & $(2, 2, 1)$ & $\frac{9\pi^2\hbar^2}{2ma^2}$ & $6$ \\
-  & $(2, 1, 2)$ & \\ 
+  & $(2, 1, 2)$ & \\
   & $(1, 2, 2)$ & \\
   & $(1, 1, 3)$ & \\
   & $(1, 3, 1)$ & \\
@@ -512,6 +512,93 @@ First we have $n$, the principle quantum number (also known as the radial or she
 Second we have $l$, the angular momentum quantum number. The values are restricted such that $0 \leq l < n$, where $l$ is an integer. The magnitude of the angular momentum can be calculated from $l$ by $|\mathbf{L}| = \sqrt{l(l+1)}\hbar$.
 
 Finally we have $m$, the magnetic quantum number. This is constrained such that $|m| \leq l$, and is an integer. Multiplied by $\hbar$ it is the $z$-component of the angular momentum, $L_z = m\hbar$.
+
+\section{Magnetic Moment}
+
+An effect of a moving electronic charge is that a magnetic field appears. This is relevant since an orbiting charge is equivalent to a current loop, which induces a magnetic field as we know from electromagnetism. We define the magnetic dipole moment as the current multiplied by the area of the loop,
+
+\begin{align*}
+  \mu &= I \pi r^2 \\
+      &= \left(-\frac{eV}{2\pi r}\right) \times \pi r^2 \\
+      &= -\frac{eVr}{2}
+\end{align*}
+
+Since we know that the angular momentum $L = r m_e v$ since $r$ is perpendicular to $v$, by rearranging for $v$ we can rewrite the magnetic dipole moment as,
+
+\begin{align*}
+  \mu = -\frac{eL}{2m_e}
+\end{align*}
+
+We will write this in the form,
+
+\begin{align*}
+  \mu_l = -\frac{g_l \mu_B}{\hbar} L
+\end{align*}
+
+where $\mu_B$, called the Bohr magneton, is defined as $\mu_B = \frac{e\hbar}{2m_e}$. In this case the symbol $g_L = 1$, and is called the orbital g factor.
+
+We saw in the last section that we can write the angular momentum in terms of the angular momentum quantum number, $L = \sqrt{l(l+1)} \hbar$, so we can write the magnetic monopole moment as $\mu_l = -g_l \mu_B \sqrt{l(l+1)}$.
+
+Since we know we can know both $|L|$ and $L_z$ simultaneously as seen in the earlier sections, we can see that we can also know $|u_l|$ and ${(u_l)}_z$. To measure the $z$ component we need a non-uniform magnetic field, for more information on this see the Stern Gerlach experiment, as well as the notes on Canvas. If we have a uniform $B$-field a torque is produced, but in a non-uniform $B$-field we also have a net linear force (up or down) following $F \propto m_l \frac{\partial B_z}{z}$.
+
+\section{Ground State Hydrogen}
+
+We will now consider the simplest case of the electronic configuration of a ground state hydrogen atom. Remember our restrictions for the quantum numbers. In this case we have $n = 1$ and thus $l = 0$ and $m_l = 0$. Therefore we have an angular momentum of zero $L = L_z = 0$. This means that we have no magnetic moment and thus no deflection. However experimentally we still find that there are two spots on the detector which can \textit{only} be explained by there being some kind of angular momentum present as deflection is occuring, but we have just shown that there is no angular momentum as predicted by Schr\"{o}dingers wavefunction view. There can only be one reasonable conclusion, and it is an important one: \textit{the electron has an instrinsic angular momentum}, that is, it always has some kind of internal angular momentum which we call spin, and behaves similarly to the orbital angular momentum which we expected to be required for the deflection.
+
+The spin is defined by the spin quantum number $s$ in the same way that the orbital angular momentum is defined,
+
+\begin{align*}
+  |\mathbf{s}| &= \sqrt{s(s+1)}\hbar \\
+  s_z &= m_s \hbar \\
+  |m_s| &\leq s \\
+  {(\mu_s)}_z &= -g_s \mu_b m_s
+\end{align*}
+
+We have defined a set of equations that are analogous (in fact pretty much the same) as our equations for the angular momentum $L$, but for the spin instead. If we have a spin quantum number $s = \frac{1}{2}$, we have a $z$-component $s_z = \pm \frac{1}{2}\hbar$ which refers to the spin having an up and down component simultaneously. The $g$ factor would therefore be $g_s = 2$.
+
+We have that electrons are fermions, meaning that they have spins as integer multiples of $\frac{1}{2}\hbar$, this means that the Pauli exclusion principle applies, meaning that no two identical fermions (in this case electrons) can occupy the same quantum state. Quantum state means a single selection of quantum numbers, so no two electrons can have all quantum numbers the same. Since in our case $m_s = \pm \frac{1}{2}$, two electrons can occupy each magnetic substate.
+
+Now the information is available, using the restriction on quantum numbers, to construct a table of the energy states in an atom. We can do this by placing our constraints on the quantum numbers, and them figuring out how many different combinations of $n$, $l$, $m_l$, and $m_s$ we can have. For example in the first one, we can have $n = 1$, $l = 0$, $m_l = 0$, but $m_s = \pm \frac{1}{2}$, so the only quantum number that can differ is that we can have two different values of $m_s$ so we can have two electrons in the $n = 1$ shell. All of the other combinations are found this way for the higher values of $n$.
+
+\addvbuffer[12pt 8pt]{\begin{tabular}{l l l l l}
+    Elements & $n$ & $l<n$ & $|m_l|\leq l$ & $m_s = \pm\frac{1}{2}$ \\[6pt]
+    H, He & $1$ & $0$ & $0$ & 2 electrons fit \\
+
+    Li thru Ne & $2$ & $0$ & $0$ & 8 electrons fit \\
+           & & $1$ & $0, \pm 1$ \\[6pt]
+
+    Na thru Ar & $3$ & $0$ & $0$ & 18 electrons fit \\
+               & & $1$ & $0, \pm 1$ \\
+               & & $2$ & $0, \pm 1, \pm 2$ \\[6pt]
+\end{tabular}}
+
+In spectroscopic notation we write the shells in the form,
+
+\addvbuffer[12pt 8pt]{\begin{tabular}{l l l l l}
+    $n = 1$ & $l = 0$ & 1s \\
+    $n = 2$ & $l = 0$ & 2s \\
+            & $l = 1$ & 2p \\
+    $n = 3$ & $l = 0$ & 3s \\
+            & $l = 1$ & 3p \\
+            & $l = 2$ & 3d
+\end{tabular}}
+
+For each value of $n$ we see that there are $n$ values of $l$ possible, and $2l + 1$ values of $m_l$ possible.
+
+\section{Total Angular Momentum}
+
+The angular momentum $\mathbf{L}$ and spin $\mathbf{s}$ can be combined to give us the \textit{total} angular momentum $\mathbf{J}$ by summing them,
+
+\begin{align*}
+  \mathbf{J} &= \mathbf{L} + \mathbf{S} \\
+  |\mathbf{J}| &= \sqrt{j(j+1)}\hbar \\
+  j &\geq 0 \\
+  J_z &= m_j \hbar \\
+  |m_j| &\leq j \\
+\end{align*}
+
+$J_z$ is a scalar quantity defined by $J_z = L_z + S_z$, and $m_j = m_l + m_s$. In this case we have two possible values of $j$. Either $s = \frac{1}{2}$ and thus $j = l + s = l + \frac{1}{2}$ signifying that the angular momentum $\mathbf{L}$ is parallel and in the same direction as the spin $\mathbf{s}$. Or $s = -\frac{1}{2}$ and $j = l - \frac{1}{2}$ and $\mathbf{L}$ is parallel and in the \textit{opposite} direction to the spin $\mathbf{s}$.
+
 
 
 \end{document}
