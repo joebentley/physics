@@ -604,7 +604,7 @@ where $\tilde{f}(k)$ is the Fourier transform, given by,
   \tilde{f}(k) = \int_{-\infty}^{\infty}f(x) e^{-ikx} dx
 \end{align*}
 
-The Fourier transform takes a function in terms of a space $x$ and gives us the amount of each sine wave with wavenumber $k = \frac{2\pi n}{L}$. That is, it transforms the function from the spatial domain to the wavenumber domain. Commonly, for example in a signal, the signal will be a function of time $f(t)$, but we want to know the frequencies that make it up in the Fourier series, so we use the Fourier transform to transform from the time domain $f(t)$ to the frequency domain $f(\zeta)$.
+The first equation $f(x)$ is called the inverse Fourier transform, as it takes the Fourier transform and gives us back the original function, the second equation $\tilde{f}(k)$ is called the Fourier transform. Finding the function $\tilde{f}(k)$ is called \textit{taking the Fourier transform}. Finding $f(x)$ is called \textit{taking the inverse Fourier transform}. The Fourier transform takes a function in terms of a space $x$ and gives us the amount of each sine wave with wavenumber $k = \frac{2\pi n}{L}$. That is, it transforms the function from the spatial domain to the wavenumber domain. Commonly, for example in a signal, the signal will be a function of time $f(t)$, but we want to know the frequencies that make it up in the Fourier series, so we use the Fourier transform to transform from the time domain $f(t)$ to the frequency domain $f(\zeta)$.
 
 The factor of $\frac{1}{2\pi}$ can be split up to make the definitions symmetrical,
 
@@ -667,6 +667,110 @@ Another way to find the Fourier transform is to write the exponential in the for
 \end{align*}
 
 Note that we arrived at the same result, but didn't have to mess with any imaginary numbers. Finally, we will come up with some notion of an uncertainty relationship as in quantum mechanics for the Fourier transform. First we come up with a vague notion of width. Suppose that our width is given by $\Delta x = a$, that is, the width of one of the spatial function period. The corresponding width of the wavenumber is therefore given by $\Delta k = \frac{2\pi}{a}$. By multiplying these together we find an uncertainty relationship much like Heisenberg's uncertainty principle, $\Delta x \Delta k = 2\pi$.
+
+We can also show how we can get back the original function $f(x)$ from the Fourier transform $\tilde{f}(k)$ using the inverse Fourier transform! We simply substitute into our formula and then evaluate the integral,
+
+\begin{align*}
+  f(x) &= \frac{1}{2\pi}\int_{-\infty}^{\infty} \tilde{f}(k) e^{ikx} dk \\
+       &= \frac{1}{2\pi}\int_{-\infty}^{\infty} \frac{2\sin{k\frac{a}{2}}}{k} e^{ikx} dk \\
+       &= \frac{1}{\pi}\int_{-\infty}^{\infty} \frac{\sin{k\frac{a}{2}}}{k} \cos{kx} dk \\
+       &= \frac{2}{\pi}\int_{0}^{\infty} \frac{\sin{k\frac{a}{2}}}{k} \cos{kx} dk \\
+\end{align*}
+
+In the third line we expressed the complex exponential in trigonometric form. Since the integral is over even limits the sine from the Fourier transform (the big fraction) multiplied by the sine from the complex exponential will be zero when integrated over. Therefore we just have the cosine term of the complex exponential.
+
+Now we need to approach evaluating this integral. First we use one of our product rule identities for trigonometric functions, $\sin{\theta}\cos{\phi} = \frac{1}{2}\left[\sin{(\theta+\phi)}+\sin{(\theta-\phi)}\right]$. The integral is therefore,
+
+\begin{align*}
+  f(x) = \frac{1}{\pi}\int_0^{\infty}\frac{1}{k}\left\{\sin{\left[k\left(x+\frac{a}{2}\right)\right]} - \sin{\left[k\left(x-\frac{a}{2}\right)\right]}\right\} dk
+\end{align*}
+
+To evaluate this, recall the result that,
+
+\begin{align*}
+  \int_0^{\infty} \frac{\sin{\alpha t}}{t} dt =
+  \begin{cases}
+    \frac{\pi}{2} & \alpha > 0 \\
+    0 & \alpha = 0 \\
+    -\frac{\pi}{2} & \alpha < 0
+  \end{cases} = \frac{\pi}{2} sgn \alpha
+\end{align*}
+
+The integral therefore evaluates to,
+
+\begin{align*}
+  f(x) &= \frac{1}{\pi}\left\{\frac{\pi}{2} sgn\left(x+\frac{a}{2}\right) - \frac{\pi}{2} sgn\left(x-\frac{a}{2}\right)\right\} \\
+       &= \frac{1}{2}\left\{sgn\left(x+\frac{a}{2}\right) - sgn\left(x-\frac{a}{2}\right)\right\} \\
+       &=
+  \begin{cases}
+    0 & x > \frac{a}{2} \\
+    1 & -\frac{a}{2} > x > \frac{a}{2} \\
+    0 & -\frac{a}{2} > x \\
+  \end{cases} \\
+  &= T(x; -\frac{a}{2}, \frac{a}{2})
+\end{align*}
+
+Therefore as we see we have arrived back at our original function $f(x)$, the top hat function. You may be wondering what the point of this was, as we already knew that it was the inverse transform, but this was just done as some practise with applying the integral.
+
+Finally in this example let us apply Parsevel's theorem which we already found for the Fourier transform.
+
+\begin{align*}
+  \int_{-\infty}^{\infty} {|f(x)|}^2 dx = \frac{1}{2\pi}\int_{-\infty}^{\infty}{\left[\frac{2\sin{\frac{ka}{2}}}{k}\right]}^2 dk
+\end{align*}
+
+In this case, $f(x) = {|f(x)|}^2$ because it is the top hat function so only has a value of $1$ or $0$. The integral therefore becomes,
+
+\begin{align*}
+  \int_{-\frac{a}{2}}^{\frac{a}{2}}dx &= \frac{1}{2\pi}\int_{-\infty}^{\infty}{\left[\frac{2\sin{\frac{ka}{2}}}{k}\right]}^2 dk \\
+  a &= \frac{2}{\pi}\int_{-\infty}^{\infty}\frac{\sin^2{\frac{ka}{2}}}{k^2} dk
+\end{align*}
+
+We can therefore rearrange to show,
+
+\begin{align*}
+  \int_{-\infty}^{\infty}\frac{\sin^2{\frac{ka}{2}}}{k^2}dk = \frac{\pi}{2}a
+\end{align*}
+
+If we set $a = 2$ we find a general result,
+
+\begin{align*}
+  \int_{-\infty}^{\infty}\frac{\sin^2{k}}{k^2}dk = \pi
+\end{align*}
+
+
+\section{Example 2: Exponential}
+
+We will now do another example, but instead of using a discrete top hat function, we will use a continuous exponential decay function of the form,
+
+\begin{align*}
+  f(x) = \exp{\left(-\lambda |x|\right)}
+\end{align*}
+
+The Fourier transform is evaluated trivially using our formula,
+
+\begin{align*}
+  \tilde{f}(k) &= \int_{0}^{\infty}e^{-\lambda x}e^{-ikx}dx + \int_{-\infty}^{0}e^{\lambda x}e^{-ikx} dx \\
+               &= \int_0^{\infty}e^{-(\lambda +ik)x}dx + \int_{-\infty}^0 e^{(\lambda -ik)x}dx \\
+               &= \left[\frac{e^{-(\lambda + ik)x}{-(\lambda + ik)}}\right]_0^{\infty} + \left[\frac{e^{(\lambda - ik) x}}{\lambda - ik}\right]_{-\infty}^0 \\
+               &= \frac{1}{\lamdba + ik} + \frac{1}{\lambda - ik} \\
+               &= \frac{(\lambda - ik) + (\lambda + ik)}{(\lambda + ik)(\lambda - ik)} \\
+               &= \frac{2\lambda}{k^2 + \lambda^2}
+\end{align*}
+
+Again we can take the inverse Fourier transform in the same way and find an interesting result,
+
+\begin{align*}
+  f(x) &= \frac{1}{2\pi}\int_{-\infty}^{\infty}\tilde{f}(k)e^{ikx}dk \\
+       &= \frac{1}{2\pi}\int_{-\infty}^{\infty}\frac{2\lambda}{k^2+\lambda^2}e^{ikx}dk \\
+       &= \frac{\lambda}{\pi}\int_{-\infty}^{\infty}\frac{1}{k^2+\lambda^2}\cos{kx}dk \\
+\end{align*}
+
+In the second line, we noticed that the first term in the integral is even in $k$, so we only get the cosine term of the complex exponential. We therefore find,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} \frac{\cos{kx}}{k^2+\lambda^2} dk = \frac{\pi}{\lambda}e^{-\lambda |x|} \quad \text{for $\lambda > 0$}
+\end{align*}
+
 
 
 \end{document}
