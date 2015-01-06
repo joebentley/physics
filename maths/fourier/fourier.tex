@@ -750,9 +750,9 @@ The Fourier transform is evaluated trivially using our formula,
 
 \begin{align*}
   \tilde{f}(k) &= \int_{0}^{\infty}e^{-\lambda x}e^{-ikx}dx + \int_{-\infty}^{0}e^{\lambda x}e^{-ikx} dx \\
-               &= \int_0^{\infty}e^{-(\lambda +ik)x}dx + \int_{-\infty}^0 e^{(\lambda -ik)x}dx \\
-               &= \left[\frac{e^{-(\lambda + ik)x}{-(\lambda + ik)}}\right]_0^{\infty} + \left[\frac{e^{(\lambda - ik) x}}{\lambda - ik}\right]_{-\infty}^0 \\
-               &= \frac{1}{\lamdba + ik} + \frac{1}{\lambda - ik} \\
+               &= \int_0^{\infty}e^{-(\lambda + ik)x}dx + \int_{-\infty}^0 e^{(\lambda -ik)x}dx \\
+               &= {\left[\frac{e^{-(\lambda + ik)x}}{-(\lambda + ik)}\right]}_0^{\infty} + \left[\frac{e^{(\lambda - ik) x}}{\lambda - ik}\right]_{-\infty}^0 \\
+               &= \frac{1}{\lambda + ik} + \frac{1}{\lambda - ik} \\
                &= \frac{(\lambda - ik) + (\lambda + ik)}{(\lambda + ik)(\lambda - ik)} \\
                &= \frac{2\lambda}{k^2 + \lambda^2}
 \end{align*}
