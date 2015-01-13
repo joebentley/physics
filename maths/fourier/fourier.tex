@@ -771,6 +771,70 @@ In the second line, we noticed that the first term in the integral is even in $k
   \int_{-\infty}^{\infty} \frac{\cos{kx}}{k^2+\lambda^2} dk = \frac{\pi}{\lambda}e^{-\lambda |x|} \quad \text{for $\lambda > 0$}
 \end{align*}
 
+\section{Example 4: Gaussian}
+
+Take a Gaussian function of the form $f(x) = e^{-\frac{x^2}{2\sigma^2}}$. To take the Fourier Transform we need to know the standard integral, $\int_{-\infty}^{\infty} e^{-\alpha x^2} dx = \sqrt{\frac{\pi}{\alpha}}$. Using our formula for the Fourier transform we have,
+
+\begin{align*}
+  \tilde{f}(k) &= \int_{-\infty}^{\infty} e^{-\frac{x^2}{2\sigma^2}} e^{-ikx} dx \\
+               &= \int_{-\infty}^{\infty} e^{-\frac{1}{2\sigma^2}\left[x^2 + 2ik\sigma^2 x\right]} dx
+\end{align*}
+
+The reason we made this factorization is so that we have a quadratic the first term is $x^2$. Solving by completing the square,
+
+\begin{align*}
+  \tilde{f}(k) &= \int_{-\infty}^{\infty} \exp{\left[-\frac{1}{2\sigma^2} \left\{ {\left(x+ik\sigma^2\right)}^2 - {\left(ik\sigma^2\right)}^2\right\}\right]} dx \\
+               &= \exp{\left[-\frac{1}{2}k^2\sigma^2\right]}\int_{-\infty}^{\infty}\exp{\left[-\frac{1}{2\sigma^2}{\left(x + ik\sigma^2\right)}^2\right]} dx \\
+               &= e^{-\frac{1}{2}k^2\sigma^2}\int_{-\infty + ik\sigma^2}^{\infty + ik\sigma^2} \exp{\left[-\frac{1}{2\sigma^2}u^2\right]} du
+\end{align*}
+
+In the last line we let $u = x + ik\sigma^2$, and therefore $du = dx$, our Fourier transform is therefore,
+
+\begin{align*}
+  \tilde{f}(k) &= \sqrt{\frac{\pi}{1/2\sigma^2}} e^{-\frac{1}{2}k^2\sigma^2} \\
+               &= \sqrt{2\pi\sigma^2} e^{-\frac{1}{2}k^2\sigma^2}
+\end{align*}
+
+There we have the Fourier transform of the Gaussian function, not too shabby!
+
+\section{Example 5: Delta Function}
+
+In this example we will take the Fourier transform of the delta function,
+
+\begin{align*}
+  f(x) = \delta(x)
+\end{align*}
+
+The Fourier transform is simply,
+
+\begin{align*}
+  \tilde{f}(k) &= \int_{-\infty}^{\infty} \delta(x) e^{-ikx} dx \\
+               &= 1
+\end{align*}
+
+This is because the delta function is zero everywhere except at $x = 0$, at which point the exponential is equal to $1$.
+
+\section{Example 6: Constant}
+
+In this section we will find the Fourier transform of a constant $f(x) = 1$. The Fourier transform is therefore $\tilde{f}(k) = \int_{-\infty}^{\infty} e^{-ikx} dx$. We know from our continuous representation of the Heaviside function (look this up) that this is,
+
+\begin{align*}
+  \tilde{f}(k) = 2\pi\delta(k)
+\end{align*}
+
+Therefore we see that the Fourier transform of a constant function is a delta function.
+
+\section{Example 7: Cosine}
+
+In this section we will find the Fourier transform of $f(x) = \cos{k_0 x}$. The Fourier transform is,
+
+\begin{align*}
+  \tilde{f}(k) &= \int_{-\infty}^{\infty} \cos{k_0 x} e^{-ikx} dx \\
+               &= \int_{-\infty}^{\infty} \frac{1}{2}\left(e^{ik_0 x} - e^{-ik_0 x}\right) e^{-ikx} dx \\
+               &= \frac{1}{2} \int_{-\infty}^{\infty} e^{-i(k-k_0)x} + e^{-i(k+k_0)x} dx \\
+               &= \frac{1}{2} \left[2\pi\delta(k-k_0) + 2\pi \delta(k+k_0)\right] \\
+               &= \pi \left[\delta(k-k_0) + \delta(k+k_0)\right]
+\end{align*}
 
 
 \end{document}
