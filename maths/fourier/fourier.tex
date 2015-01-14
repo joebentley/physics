@@ -836,5 +836,99 @@ In this section we will find the Fourier transform of $f(x) = \cos{k_0 x}$. The 
                &= \pi \left[\delta(k-k_0) + \delta(k+k_0)\right]
 \end{align*}
 
+\section{Fourier Transform as an Operator}
+
+In this section, we will define the Fourier Transform operator $\mathcal{F}\left[f(x)\right] = \tilde{f}(k)$ so that $\mathcal{F}$ is the operation of taking the Fourier transform. We will define and prove some rules about how this operator works.
+
+First we have a rule of linearity,
+
+\begin{align*}
+  \mathcal{F}\left[\alpha f(x) + \beta g(x)\right] = \alpha\tilde{f}(k)+\beta\tilde{f}(k)
+\end{align*}
+
+This follows from the linearity of integration,
+
+\begin{align*}
+  \mathcal{F}\left[\alpha f(x) + \beta g(x)\right] &= \int_{-\infty}^{\infty} \left[\alpha f(x) + \beta g(x)\right] e^{-ikx} dx \\
+                                                   &= \alpha\int_{-\infty}^{\infty}f(x)e^{-ikx}dx + \beta\int_{-\infty}^{\infty}g(x)e^{-ikx}dx \\
+                                                   &= \alpha\tilde{f}(k) + \beta\tilde{g}(k)
+\end{align*}
+
+Next, we have the shift rule,
+
+\begin{align*}
+  \mathcal{F}\left[f(x-a)\right] = e^{-ika} \tilde{f}(k)
+\end{align*}
+
+This follows by making the substitution $x = y + a$,
+
+\begin{align*}
+  \mathcal{F}\left[f(x-a)\right] &= \int_{-\infty}^{\infty} f(x-a) e^{-ikx} dx \\
+                                 &= \int_{-\infty}^{\infty} f(y) e^{-ik(y+a)} dy \\
+                                 &= e^{-ika}\int_{-\infty}^{\infty} f(y) e^{-iky}dy \\
+                                 &= e^{-ika}\tilde{f}(k)
+\end{align*}
+
+Next, we have a rule for transforms of the $n$-th derivative of a function,
+
+\begin{align*}
+  \mathcal{F}\left[f^n(x)\right] = {(ik)}^n \tilde{f}(k)
+\end{align*}
+
+This follows by differentiating the inverse Fourier transform $n$ times,
+
+\begin{align*}
+  f(x) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde{f}(k) e^{ikx} dk \\
+  f^n(x) &= \frac{1}{2\pi} \int_{-\infty}^{\infty} {(ik)}^n \tilde{f}(k) e^{ikx} dk \\
+  \mathcal{F}\left[f^n(x)\right] &= {(ik)}^n \tilde{f}(k)
+\end{align*}
+
+Next we have the inverse of that rule,
+
+\begin{align*}
+  \mathcal{F}\left[{(-ix)}^n f(x)\right] = \tilde{f}^n(k)
+\end{align*}
+
+This follows by differentiating the Fourier transform $n$ times,
+
+\begin{align*}
+  \tilde{f}(k) &= \int_{-\infty}^{\infty}f(x)e^{-ikx}dx\\
+  \tilde{f}^n(k) &= \int_{-\infty}^{\infty}{(-ik)}^nf(x)e^{-ikx} dx \\
+  \tilde{f}^n(k) &= \mathcal{F}\left[{(-ik)}^n f(x)\right]
+\end{align*}
+
+Next we have the transform of a product,
+
+\begin{align*}
+  \mathcal{F}\left[f(x)g(x)\right] = \frac{1}{2\pi} \tilde{f}*\tilde{g}(k)
+\end{align*}
+
+This is proven as follows,
+
+\begin{align*}
+  \mathcal{F}\left[f(x)g(x)\right] &= \int_{-\infty}^{\infty}f(x)g(x)e^{-ikx}dx \\
+                                   &= \int_{-\infty}^{\infty}f(x) \left[\frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde{g}(q) e^{iqx} dq\right] e^{-ikx} dx \\
+                                   &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde{g}(q) dq \left[\int_{-\infty}^{\infty}f(x) e^{iqx}e^{-ikx} dx\right] \\
+                                   &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde{g}(q) dq \left[\int_{-\infty}^{\infty}f(x) e^{-i(k - q)x} dx\right] \\
+                                   &= \frac{1}{2\pi} \int_{-\infty}^{\infty} \tilde{f}(k-q) \tilde{g}(q) dq \\
+                                   &= \frac{1}{2\pi} \tilde{f}*\tilde{g}(k)
+\end{align*}
+
+Finally we have the inverse of this,
+
+\begin{align*}
+  \mathcal{F}\left[f*g(x)\right] = \tilde{f}(k) \tilde{g}(k)
+\end{align*}
+
+This is proven as follows,
+
+\begin{align*}
+  \mathcal{F}\left[f*g(x)\right] &= \int_{-\infty}^{\infty} f*g(x) e^{-ikx} dx \\
+                                 &= \int_{-\infty}^{\infty} \left[\int_{-\infty}^{\infty}f(x-y)g(y)dy\right] e^{-ikx} dx \\
+                                 &= \int_{-\infty}^{\infty} g(y) dy \left[\int_{-\infty}^{\infty} f(x-y) e^{-ikx} dx\right] \\
+                                 &= \tilde{f}(k) \int_{-\infty}^{\infty} g(y) e^{-iky} dy \\
+                                 &= \tilde{f}(k) \tilde{g}(k)
+\end{align*}
+
 
 \end{document}
