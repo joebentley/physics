@@ -931,4 +931,66 @@ This is proven as follows,
 \end{align*}
 
 
+\section{Convolutions}
+
+Convolutions commonly occur when an instrument has an intrinsic distortion or blurring. The image produced is the convolution of the true image and the instrument's profile.
+
+To obtain the true image one needs to deconvolve,
+
+\begin{align*}
+  f*I \to \tilde{f}(k) \tilde{I}(k) \to \tilde{f}(k) \to f
+\end{align*}
+
+Geometrically $f*g(x)$ is the area under the product $f(x-y) g(y)$. $f(x-y)$ is obtained from $f(y)$ by reflecting about the line $y = x$ and translating by $x$.
+
+Now we will do a couple of examples of convolutions. First, we will take two delta functions and convolute them with a top hat function.
+
+\begin{align*}
+  f(y) &= \delta{(y + \frac{\pi}{2})} + \delta{(y + \frac{\pi}{2})} \\
+  g(y) &= \Theta{(\frac{d}{2} - |y|)} = T(y; -\frac{d}{2}, \frac{d}{2}) \\
+\end{align*}
+
+In this case the function is even so,
+
+\begin{align*}
+  f(x - y) = f(y - x) = \delta\left(y - x + \frac{a}{2}\right) + \delta\left(y - x - \frac{a}{2}\right)
+\end{align*}
+
+The convolution can then be evaluated,
+
+\begin{align*}
+  \int_{-\infty}^{\infty} f(x-y)g(y)dy &= \int_{-\infty}^{\infty} \left[\delta\left(y - x + \frac{a}{2}\right) + \delta\left(y - x - \frac{a}{2}\right)\right] \Theta\left(\frac{d}{2} - |y|\right) dy \\
+                                       &= \Theta\left(\frac{d}{2} - \left|x - \frac{a}{2}\right|\right) + \Theta\left(\frac{d}{2} - \left|x + \frac{a}{2}\right|\right) \\
+                                       &= T\left(x; \frac{(a-d)}{2}, \frac{(a+d)}{2}\right) + T\left(x; -\frac{(a+d)}{2}, \frac{(d-a)}{2}\right)
+\end{align*}
+
+The Fourier transform is given by,
+
+\begin{align*}
+  \mathcal{F}\left[f*g(x)\right] = \tilde{f}(k)\tilde{g}(k) = \left[2\cos{\frac{ka}{2}}\right]\left[2\frac{\sin{\frac{kd}{2}}}{k}\right]
+\end{align*}
+
+Next we will do an example with two equal top hat functions,
+
+\begin{align*}
+  f(y) = g(y) = \Theta{(a - |y|)} = T(y; -a, a)
+\end{align*}
+
+If $x = 0$ in the convolution then the top hat functions are just on top of each other,
+
+\begin{align*}
+  f*g(x=0) = \int {[f(y)]}^2 dy = \int_{-a}^{a} dy = 2a
+\end{align*}
+
+As the value $|x|$ increases, $f * g$ decreases linearly until it vanishes at $|x| = 2a$.
+
+In this example the Fourier transform of the convolution is,
+
+\begin{align*}
+  \tilde{f}(k) \tilde{g}(k) = {\left[\frac{2\sin{ka}}{k}\right]}^2
+\end{align*}
+
+
+See the notes on Canvas for an example with two Gaussians.
+
 \end{document}
