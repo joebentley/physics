@@ -993,4 +993,108 @@ In this example the Fourier transform of the convolution is,
 
 See the notes on Canvas for an example with two Gaussians.
 
+\section{Fourier Cosine Transform}
+
+If $f(x)$ is a real, even function, then we may observe that the integral over the $i\sin$ term in the Fourier transform goes to zero, so we are just left with the $\cos$ term,
+
+\begin{align*}
+  \tilde{f}(k) &= \int_{-\infty}^{\infty} f(x)\left[\cos{kx}-i\sin{kx}\right]dx \\
+               &= \int_{-\infty}^{\infty} f(x)\cos{kx} dx \\
+               &= 2 \int_{-\infty}^{\infty} f(x)\cos{kx} dx \\
+               &= 2 \tilde{f_c}(k)
+\end{align*}
+
+where $\tilde{f_c}(k) = \int_0^{\infty}f(x)\cos{kx}dx$ is called the Fourier cosine transform.
+
+It follows that $\tilde{f}(k)$ is a real and even function of $k$. To find the inverse transform we see that since $\tilde{f}(k)$ is even, only the cosine term remains, as the integral over the sine term will be zero,
+
+\begin{align*}
+  f(x) &= \frac{1}{2\pi}\int_{-\infty}^{\infty} \tilde{f}(k) e^{ikx} dk \\
+       &= \frac{1}{2\pi}\int_{-\infty}^{\infty} \tilde{f}(k) \left[\cos{kx}+i\sin{kx}\right] dk \\
+       &= \frac{1}{2\pi}\int_{-\infty}^{\infty} \tilde{f}(k) \cos{kx} dk \\
+       &= \frac{1}{\pi}\int_0^{\infty} \left[2\tilde{f_c}(k)\right] \cos{kx} dk \\
+  f(x) &= \frac{2}{\pi}\int_0^{\infty} \tilde{f_c}(k) \cos{kx} dk
+\end{align*}
+
+In the symmetric form of the transform the $2/\pi$ can be split equally as $\sqrt{2/\pi}$.
+
+\section{Fourier Sine Transform}
+
+If $f(x)$ is a real, odd function, then the cosine term will integrate to zero as it will be zero over symmetric limits,
+
+\begin{align*}
+  \tilde{f}(k) &= \int_{-\infty}^{\infty} f(x) \left[\cos{kx} - i\sin{kx}\right] dx \\
+               &= -i\int_{-\infty}^{\infty} f(x) \sin{kx} dx \\
+               &= -2i\int_0^{\infty} f(x) \sin{kx} dx \\
+               &= -2i \tilde{f_s}(k)
+\end{align*}
+
+where $\tilde{f_s}(k) = \int_0^{\infty}f(x)\sin{kx}dx$ is called the Fourier sine transform.
+
+It follows that $\tilde{f}(k)$ is an imaginary, odd function of $k$. To find the inverse note that the cosine term will disappear again over the symmetric limits as $\tilde{f}(k)$ is odd,
+
+\begin{align*}
+  f(x) &= \frac{1}{2\pi}\int_{-\infty}^{\infty} \tilde{f}(k) e^{ikx} dk \\
+       &= \frac{1}{2\pi}\int_{-\infty}^{\infty} \tilde{f}(k) \left[\cos{kx} + i\sin{kx}\right] dk \\
+       &= \frac{1}{2\pi} i \int_{-\infty}^{\infty} \tilde{f}(k) \sin{kx} dk \\
+       &= \frac{1}{2\pi} i 2 \int_0^{\infty}\left[-2i\tilde{f_s}(k)\right] \sin{kx} dk \\
+  f(x) &= \frac{2}{\pi} \int_0^{\infty}\tilde{f_s}(k)\sin{kx} dx
+\end{align*}
+
+\section{Higher-dimensional Fourier Transforms}
+
+For a function $f(x, y)$ of two vriables we can define a Fourier transform,
+
+\begin{align*}
+  \tilde{f}(k_x, k_y) = \int_{-\infty}^{\infty}dx\int_{-\infty}^{\infty}dy f(x, y) e^{-i(k_x+k_y+k_z)}
+\end{align*}
+
+and the inverse transform,
+
+\begin{align*}
+  f(x, y) = \frac{1}{{(2\pi)}^2} \int_{-\infty}^{\infty}dk_x\int_{-\infty}^{\infty} \tilde{f}(k_x, k_y) e^{i(k_x, k_y)}
+\end{align*}
+
+We can add to this for higher dimensions but it quickly gets messy, so for $d$ dimensions we define $\mathbf{r} = (x_1, x_2, \dots x_d)$, and $\mathbf{k} = (k_1, k_2, \dots k_d)$. The Fourier transform and its inverse can then be defined as,
+
+\begin{align*}
+  \tilde{f}(\mathbf{k}) &= \int_V f(\mathbf{r}) e^{-i\mathbf{k}\cdot\mathbf{r}} d^d r \\
+  f(\mathbf{r}) &= \frac{1}{{(2\pi)}^d} \int_{\tilde{V}} \tilde{f}(\mathbf{k}) e^{i\mathbf{k}\cdot\mathbf{r}} d^d k
+\end{align*}
+
+For example, for plane waves defined as $f(\mathbf{r}, t) = e^{i(\mathbf{k}\cdot\mathbf{r} - \omega t)}$ the fourier transform is,
+
+\begin{align*}
+  \tilde{f}(\mathbf{k}, \omega) &= \int d^3r dt f(\mathbf{r}, t) e^{i(\omega t - \mathbf{k}\cdot\mathbf{r})} \\
+  f(\mathbf{r}, t) &= \frac{1}{{(2\pi)}^4} \int d^3r dt \tilde{f}(\mathbf{k}, \omega) e^{i(\mathbf{k}\cdot\mathbf{r} - \omega t)}
+\end{align*}
+
+\section{Radial Fourier Transform}
+
+Consider the Fourier transform of a 3D function $V(r)$ which depends only on $r = |\mathbf{r}|$. The Fourier transform is defined as,
+
+\begin{align*}
+  \tilde{V}(k) = \int d^3r V(r) e^{-\mathbf{k}\cdot\mathbf{r}}
+\end{align*}
+
+We will use spherical polar coordinates, so that,
+
+\begin{align*}
+  d^3r &= r^2\sin{\theta}dr d\theta d\phi \\
+  \mathbf{k}\cdot\mathbf{r} &= kr \cos{\theta}
+\end{align*}
+
+We set the $z$-axis of our polars along the $\mathbf{k}$ direction.
+
+\begin{align*}
+  \tilde{V}(k) &= \int_0^{\infty} r^2 V(r) dr \int_0^{\pi} e^{-ikr\cos{\theta}} \sin{\theta} d\theta \int_0^{2\pi} d\phi \\
+               &= \int_0^{\infty} 2\pi r^2 V(r) dr \int_0^{\pi} e^{-ikr\cos{\theta}} \sin{\theta} d\theta \\
+               &= \int_0^{\infty} 2\pi r^2 V(r) dr {\left[\frac{e^{-ikr\cos{\theta}}}{ikr}\right]}^{\theta = \pi}_{\theta = 0} \\
+               &= \int_0^{\infty} 2\pi r^2 V(r) dr \left[\frac{e^{ikr} - e^{-ikr}}{ikr}\right] \\
+               &= \int_0^{\infty} 2\pi r^2 v(r) dr \left[\frac{2i\sin{kr}}{ikr}\right] \\
+               &= \frac{4\pi}{k}\int_0^{\infty} r\sin{kr} V(r) dr
+\end{align*}
+
+
+
 \end{document}
