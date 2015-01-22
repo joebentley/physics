@@ -1096,5 +1096,116 @@ We set the $z$-axis of our polars along the $\mathbf{k}$ direction.
 \end{align*}
 
 
+$\tilde{V}(k)$ is the radial Fourier transform of $V(r)$. For example, consider the Yukawa potential $V(r) = \frac{1}{r} e^{-\frac{r}{a}}$,
+
+\begin{align*}
+  \tilde{V}(k) &= \frac{4\pi}{k}\int_0^{\infty}r\sin{kr} V(r) dr \\
+               &= \frac{4\pi}{k}\int_0^{\infty}\sin{kr} e^{-\frac{r}{a}} dr \\
+               &= \frac{4\pi}{k} \Im \int_0^{\infty} e^{-r\left(\frac{1}{a}-ik\right)} dr \\
+               &= \frac{4\pi}{k}\Im {\left[-\frac{1}{\frac{1}{a} - ik} e^{-r\left(\frac{1}{a} - ik\right)}\right]}_{r=0}^{r=\infty} \\
+               &= \frac{4\pi}{k}\Im\left[\frac{1}{\frac{1}{a} - ik}\right] \\
+               &= \frac{4\pi}{k}\Im\left[\frac{\frac{1}{a} + ik}{\frac{1}{a^2} + k^2}\right] \\
+               &= \frac{4\pi}{k}\frac{k}{k^2 + \frac{1}{a^2}}
+  \tilde{V}(k) &= \frac{4\pi}{k^2 + \frac{1}{a^2}}
+\end{align*}
+
+To get the Coulomb potential, let $a \to \infty$. For $V(r) = \frac{1}{r}$,
+
+\begin{align*}
+  \tilde{V}(k) = \frac{4\pi}{k^2}
+\end{align*}
+
+With the constants $V(r) = \frac{e^2}{4\pi\epsilon_0 r}$,
+
+\begin{align*}
+  \tilde{V}(k) = \frac{e^2}{\epsilon_0 k^2}
+\end{align*}
+
+
+\section{Solution of Poisson's Equation}
+
+Suppose we start from Maxwell's equations of electromagnetism, how do we derive Coulomb's law? In the static case, where there is no time dependence, M1 and M3 become,
+
+\begin{align*}
+  \nabla\cdot\mathbf{E} &= \frac{\rho}{\epsilon_0} \\
+  \nabla\times\mathbf{E} &= 0
+\end{align*}
+
+From Helmholtz's theorem, since in the second equation the curl is equal to zero $\nabla\times\mathbf{E} = 0$ this implies there is some scalar field $V(\mathbf{r})$ such that $\mathbf{E} = -\nabla V$. Substituting $\mathbf{E} = -\nabla V$ into the first Maxwell equation gives,
+
+\begin{align*}
+  \nabla^2 V(\mathbf{r}) = -\frac{\rho(\mathbf{r})}{\epsilon_0}
+\end{align*}
+
+This is called Poisson's equatoin. To solve Poisson's equation, write $V(\mathbf{r})$ as a Fourier expansion,
+
+\begin{align*}
+  V(\mathbf{r}) = \frac{1}{{(2\pi)}^2}\int d^3\mathbf{k} \tilde{V}(k) e^{i\mathbf{k}\cdot\mathbf{r}}
+\end{align*}
+
+Operating $\nabla^2$ on $e^{i\mathbf{k}\cdot\mathbf{r}}$ gives,
+
+\begin{align*}
+  \nabla^2 e^{i\mathbf{k}\cdot\mathbf{r}} = \left[\frac{\partial^2}{\partial x^2} + \frac{\partial^2}{\partial y^2} + \frac{\partial^2}{\partial z^2}\right] e^{i(k_x x + k_y y + k_z z)}
+\end{align*}
+
+\begin{align*}
+  \nabla^2 e^{i\mathbf{k}\cdot\mathbf{r}} &= \left[-{k_x}^2 -{k_y}^2 -{k_z}^2\right] e^{i\mathbf{k}\cdot\mathbf{r}} \\
+                                           &= -k^2 e^{i\mathbf{k}\cdot\mathbf{r}}
+\end{align*}
+
+It follows that,
+
+\begin{align*}
+  \nabla^2 V(\mathbf{r}) = \frac{1}{{(2\pi)}^3}\int d^3\mathbf{k}(-k^2 \tilde{V}(\mathbf{k})) e^{i\mathbf{k}\cdot\mathbf{r}}
+\end{align*}
+
+We can write the right hand side of Poisson's equation as a Fourier expansion,
+
+\begin{align*}
+  -\frac{\rho(\mathbf{r})}{\epsilon_0} = \frac{1}{{(2\pi)}^3}\int d^3\mathbf{k} \left(-\frac{\tilde{\rho}(\mathbf{k})}{\epsilon_0}\right) e^{i\mathbf{k}\cdot\mathbf{r}}
+\end{align*}
+
+Since $\nabla^2 V(\mathbf{r}) = -\frac{\rho(\mathbf{r})}{\epsilon_0}$, the bracketed terms in the Fourier transforms must be equal,
+
+\begin{align*}
+  -k^2 \tilde{V}(\mathbf{k}) = -\frac{\tilde{\rho}(\mathbf{k})}{\epsilon_0}
+\end{align*}
+
+It follows that,
+
+\begin{align*}
+  \tilde{V}(\mathbf{k}) = \frac{\tilde{\rho}(\mathbf{k})}{\epsilon_0 k^2} = \tilde{\rho}(\mathbf{k}) \tilde{G}(\mathbf{k})
+\end{align*}
+
+where $\tilde{G}(\mathbf{k}) = \frac{1}{\epsilon_0 k^2}$.
+
+From before with the Coulomb potential this Fourier transform $\tilde{G}(\mathbf{k})$ corresponds to
+
+\begin{align*}
+  G(\mathbf{r}) = \frac{1}{4\pi\epsilon_0 r}
+\end{align*}
+
+From the convolution theorem,
+
+\begin{align*}
+  \tilde{V}(\mathbf{k}) &= \tilde{\rho}(\mathbf{k})\tilde{G}(\mathbf{k})
+\end{align*}
+
+\begin{align*}
+  \to V(\mathbf{r}) &= \rho * G(\mathbf{r}) = \int d^3 \mathbf{r'} G(\mathbf{r} - \mathbf{r'}) \rho(\mathbf{r'})
+\end{align*}
+
+Hence we get the final result,
+
+\begin{align*}
+  V(\mathbf{r}) = \int \frac{\rho(\mathbf{r'})}{4\pi\epsilon_0 |\mathbf{r} - \mathbf{r'}|} d^3 \mathbf{r'}
+\end{align*}
+
+And therefore the eletric field is,
+
+\begin{align*}
+  \mathbf{E}(\mathbf{r}) = -\nabla V(\mathbf{r}) = \int \frac{\rho(\mathbf{r'}) (\mathbf{r} - \mathbf{r'})}{4\pi\epsilon_0 {|\mathbf{r} - \mathbf{r'}|}^3} d^3 \mathbf{r'}
+\end{align*}
 
 \end{document}
